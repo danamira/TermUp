@@ -1,60 +1,21 @@
 <template>
-  <div id="app" :class="'night_mode_' + this.nightMode">
-    <header id="header">
-      <router-link to="/">
-        <img src="./Assets/logo.png" id="logo">
-      </router-link>
-      <ul class="option_series">
-        <li><i class="mdi mdi-school"></i><span>تغییر رشته</span></li>
-      </ul>
-      <ul class="option_series">
-        <li><i class="mdi mdi-printer"></i><span>چاپ انتخاب ها</span></li>
-        <li><i class="mdi mdi-share-variant"></i><span>اشتراک گذاری</span></li>
-        <li id="del_all_button">
-          <i class="mdi mdi-close"></i><span>حذف همه</span>
-        </li>
-        <li><i class="mdi mdi-check"></i><span>تایید انتخاب ها</span></li>
-      </ul>
-      <div class="plans">
-        <i class="mdi mdi-arrow-down-drop-circle"></i>
-        <span>Plan A</span>
-      </div>
-
-      <div id="theme_switch" v-on:click="toggleTheme">
-        <i class="mdi mdi-weather-night" v-if="nightMode == 'off'"></i>
-        <i class="mdi mdi-lightbulb" v-if="nightMode == 'on'"></i>
-      </div>
-    </header>
-    <router-view></router-view>
-    <div id="footer">
-      <p class="copyright">
-        <i class="mdi mdi-copyright"></i>{{ copyright.farsiNum() }}
-      </p>
-      <div class="links">
-        <a href="#">
-          <i class="mdi mdi-open-in-new"></i>
-          مخزن پروژه
-        </a>
-        <router-link to="/contributors">
-          <!-- <i class="mdi mdi-account-multiple"></i> -->
-          مشارکت کنندگان
-        </router-link>
-      </div>
-    </div>
+  <div id="container">
+    <div class="week" ref="week"></div>
+    <SideBar :width="getWidth('SideBar')" :courses="courses"></SideBar>
   </div>
 </template>
-
 <script>
-// import SideBar from "./components/SideBar.vue";
-// import data from "./data.json";
-// console.log(data);
+import SideBar from "../components/SideBar.vue";
+import data from "../data.json";
+console.log(data);
 export default {
   name: "App",
+  components: {
+    SideBar,
+  },
   data: function () {
     return {
-      nightMode: "off",
-      copyright:
-        "کپی رایت 2021 | ساخته شده توسط چاپ کاناپه با مشارکت جمعی از دانشجویان.",
+      courses: data,
     };
   },
   methods: {
