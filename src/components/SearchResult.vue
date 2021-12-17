@@ -1,10 +1,10 @@
 <template>
   <div class="item">
     <h3>
-      {{ course.title }} <span>{{ course.professor }}</span>
+      {{ course.title.farsiNum()}} <span>{{ course.professor }}</span>
     </h3>
     <div class="timing">
-      <span>سه شنبه نه تا ده صبح</span>
+      <span v-for="day in course.classDays" :key="day[1]">{{day[0]}} ( {{day[1][0].toString().farsiNum().replace(".","/")}} تا  {{day[1][1].toString().farsiNum().replace(".","/")}} )</span>
     </div>
     <div class="options">
       <i class="mdi mdi-plus"></i>
@@ -76,11 +76,23 @@ export default {
 }
 .search_result .item .timing {
   margin-top: 10px;
+  overflow: hidden;
 }
 .search_result .item .timing span {
   display: block;
+  float:right;
+  padding:0 7px;
+  border-left: 1px solid #bab9c4;
   margin-left: 5px;
   font-size: 14px;
+}
+
+.search_result .item .timing span:last-child {
+  border-left: none !important;
+}
+
+.search_result .item .timing span:first-child{
+  padding-right:0 !important;
 }
 .night_mode_on .search_result .item {
   border-color: transparent;

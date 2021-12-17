@@ -1,13 +1,14 @@
 <template>
   <div id="app" :class="'night_mode_' + this.nightMode">
     <header id="header">
-      <router-link to="/">
-        <img src="./Assets/logo.png" id="logo">
-      </router-link>
+        <img src="./assets/logo.png" id="logo" />
+      <ul class="option_series" v-if="$route.name!='Board'">  
+                <li><router-link to="/"><i class="mdi mdi-arrow-left-circle-outline"></i><span>بازگشت به برد</span></router-link></li>
+      </ul>
       <ul class="option_series">
         <li><i class="mdi mdi-school"></i><span>تغییر رشته</span></li>
       </ul>
-      <ul class="option_series">
+      <ul class="option_series" v-if="$route.name=='Board'">
         <li><i class="mdi mdi-printer"></i><span>چاپ انتخاب ها</span></li>
         <li><i class="mdi mdi-share-variant"></i><span>اشتراک گذاری</span></li>
         <li id="del_all_button">
@@ -45,7 +46,7 @@
 </template>
 
 <script>
-// import SideBar from "./components/SideBar.vue";
+// import SideBar from "./  ents/SideBar.vue";
 // import data from "./data.json";
 // console.log(data);
 export default {
@@ -70,10 +71,7 @@ export default {
         return window.innerWidth - 358 + "px";
       }
     },
-  },
-  mounted: function () {
-    console.log(this.$refs.week.clientWidth);
-  },
+  }
 };
 </script>
 
@@ -84,9 +82,14 @@ export default {
   font-family: IRANYekanWeb;
   font-weight: 100;
   margin: 0;
+  /* transition:0.2s; */
 }
 *:focus {
   outline: none;
+}
+a {
+  text-decoration: none;
+  color:inherit
 }
 body {
   direction: rtl;
@@ -108,7 +111,7 @@ body {
   padding: 0 10px;
 }
 .week {
-  padding: 0 10px;
+  padding-left: 10px;
   min-height: 700px;
   width: calc(100% - 380px);
   float: right;
@@ -128,8 +131,8 @@ body {
   float: right;
   border-left: 1px solid #dbd9d9;
 }
-.option_series:last-child {
-  border-left: none !important;
+.option_series:nth-child(odd) {
+  border-left: 0px solid #fff  !important;
 }
 .option_series li {
   display: block;
@@ -143,6 +146,9 @@ body {
   line-height: 20px;
   font-size: 13px;
   margin-top: 1px;
+}
+.option_series li.active {
+  /* color:#8a96aa */
 }
 .night_mode_on #header {
   border-color: #293240;
@@ -200,6 +206,7 @@ body {
   margin-right: 10px;
 }
 #theme_switch {
+  /* transition: 0.5s; */
   float: left;
   display: block;
   margin-left: 15px;

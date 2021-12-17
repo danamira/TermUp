@@ -17,7 +17,7 @@
         </div>
       </div>
       <div v-else>
-        <img src="../Assets/Search.png" style="width:130px;display:block;margin:30px auto;">
+        <img src="../assets/Search.png" style="width:130px;display:block;margin:30px auto;">
         <p style="display:block;font-size:13px;text-align:center;color:#7f899b">برای شروع نام درس یا استاد را وارد کنید...</p>
       </div>
     </div>

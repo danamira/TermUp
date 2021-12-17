@@ -1,24 +1,3 @@
-# Termostad
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+<h1>TermOstad</h1>
+<h2>ℹ About the app</h2>
+<p>This is a tool for the students of University of Tehran helping them pick courses for their future semester. The app enables students to see their weekly schedule beforehand and find timing conflicts between the courses they're thinking about selecting rather than finding them through trial and error during the actual selection perioud. Users can search between the courses that are being taught in the next semester by entering the title of the course or the name of the professor who teaches the subject. Then they can add the course to their planning board and see how it looks among their other choices and know whether there are any timing conflicts between what they've already picked.</p>

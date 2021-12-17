@@ -1,6 +1,7 @@
 <template>
   <div id="about_view">
     <h1>درباره پروژه</h1>
+    div#
   </div>
 </template>
 <style>

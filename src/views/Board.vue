@@ -1,6 +1,101 @@
 <template>
   <div id="container">
-    <div class="week" ref="week"></div>
+    <div class="week" ref="week">
+      <div class="alerts">
+        <!-- {{baseBlockWidth}} -->
+      </div>
+      <div class="week_days">
+        <div class="week_head">
+          <ul class="hours">
+            <li v-for="h in openHours" :key="h" :style="'width:'+baseBlockWidth+'px'">{{h.toString().farsiNum()}}</li>
+          </ul>
+        </div>
+        <div class="day">
+          <div class="day_title">شنبه</div>
+          <div class="course_blocks">
+            <div class="course_block" :style="'width:'+1.5*baseBlockWidth+'px'">
+              <span class="title">استاتیک</span>
+              <span class="pro">مریم بیطرف</span>
+            </div>
+              <div class="course_block" :style="'width:'+2.5*baseBlockWidth+'px'">
+              <span class="title">استاتیک</span>
+              <span class="pro">مریم بیطرف</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="day">
+          <div class="day_title">یکشنبه</div>
+          <div class="course_blocks">
+            <div class="course_block" :style="'width:'+1.5*baseBlockWidth+'px'">
+              <span class="title">استاتیک</span>
+              <span class="pro">مریم بیطرف</span>
+            </div>
+              <div class="course_block" :style="'width:'+2.5*baseBlockWidth+'px'">
+              <span class="title">استاتیک</span>
+              <span class="pro">مریم بیطرف</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="day">
+          <div class="day_title">دوشنبه</div>
+          <div class="course_blocks">
+            <div class="course_block" :style="'width:'+1.5*baseBlockWidth+'px'">
+              <span class="title">استاتیک</span>
+              <span class="pro">مریم بیطرف</span>
+            </div>
+              <div class="course_block" :style="'width:'+2.5*baseBlockWidth+'px'">
+              <span class="title">استاتیک</span>
+              <span class="pro">مریم بیطرف</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="day">
+          <div class="day_title">سه شنبه</div>
+          <div class="course_blocks">
+            <div class="course_block" :style="'width:'+1.5*baseBlockWidth+'px'">
+              <span class="title">استاتیک</span>
+              <span class="pro">مریم بیطرف</span>
+            </div>
+              <div class="course_block" :style="'width:'+2.5*baseBlockWidth+'px'">
+              <span class="title">استاتیک</span>
+              <span class="pro">مریم بیطرف</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="day">
+          <div class="day_title">چهارشنبه</div>
+          <div class="course_blocks">
+            <div class="course_block" :style="'width:'+1.5*baseBlockWidth+'px'">
+              <span class="title">استاتیک</span>
+              <span class="pro">مریم بیطرف</span>
+            </div>
+              <div class="course_block" :style="'width:'+2.5*baseBlockWidth+'px'">
+              <span class="title">استاتیک</span>
+              <span class="pro">مریم بیطرف</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="day">
+          <div class="day_title">پنجشنبه</div>
+          <div class="course_blocks">
+            <div class="course_block" :style="'width:'+1.5*baseBlockWidth+'px'">
+              <span class="title">استاتیک</span>
+              <span class="pro">مریم بیطرف</span>
+            </div>
+              <div class="course_block" :style="'width:'+2.5*baseBlockWidth+'px'">
+              <span class="title">استاتیک</span>
+              <span class="pro">مریم بیطرف</span>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
     <SideBar :width="getWidth('SideBar')" :courses="courses"></SideBar>
   </div>
 </template>
@@ -15,7 +110,9 @@ export default {
   },
   data: function () {
     return {
+      openHours:[8,9,10,11,12,13,14,15,16,17,18,19,20],
       courses: data,
+      baseBlockWidth:60,
     };
   },
   methods: {
@@ -32,9 +129,14 @@ export default {
       }
     },
   },
-  mounted: function () {
-    console.log(this.$refs.week.clientWidth);
+  mounted() {
+    console.log(this.courses)
+    this.baseBlockWidth=(this.$refs.week.clientWidth-70)/this.openHours.length
   },
+
+  computed: {
+    
+  }
 };
 </script>
 
@@ -69,7 +171,7 @@ body {
   padding: 0 10px;
 }
 .week {
-  padding: 0 10px;
+  padding:0 10px;
   min-height: 700px;
   width: calc(100% - 380px);
   float: right;
@@ -235,5 +337,74 @@ body {
   display: block;
   margin-left: 4px;
   line-height: 18px;
+}
+.week_days {
+  margin-top:25px;
+}
+.day {
+  margin:4px 0;
+  width:100%;
+  overflow: hidden;
+  display:block;
+  height:100px;
+  position: relative;
+  padding-right: 47px;
+}
+.day_title {
+  width:100px;
+  background: #3178C3;
+  color:#fff;
+  height:42px;
+  transform: rotate(90deg);
+  line-height: 42px;
+  border-radius: 4px;
+  text-align: center;
+  position: absolute;
+  top:29px;
+  font-size: 14px;
+  right:-29px;
+}
+.course_blocks {
+  float:right;
+}
+.course_block {
+  width:200px;
+  float: right;
+  height: 100px;
+  background: #202733;
+  color:#fff;
+  border-radius: 4px;
+  float: right;
+  border-left: 1px solid rgb(255, 255, 255);
+  /* text-align: center; */
+  padding:10px;
+}
+.night_mode_on .course_block {
+  border-color:rgb(68, 69, 88) !important;
+}
+.course_block .title {
+  display: block;
+  font-size: 14.5px;
+}
+.course_block .pro {
+  font-size:13.5px;
+  color:rgb(180, 187, 206);
+  margin-top:5px;
+  line-height: 22px;
+  display: block;
+}
+.week_head {
+  margin-bottom: 20px;
+  overflow: hidden;
+  padding-right:48px;
+}
+.hours {
+  overflow: hidden;
+  color:#acafb1
+}
+.hours li {
+  display: block;
+  float: right;
+  width: 60px;
 }
 </style>
