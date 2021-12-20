@@ -3,10 +3,13 @@
     <div class="week" ref="week">
       <div class="alerts">
         <div class="intercepts" v-if="intercepts.length >= 1">
-          <p>درس های متداخل یافت شد:</p>
+          <p>درس های متداخل پیدا شد:</p>
           <div class="item" v-for="set in intercepts" :key="set[0].code">
             <i class="mdi mdi-arrow-left"></i>
-            {{ set[0].title }} <span>{{ set[0].code.toString().farsiNum() }}</span> و {{ set[1].title }} <span>{{set[1].code.toString().farsiNum()}}</span>
+            {{ set[0].title.farsiNum() }}
+            <span>{{ set[0].code.toString().farsiNum() }}</span> و
+            {{ set[1].title.farsiNum() }}
+            <span>{{ set[1].code.toString().farsiNum() }}</span>
           </div>
         </div>
       </div>
@@ -34,6 +37,7 @@
                 right: block[3] * baseBlockWidth + 'px',
               }"
             >
+              <i class="unpick mdi mdi-close" v-on:click="unpick(block[0])"></i>
               <span class="title">{{ block[0].title.farsiNum() }}</span>
               <span class="pro">{{ block[0].professor }}</span>
             </div>
@@ -60,7 +64,7 @@ export default {
     return {
       openHours: [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
       courses: data,
-      intercepts: [],
+      // intercepts: [],
       weekDays: [
         [0, "شنبه"],
         [1, "یکشنبه"],
@@ -81,6 +85,16 @@ export default {
         this.nightMode = "off";
       }
     },
+    unpick(course) {
+        this.picked.forEach(function(anotherCourse,index,arr) {
+          let same=anotherCourse.code==course.code
+          if(same) {
+            console.log('DELETED :'+index)
+            arr.splice(index,1)
+          }
+        })
+      
+    },
     getWidth: function (element) {
       if (element == "week") {
         return window.innerWidth - 358 + "px";
@@ -98,7 +112,7 @@ export default {
 
   computed: {
     blocks: function () {
-      this.intercepts = [];
+      // this.intercepts = [];
       let all = [[], [], [], [], [], [], []];
       this.picked.forEach(function (course) {
         course.classDays.forEach(function (day) {
@@ -122,8 +136,11 @@ export default {
           }
         });
       });
-      let me = this;
-      all.forEach(function (day) {
+      return all;
+    },
+    intercepts: function () {
+      let cepts = [];
+      this.blocks.forEach(function (day) {
         day.forEach(function (block) {
           day.forEach(function (otherBlock) {
             // console.log('NOW:'+block[0].courseName+otherBlock[0].courseName)
@@ -136,12 +153,12 @@ export default {
             console.log(block, otherBlock);
             console.log("---------------------------------");
             if (result && !same) {
-              me.intercepts.push([block[0], otherBlock[0]]);
+              cepts.push([block[0], otherBlock[0]]);
             }
           });
         });
       });
-      return all;
+      return cepts;
     },
   },
 };
@@ -376,31 +393,33 @@ body {
   float: right;
 }
 .course_block {
-  /* width: 200px; */
   float: right;
   position: absolute;
   height: 100px;
   background: #202733;
+  z-index:1000;
   color: #fff;
   border-radius: 4px;
   float: right;
   border-left: 1px solid rgb(255, 255, 255);
   border-right: 1px solid rgb(255, 255, 255);
-  /* text-align: center; */
-  padding: 10px;
+  overflow: hidden;
+  padding: 10px 5px;
 }
 .night_mode_on .course_block {
   border-color: rgb(68, 69, 88) !important;
 }
 .course_block .title {
   display: block;
-  font-size: 14.5px;
+  cursor: default;
+  font-size: 14px;
 }
 .course_block .pro {
-  font-size: 12.5px;
+  font-size: 12px;
   color: rgb(180, 187, 206);
   margin-top: 5px;
   line-height: 22px;
+  cursor: default;
   display: block;
 }
 .week_head {
@@ -430,12 +449,37 @@ body {
   margin-bottom: 5px;
 }
 .intercepts .item {
-  padding:5px 0;
+  padding: 5px 0;
 }
-.intercepts .item span{
-    background: #992929;
-    color: #ca9e9e;
-    padding: 2px 4px;
-    border-radius: 7px;
+.intercepts .item span {
+  background: #992929;
+  color: #dfb9b9;
+  padding: 2px 4px;
+  border-radius: 7px;
+}
+.intercepts .item .mdi {
+  float: right;
+  margin-left:5px;
+  line-height: 18px;
+
+}
+.course_block .unpick {
+    position: absolute;
+    bottom:7px;
+    left:7px;
+    cursor: pointer;
+    z-index: 10;
+    background: #4e5f6e;
+    border-radius: 8px;
+    width:20px;
+    height:20px;
+    text-align: center;
+    line-height: 21px;
+    font-size: 13px;
+    opacity: 0;
+    transition:0.4s;
+}
+.course_block:hover .unpick {
+  opacity: 1;
 }
 </style>

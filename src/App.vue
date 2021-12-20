@@ -285,4 +285,10 @@ body {
 #done:hover {
   color:rgb(2, 189, 86);
 }
+.night_mode_on #footer .copyright {
+  color:#91959b;
+}
+.night_mode_on #footer .links a {
+  color:#91959b
+}
 </style>

@@ -30,7 +30,7 @@ export default {
   props: {
     width: String,
     courses: Array,
-  },
+  }, 
   data: function () {
     return {
       query: "",
