@@ -14,7 +14,7 @@
         <li id="del_all_button">
           <i class="mdi mdi-close"></i><span>حذف همه</span>
         </li>
-        <li><i class="mdi mdi-check"></i><span>تایید انتخاب ها</span></li>
+        <li id="done"><i class="mdi mdi-check"></i><span>تایید انتخاب ها</span></li>
       </ul>
       <div class="plans">
         <i class="mdi mdi-arrow-down-drop-circle"></i>
@@ -281,5 +281,8 @@ body {
   display: block;
   margin-left: 4px;
   line-height: 18px;
+}
+#done:hover {
+  color:rgb(2, 189, 86);
 }
 </style>

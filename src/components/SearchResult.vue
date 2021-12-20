@@ -7,7 +7,7 @@
       <span v-for="day in course.classDays" :key="day[1]">{{day[0]}} ( {{day[1][0].toString().farsiNum().replace(".","/")}} تا  {{day[1][1].toString().farsiNum().replace(".","/")}} )</span>
     </div>
     <div class="options">
-      <i class="mdi mdi-plus"></i>
+      <i class="mdi mdi-plus" v-on:click="$emit('pick',course)"></i>
       <i class="mdi mdi-dots-horizontal"></i>
     </div>
   </div>

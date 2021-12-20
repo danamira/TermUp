@@ -13,7 +13,7 @@
               course.professor.startsWith(query)
             "
             v-bind:course="course"
-          ></SearchResult>
+          v-on:pick="pick"></SearchResult>
         </div>
       </div>
       <div v-else>
@@ -35,6 +35,12 @@ export default {
     return {
       query: "",
     };
+  },
+  methods:{
+    pick(course) {
+      this.$emit('pick',course)
+      this.query=""
+    }
   },
   components: {
     SearchResult,
