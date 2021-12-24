@@ -26,7 +26,7 @@
 <script>
 import SearchResult from "./SearchResult.vue";
 export default {
-  name: "HelloWorld",
+  name: "Search",
   props: {
     width: String,
     courses: Array,
