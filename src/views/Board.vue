@@ -45,11 +45,7 @@
         </div>
       </div>
     </div>
-    <SideBar
-      :width="getWidth('SideBar')"
-      :courses="courses"
-      v-on:pick="pick"
-    ></SideBar>
+    <SideBar :courses="courses" v-on:pick="pick"></SideBar>
   </div>
 </template>
 <script>
@@ -101,11 +97,6 @@ export default {
         }
       });
       this.updateStorage();
-    },
-    getWidth: function (element) {
-      if (element == "week") {
-        return window.innerWidth - 358 + "px";
-      }
     },
     pick: function (course) {
       this.picked.push(course);
@@ -198,6 +189,9 @@ export default {
   height: 105px;
   margin-bottom: 4px;
   border-bottom: 1px solid #eaf0f1;
+}
+.day:last-child {
+  border-bottom: none !important;
 }
 .night_mode_on .day {
   border-color: #232732 !important;

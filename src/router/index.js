@@ -11,9 +11,9 @@ const routes = [
     component: Board
   },
   {
-    path:'/contributors',
-    name:'Credits',
-    component:()=>import('../views/About.vue')
+    path: '/contributors',
+    name: 'Credits',
+    component: () => import('../views/About.vue')
   },
   {
     path: '/about',
@@ -27,7 +27,9 @@ const routes = [
 
 const router = new VueRouter({
   routes,
-  scrollBehavior () {
+  mode: 'history',
+  // Making sure that the browser goes back to the default sroll position after switching pages.
+  scrollBehavior() {
     return { x: 0, y: 0 }
   }
 })

@@ -3,9 +3,12 @@ import App from './App.vue'
 import router from './router'
 
 Vue.config.productionTip = false
-String.prototype.farsiNum= function() {
-  return this.replace(/\d/g, d =>  '٠١٢٣٤٥٦٧٨٩'[d])
+
+// This is a method defined on String proptype to replace the English number characters with Persian/Arabic numbers.
+String.prototype.farsiNum = function () {
+  return this.replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d])
 }
+
 new Vue({
   router,
   render: h => h(App)

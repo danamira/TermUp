@@ -13,12 +13,25 @@
               course.professor.startsWith(query)
             "
             v-bind:course="course"
-          v-on:pick="pick"></SearchResult>
+            v-on:pick="pick"
+          ></SearchResult>
         </div>
       </div>
       <div v-else>
-        <img src="../assets/Search.png" style="width:130px;display:block;margin:30px auto;">
-        <p style="display:block;font-size:13px;text-align:center;color:#7f899b">برای شروع نام درس یا استاد را وارد کنید...</p>
+        <img
+          src="../assets/Search.png"
+          style="width: 130px; display: block; margin: 30px auto"
+        />
+        <p
+          style="
+            display: block;
+            font-size: 13px;
+            text-align: center;
+            color: #7f899b;
+          "
+        >
+          برای شروع نام درس یا استاد را وارد کنید...
+        </p>
       </div>
     </div>
   </div>
@@ -28,19 +41,19 @@ import SearchResult from "./SearchResult.vue";
 export default {
   name: "Search",
   props: {
-    width: String,
     courses: Array,
-  }, 
+  },
   data: function () {
     return {
       query: "",
     };
   },
-  methods:{
+  methods: {
+    // Passing the picked course to the parent component(Board) 
     pick(course) {
-      this.$emit('pick',course)
-      this.query=""
-    }
+      this.$emit("pick", course);
+      this.query = "";
+    },
   },
   components: {
     SearchResult,
@@ -96,7 +109,7 @@ export default {
   font-size: 19px;
 }
 .night_mode_on .search .mdi {
-  color:rgb(159, 166, 207);
+  color: rgb(159, 166, 207);
 }
 .search_result {
   margin-top: 10px;
