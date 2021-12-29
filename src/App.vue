@@ -1,20 +1,27 @@
 <template>
   <div id="app" :class="'night_mode_' + this.nightMode">
     <header id="header">
-        <img src="./assets/logo.png" id="logo" />
-      <ul class="option_series" v-if="$route.name!='Board'">  
-                <li><router-link to="/"><i class="mdi mdi-arrow-left-circle-outline"></i><span>بازگشت به برد</span></router-link></li>
+      <img src="./assets/logo.png" id="logo" />
+      <ul class="option_series" v-if="$route.name != 'Board'">
+        <li>
+          <router-link to="/"
+            ><i class="mdi mdi-arrow-left-circle-outline"></i
+            ><span>بازگشت به برد</span></router-link
+          >
+        </li>
       </ul>
       <ul class="option_series">
         <li><i class="mdi mdi-school"></i><span>تغییر رشته</span></li>
       </ul>
-      <ul class="option_series" v-if="$route.name=='Board'">
+      <ul class="option_series" v-if="$route.name == 'Board'">
         <li><i class="mdi mdi-printer"></i><span>چاپ انتخاب ها</span></li>
         <li><i class="mdi mdi-share-variant"></i><span>اشتراک گذاری</span></li>
         <li id="del_all_button">
           <i class="mdi mdi-close"></i><span>حذف همه</span>
         </li>
-        <li id="done"><i class="mdi mdi-check"></i><span>تایید انتخاب ها</span></li>
+        <li id="done">
+          <i class="mdi mdi-check"></i><span>تایید انتخاب ها</span>
+        </li>
       </ul>
       <div class="plans">
         <i class="mdi mdi-arrow-down-drop-circle"></i>
@@ -26,36 +33,19 @@
         <i class="mdi mdi-lightbulb" v-if="nightMode == 'on'"></i>
       </div>
     </header>
-    <router-view></router-view>
-    <div id="footer">
-      <p class="copyright">
-        <i class="mdi mdi-copyright"></i>{{ copyright.farsiNum() }}
-      </p>
-      <div class="links">
-        <a href="#">
-          <i class="mdi mdi-open-in-new"></i>
-          مخزن پروژه
-        </a>
-        <router-link to="/contributors">
-          <!-- <i class="mdi mdi-account-multiple"></i> -->
-          مشارکت کنندگان
-        </router-link>
-      </div>
-    </div>
+    <router-view ref="mamad"></router-view>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
-// import SideBar from "./  ents/SideBar.vue";
-// import data from "./data.json";
-// console.log(data);
+import Footer from "./components/Footer.vue";
 export default {
   name: "App",
+  components: { Footer },
   data: function () {
     return {
-      nightMode: "off",
-      copyright:
-        "کپی رایت 2021 | ساخته شده توسط چاپ کاناپه با مشارکت جمعی از دانشجویان.",
+      nightMode: localStorage.getItem("night_mode") || "off"
     };
   },
   methods: {
@@ -65,13 +55,14 @@ export default {
       } else {
         this.nightMode = "off";
       }
+      localStorage.setItem('night_mode',this.nightMode)
     },
     getWidth: function (element) {
       if (element == "week") {
         return window.innerWidth - 358 + "px";
       }
     },
-  }
+  },
 };
 </script>
 
@@ -89,7 +80,7 @@ export default {
 }
 a {
   text-decoration: none;
-  color:inherit
+  color: inherit;
 }
 body {
   direction: rtl;
@@ -132,7 +123,7 @@ body {
   border-left: 1px solid #dbd9d9;
 }
 .option_series:nth-child(odd) {
-  border-left: 0px solid #fff  !important;
+  border-left: 0px solid #fff !important;
 }
 .option_series li {
   display: block;
@@ -283,12 +274,12 @@ body {
   line-height: 18px;
 }
 #done:hover {
-  color:rgb(2, 189, 86);
+  color: rgb(2, 189, 86);
 }
 .night_mode_on #footer .copyright {
-  color:#91959b;
+  color: #91959b;
 }
 .night_mode_on #footer .links a {
-  color:#91959b
+  color: #91959b;
 }
 </style>
