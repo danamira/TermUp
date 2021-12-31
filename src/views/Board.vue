@@ -50,7 +50,7 @@
 </template>
 <script>
 import SideBar from "../components/SideBar.vue";
-import data from "../data.json";
+import axios from 'axios'
 export default {
   name: "App",
   components: {
@@ -60,7 +60,7 @@ export default {
     return {
       // `openHours` consists of the hours which courses are presented in. This usually is the Univerity's work hours.
       openHours: [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-      courses: data,
+      courses: {},
       // `weekDays` consists of the days in week and their index.
       weekDays: [
         [0, "شنبه"],
@@ -77,8 +77,17 @@ export default {
       picked: JSON.parse(localStorage.getItem("courses_picked")) || [],
     };
   },
+  created(){
+    this.fetchData()
+  },
   methods: {
     // `updateStorage` will be called after each pick/unpick action. This method updates the `courses_picked` array in localStorage to the latest value of `picked` in component's data object.
+    fetchData(){
+      // console.warn("FUCK OFF")
+     axios.get('http://127.0.0.1:8080/data/Civil/1400-2.json').then(response => {
+       this.courses=response.data
+     })
+  },
     updateStorage() {
       if (localStorage.getItem("courses_picked") === null) {
         console.log("NULL IT IS");
@@ -106,6 +115,7 @@ export default {
 
   mounted() {
     // Calculating the width of each block/tile on the board. `$this.refs.week` refers to the div.week DOM element.
+    
     this.baseBlockWidth =
       (this.$refs.week.clientWidth - 70) / this.openHours.length;
   },
