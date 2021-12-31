@@ -25,7 +25,7 @@
       </ul>
       <div class="plans">
         <i class="mdi mdi-arrow-down-drop-circle"></i>
-        <span>Plan A</span>
+        <span>{{"1400 / ترم 1".farsiNum()}}</span>
       </div>
 
       <div id="theme_switch" v-on:click="toggleTheme">
@@ -168,7 +168,7 @@ body {
 .plans {
   background: #dae5e9;
   float: left;
-  width: 96px;
+  /* width: 96px; */
   height: 35px;
   border-radius: 4px;
   margin-top: 8px;
@@ -185,7 +185,7 @@ body {
   float: right;
   line-height: 35px;
   display: block;
-  font-size: 17px;
+  font-size: 18px;
   color: #5a6a85;
 }
 .plans span {
@@ -193,7 +193,7 @@ body {
   float: left;
   display: block;
   line-height: 37px;
-  font-size: 14px;
+  font-size: 13.5px;
   margin-right: 10px;
 }
 #theme_switch {

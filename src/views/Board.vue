@@ -84,7 +84,7 @@ export default {
     // `updateStorage` will be called after each pick/unpick action. This method updates the `courses_picked` array in localStorage to the latest value of `picked` in component's data object.
     fetchData(){
       // console.warn("FUCK OFF")
-     axios.get('http://127.0.0.1:8080/data/Civil/1400-2.json').then(response => {
+     axios.get('http://127.0.0.1:8080/data/CivilEng/1400-2.json').then(response => {
        this.courses=response.data
      })
   },
