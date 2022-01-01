@@ -78,20 +78,25 @@ export default {
     };
   },
   created(){
+     let major=(this.$route.params.major)
+    if(localStorage.getItem('major')!=major) {
+      localStorage.courses_picked="[]";
+      this.picked=[]
+    }
+    localStorage.setItem('major',major)
     this.fetchData()
   },
   methods: {
     // `updateStorage` will be called after each pick/unpick action. This method updates the `courses_picked` array in localStorage to the latest value of `picked` in component's data object.
     fetchData(){
-      // console.warn("FUCK OFF")
-     axios.get('http://127.0.0.1:8080/data/CivilEng/1400-2.json').then(response => {
+     axios.get('http://127.0.0.1:8080/data/'+this.$route.params.major+'/1400-01.json').then(response => {
        this.courses=response.data
      })
   },
     updateStorage() {
       if (localStorage.getItem("courses_picked") === null) {
-        console.log("NULL IT IS");
-        console.log(this.picked);
+        // console.log("NULL IT IS");
+        // console.log(this.picked);
         localStorage.setItem("courses_picked", JSON.stringify(this.picked));
       }
       localStorage.courses_picked = JSON.stringify(this.picked);
@@ -101,7 +106,7 @@ export default {
       this.picked.forEach(function (anotherCourse, index, arr) {
         let same = anotherCourse.code == course.code;
         if (same) {
-          console.log("DELETED :" + index);
+          // console.log("DELETED :" + index);
           arr.splice(index, 1);
         }
       });
@@ -161,13 +166,22 @@ export default {
             let result =
               block[3] >= otherBlock[3] &&
               block[3] < otherBlock[3] + otherBlock[2];
-            console.log(result);
+            // console.log(result);
             let same = block[0].code == otherBlock[0].code;
-            console.log(same);
-            console.log(block, otherBlock);
-            console.log("---------------------------------");
+            // console.log(same);
+            // console.log(block, otherBlock);
+            // console.log("---------------------------------");
             if (result && !same) {
-              cepts.push([block[0], otherBlock[0]]);
+              let alreadyAdded=0;
+              cepts.forEach(function(c) {
+                if((c[0].code==block[0].code && c[1].code==otherBlock[0].code)||(c[1].code==block[0].code && c[0].code==otherBlock[0].code) ) {
+                  console.warn("EXIISTT")
+                    alreadyAdded=1
+                }
+              })
+              if(!alreadyAdded){
+                cepts.push([block[0], otherBlock[0]]);
+              }
             }
           });
         });

@@ -2,11 +2,19 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Board from '../views/Board.vue'
 
+let availableMajors=['CivilEng','Math']
 Vue.use(VueRouter)
 
 const routes = [
+  {path:'/',name:'Home',redirect:function(){
+    let major=(localStorage.getItem('major'))
+    if(availableMajors.includes(major)){
+      return '/board/'+major;
+    }
+    return '/majors'
+  }},
   {
-    path: '/',
+    path: '/board/:major',
     name: 'Board',
     component: Board
   },
@@ -14,6 +22,11 @@ const routes = [
     path: '/contributors',
     name: 'Credits',
     component: () => import('../views/About.vue')
+  },
+  {
+    path:'/majors',
+    name:'MajorSwitch',
+    component:()=>import('../views/Majors.vue')
   },
   {
     path: '/about',

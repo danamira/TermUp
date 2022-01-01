@@ -1,0 +1,103 @@
+<template>
+  <div id="major_switch">
+    <h1>تغییر رشته</h1>
+    <div class="warn" v-if="!newUser">
+      <p>
+        <i class="mdi mdi-alert-octagon"></i>
+        تغییر رشته موجب حذف انتخاب های ذخیره شده فعلی در مرورگر می شود. دقت
+        کنید!
+      </p>
+    </div>
+    <div class="majors">
+      <router-link to="/board/CivilEng">
+        <div class="major">
+          <i class="mdi mdi-account-hard-hat"></i>
+          <span>مهندسی عمران</span>
+        </div>
+      </router-link>
+      <router-link to="/board/Math">
+        <div class="major">
+          <i class="mdi mdi-math-integral"></i>
+          <span>ریاضیات و کاربرد ها</span>
+        </div>
+      </router-link>
+    </div>
+  </div>
+</template>
+<script>
+  export default {
+    name:'MajorSwitch',
+    data:function() {
+      return {
+        newUser:localStorage.getItem('major')==null || localStorage.getItem('major'=="")
+      }
+    }
+  }
+</script>
+
+<style>
+#major_switch {
+  width: 1000px;
+  margin: 30px auto;
+  min-height: 620px;
+}
+#major_switch h1 {
+  font-weight: 100;
+  margin-bottom: 20px;
+  display: block;
+  text-align: center;
+  font-size: 20px;
+  color: rgb(57, 77, 104);
+}
+.night_mode_on #major_switch h1 {
+  color:#fff;
+}
+#major_switch .majors {
+  margin-top: 30px;
+}
+#major_switch .majors .major {
+  color: #4f5f83;
+  width: 200px;
+  height:45px;
+  margin:3px 5px;
+  float: right;
+  border: 1px solid #d4d4d4;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+#major_switch .majors .major:hover , .night_mode_on #major_switch .majors .major{
+  background: rgb(54, 60, 80);
+  transition: 0.3s;
+  color:#fff;
+  border-color:rgb(54, 60, 80);
+}
+#major_switch .majors .major .mdi {
+  display: block;
+  font-size: 22px;
+  line-height: 24px;
+  float: right;
+  margin-left: 10px;
+}
+#major_switch .majors .major span {
+  font-size: 14px;
+}
+#major_switch .warn {
+  background: #f7a900;
+  color: #fff;
+  border-radius: 4px;
+  width: 600px;
+  margin: auto;
+  padding: 10px;
+}
+#major_switch p {
+  font-size: 14px;
+  line-height: 23px;
+}
+#major_switch .warn .mdi {
+  float: right;
+  font-size: 22px;
+  margin-left: 7px;
+  line-height: 22px;
+}
+</style>

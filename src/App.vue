@@ -4,14 +4,14 @@
       <img src="./assets/logo.png" id="logo" />
       <ul class="option_series" v-if="$route.name != 'Board'">
         <li>
-          <router-link to="/"
-            ><i class="mdi mdi-arrow-left-circle-outline"></i
-            ><span>بازگشت به برد</span></router-link
-          >
+          <a v-on:click="$router.go(-1)">
+            <i class="mdi mdi-arrow-left-circle-outline"></i
+            ><span>برگشت به قبلی</span>
+            </a>
         </li>
       </ul>
       <ul class="option_series">
-        <li><i class="mdi mdi-school"></i><span>تغییر رشته</span></li>
+        <li><router-link to="/majors"><i class="mdi mdi-school"></i><span>تغییر رشته</span></router-link></li>
       </ul>
       <ul class="option_series" v-if="$route.name == 'Board'">
         <li><i class="mdi mdi-printer"></i><span>چاپ انتخاب ها</span></li>
