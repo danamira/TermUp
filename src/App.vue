@@ -7,11 +7,15 @@
           <a v-on:click="$router.go(-1)">
             <i class="mdi mdi-arrow-left-circle-outline"></i
             ><span>برگشت به قبلی</span>
-            </a>
+          </a>
         </li>
       </ul>
       <ul class="option_series">
-        <li><router-link to="/majors"><i class="mdi mdi-school"></i><span>تغییر رشته</span></router-link></li>
+        <li>
+          <router-link to="/majors"
+            ><i class="mdi mdi-school"></i><span>تغییر رشته</span></router-link
+          >
+        </li>
       </ul>
       <ul class="option_series" v-if="$route.name == 'Board'">
         <li><i class="mdi mdi-printer"></i><span>چاپ انتخاب ها</span></li>
@@ -25,7 +29,7 @@
       </ul>
       <div class="plans">
         <i class="mdi mdi-arrow-down-drop-circle"></i>
-        <span>{{"1400 / ترم 1".farsiNum()}}</span>
+        <span>{{ "1400 | ترم 1".farsiNum() }}</span>
       </div>
 
       <div id="theme_switch" v-on:click="toggleTheme">
@@ -45,7 +49,7 @@ export default {
   components: { Footer },
   data: function () {
     return {
-      nightMode: localStorage.getItem("night_mode") || "off"
+      nightMode: localStorage.getItem("night_mode") || "off",
     };
   },
   methods: {
@@ -55,7 +59,7 @@ export default {
       } else {
         this.nightMode = "off";
       }
-      localStorage.setItem('night_mode',this.nightMode)
+      localStorage.setItem("night_mode", this.nightMode);
     },
     getWidth: function (element) {
       if (element == "week") {

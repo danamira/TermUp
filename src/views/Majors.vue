@@ -1,6 +1,7 @@
 <template>
   <div id="major_switch">
-    <h1>تغییر رشته</h1>
+    <h1 v-if="newUser">انتخاب رشته</h1>
+    <h1 v-else>تغییر رشته</h1>
     <div class="warn" v-if="!newUser">
       <p>
         <i class="mdi mdi-alert-octagon"></i>

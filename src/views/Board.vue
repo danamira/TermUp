@@ -1,56 +1,76 @@
 <template>
-  <div id="container">
-    <div class="week" ref="week">
-      <div class="alerts">
-        <div class="intercepts" v-if="intercepts.length >= 1">
-          <p>درس های متداخل پیدا شد:</p>
-          <div class="item" v-for="set in intercepts" :key="set[0].code">
-            <i class="mdi mdi-arrow-left"></i>
-            {{ set[0].title.farsiNum() }}
-            <span>{{ set[0].code.toString().farsiNum() }}</span> و
-            {{ set[1].title.farsiNum() }}
-            <span>{{ set[1].code.toString().farsiNum() }}</span>
+  <div>
+    <div v-if="courses.length >= 1" id="container">
+      <div class="week" ref="week">
+        <div class="alerts">
+          <div class="intercepts" v-if="intercepts.length >= 1">
+            <p>درس های متداخل پیدا شد:</p>
+            <div class="item" v-for="set in intercepts" :key="set[0].code">
+              <i class="mdi mdi-arrow-left"></i>
+              {{ set[0].title.farsiNum() }}
+              <span>{{ set[0].code.toString().farsiNum() }}</span> و
+              {{ set[1].title.farsiNum() }}
+              <span>{{ set[1].code.toString().farsiNum() }}</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="week_days">
-        <div class="week_head">
-          <ul class="hours">
-            <li
-              v-for="h in openHours"
-              :key="h"
-              :style="'width:' + baseBlockWidth + 'px'"
-            >
-              {{ h.toString().farsiNum() }}
-            </li>
-          </ul>
-        </div>
-        <div class="day" v-for="day in weekDays" :key="day[0]">
-          <div class="day_title">{{ day[1] }}</div>
-          <div class="course_blocks">
-            <div
-              v-for="block in blocks[day[0]]"
-              :key="block[0].code"
-              class="course_block"
-              :style="{
-                width: block[2] * baseBlockWidth + 'px',
-                right: block[3] * baseBlockWidth + 'px',
-              }"
-            >
-              <i class="unpick mdi mdi-close" v-on:click="unpick(block[0])"></i>
-              <span class="title">{{ block[0].title.farsiNum() }}</span>
-              <span class="pro">{{ block[0].professor }}</span>
+        <div class="week_days">
+          <div class="week_head">
+            <ul class="hours">
+              <li
+                v-for="h in openHours"
+                :key="h"
+                :style="'width:' + baseBlockWidth + 'px'"
+              >
+                {{ h.toString().farsiNum() }}
+              </li>
+            </ul>
+          </div>
+          <div class="day" v-for="day in weekDays" :key="day[0]">
+            <div class="day_title">{{ day[1] }}</div>
+            <div class="course_blocks">
+              <div
+                v-for="block in blocks[day[0]]"
+                :key="block[0].code"
+                class="course_block"
+                :style="{
+                  width: block[2] * baseBlockWidth + 'px',
+                  right: block[3] * baseBlockWidth + 'px',
+                }"
+              >
+                <i
+                  class="unpick mdi mdi-close"
+                  v-on:click="unpick(block[0])"
+                ></i>
+                <span class="title">{{ block[0].title.farsiNum() }}</span>
+                <span class="pro">{{ block[0].professor }}</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <SideBar :courses="courses" v-on:pick="pick"></SideBar>
     </div>
-    <SideBar :courses="courses" v-on:pick="pick"></SideBar>
+    <div v-else id="container">
+      <div class="fetchError" v-if="errorFetching">
+        <i class="mdi mdi-emoticon-sad-outline"></i>
+        <h3>خطا در دریافت اطلاعات</h3>
+        <p>
+          متاسفانه نتونستیم دیتا رو به درستی دریافت کنیم. اگه از وضیعت
+          اینترنتتتون مطمئن هستید ، آدرس صفحه و رشته رو چک کنید. اگر مشکل حل نشد
+          خبر بدید که درستش کنیم.
+        </p>
+      </div>
+      <div v-else class="loading">
+        <i class="mdi mdi-loading mdi-spin"></i>
+        <h3>در حال دریافت درس ها</h3>
+      </div>
+    </div>
   </div>
 </template>
 <script>
 import SideBar from "../components/SideBar.vue";
-import axios from 'axios'
+import axios from "axios";
 export default {
   name: "App",
   components: {
@@ -60,7 +80,8 @@ export default {
     return {
       // `openHours` consists of the hours which courses are presented in. This usually is the Univerity's work hours.
       openHours: [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-      courses: {},
+      courses: [],
+      errorFetching: 0,
       // `weekDays` consists of the days in week and their index.
       weekDays: [
         [0, "شنبه"],
@@ -77,22 +98,39 @@ export default {
       picked: JSON.parse(localStorage.getItem("courses_picked")) || [],
     };
   },
-  created(){
-     let major=(this.$route.params.major)
-    if(localStorage.getItem('major')!=major) {
-      localStorage.courses_picked="[]";
-      this.picked=[]
+  created() {
+    let major = this.$route.params.major;
+    if (localStorage.getItem("major") != major) {
+      localStorage.courses_picked = "[]";
+      this.picked = [];
     }
-    localStorage.setItem('major',major)
-    this.fetchData()
+
+    localStorage.setItem("major", major);
+    this.fetchData();
+    // console.warn(this)
+  },
+  updated() {
+    this.baseBlockWidth =
+      (this.$refs.week.clientWidth - 70) / this.openHours.length;
   },
   methods: {
     // `updateStorage` will be called after each pick/unpick action. This method updates the `courses_picked` array in localStorage to the latest value of `picked` in component's data object.
-    fetchData(){
-     axios.get('http://127.0.0.1:8080/data/'+this.$route.params.major+'/1400-01.json').then(response => {
-       this.courses=response.data
-     })
-  },
+    fetchData() {
+      let app = this;
+      axios
+        .get(
+          "https://pickup.iran.liara.run/data/" +
+            this.$route.params.major +
+            "/1400-01.json"
+        )
+        .then((response) => {
+          this.courses = response.data;
+        })
+        .catch(function (err) {
+          app.errorFetching = 1;
+          console.error("Error!!!!", err);
+        });
+    },
     updateStorage() {
       if (localStorage.getItem("courses_picked") === null) {
         // console.log("NULL IT IS");
@@ -120,9 +158,9 @@ export default {
 
   mounted() {
     // Calculating the width of each block/tile on the board. `$this.refs.week` refers to the div.week DOM element.
-    
-    this.baseBlockWidth =
-      (this.$refs.week.clientWidth - 70) / this.openHours.length;
+    // this.baseBlockWidth =;
+    // console.warn("SKS")
+    // console.warn(this.$refs)
   },
 
   computed: {
@@ -172,14 +210,19 @@ export default {
             // console.log(block, otherBlock);
             // console.log("---------------------------------");
             if (result && !same) {
-              let alreadyAdded=0;
-              cepts.forEach(function(c) {
-                if((c[0].code==block[0].code && c[1].code==otherBlock[0].code)||(c[1].code==block[0].code && c[0].code==otherBlock[0].code) ) {
-                  console.warn("EXIISTT")
-                    alreadyAdded=1
+              let alreadyAdded = 0;
+              cepts.forEach(function (c) {
+                if (
+                  (c[0].code == block[0].code &&
+                    c[1].code == otherBlock[0].code) ||
+                  (c[1].code == block[0].code &&
+                    c[0].code == otherBlock[0].code)
+                ) {
+                  console.warn("EXIISTT");
+                  alreadyAdded = 1;
                 }
-              })
-              if(!alreadyAdded){
+              });
+              if (!alreadyAdded) {
                 cepts.push([block[0], otherBlock[0]]);
               }
             }
@@ -334,5 +377,59 @@ export default {
   height: 1000x;
   width: 1px;
   background: #000;
+}
+.fetchError {
+  width: 700px;
+  margin: auto;
+  margin-top: 100px;
+  margin-bottom: 300px;
+}
+.fetchError .mdi {
+  font-size: 60px;
+  display: block;
+  line-height: 60px;
+  color: rgb(235, 57, 57);
+  text-align: center;
+}
+.fetchError h3 {
+  font-size: 19px;
+  color: rgb(235, 57, 57);
+  display: block;
+  text-align: center;
+}
+.night_mode_on .fetchError * {
+  color: #85a6c5 !important;
+}
+.fetchError p {
+  font-size: 14px;
+  line-height: 32px;
+  color: #202733;
+  padding-right: 10px;
+  border-right: 2px solid;
+  margin-top: 18px;
+}
+.loading {
+  width: 700px;
+  margin: auto;
+  margin-top: 100px;
+  margin-bottom: 360px;
+}
+.loading .mdi {
+  font-size: 60px;
+  display: block;
+  text-align: center;
+  color: rgb(56, 64, 85);
+}
+.loading h3 {
+  display: block;
+  text-align: center;
+  font-size: 16px;
+  color: rgb(43, 51, 66);
+}
+.night_mode_on .loading h3 {
+  color: rgb(81, 80, 129);
+}
+.night_mode_on .loading * {
+  color: #85a6c5 !important;
 }
 </style>
