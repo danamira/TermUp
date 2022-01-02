@@ -77,7 +77,6 @@ export default {
   font-family: IRANYekanWeb;
   font-weight: 100;
   margin: 0;
-  /* transition:0.2s; */
 }
 *:focus {
   outline: none;

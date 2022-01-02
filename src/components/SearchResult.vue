@@ -6,11 +6,28 @@
     <div class="timing">
       <span v-for="day in course.classDays" :key="day[1]">{{day[0]}} ( {{day[1][0].toString().farsiNum().replace(".","/")}} تا  {{day[1][1].toString().farsiNum().replace(".","/")}} )</span>
     </div>
+    <div class="more_info" v-if="expanded">
+      <ul>
+        <li><i class="mdi mdi-account-multiple"></i>
+        <span>ظرفیت:</span>
+        {{(course.capacity).toString().farsiNum()}}
+        </li>
+        <li><i class="mdi mdi-gender-male-female"></i>
+        <span>جنسیت:</span>
+        {{(course.gender).toString().farsiNum()}}
+        </li>
+        <li><i class="mdi mdi-school"></i>
+        <span>واحد:</span>
+        {{(course.total).toString().farsiNum()}}
+        </li>
+      </ul>
+    </div>
     <div class="options">
       <!-- The icon below passes component's course to the parent layer(SideBar) when clicked. SideBar will proceed and pass it to the Board component later. -->
       <i class="mdi mdi-plus" v-on:click="$emit('pick',course)"></i>
-      <i class="mdi mdi-dots-horizontal"></i>
+      <i class="mdi mdi-dots-horizontal" v-on:click="expanded=!expanded"></i>
     </div>
+    
   </div>
 </template>
 
@@ -18,10 +35,66 @@
 export default {
   name: "SearchResult",
   props: ["course"],
+  data() {
+    return {
+      expanded:0
+    }
+  }
 };
 </script>
 
 <style>
+.search_result .more_info {
+  margin-bottom: -15px;
+}
+.search_result ul {
+  list-style: none;
+  margin-top: 10px;
+  color: #3c4758;
+  overflow: hidden;
+}
+.search_result ul li{
+  font-size: 14px;
+  display: block;
+  margin: 5px 0;
+  padding-bottom: 6px;
+  float: right;
+  /* padding-right: 15px; */
+  width: 100%;
+  line-height: 23px;
+  border-bottom: 1px dashed #eeeeee;
+  position: relative;
+}
+.search_result ul li:last-child{
+  border-bottom: none;
+ }
+.search_result ul li:before{
+  content: '';
+  display: block;
+  background: #e7edf0;
+  width: 9px;
+  height: 9px;
+  left:0;
+  border-radius: 3px;
+  top:5px;
+  position: absolute;
+} */
+.search_result ul li:nth-child(even) {
+  border-left: none;
+}
+.search_result ul li .mdi {
+  font-size: 15px;
+  line-height: 25px;
+  border-radius: 5px;
+  color: #4e536e;
+  background: #e7edf0;
+  display: block;
+  width:25px;
+  text-align: center;
+  height: 25px;
+  float: right;
+  margin-left: 4px;
+}
 .search_result .item {
   width: 100%;
   display: block;
@@ -35,13 +108,12 @@ export default {
   font-weight: 100;
   display: block;
   font-size: 14.5px;
-  color: #000;
   color: #303b4e;
   width: 100%;
 }
 .search_result .item h3 span {
   float: left;
-  font-size: 14px;
+  font-size: 13.5px;
   color: #7f899b;
 }
 .search_result .item .options {
@@ -77,6 +149,7 @@ export default {
 }
 .search_result .item .timing {
   margin-top: 10px;
+  /* margin-bottom: 3px; */
   overflow: hidden;
 }
 .search_result .item .timing span {
@@ -84,8 +157,9 @@ export default {
   float:right;
   padding:0 7px;
   border-left: 1px solid #bab9c4;
+  color: #5a6a85;
   margin-left: 5px;
-  font-size: 14px;
+  font-size: 13.5px;
 }
 
 .search_result .item .timing span:last-child {

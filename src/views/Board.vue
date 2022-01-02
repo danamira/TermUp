@@ -119,7 +119,7 @@ export default {
       let app = this;
       axios
         .get(
-          "https://pickup.iran.liara.run/data/" +
+          "/data/" +
             this.$route.params.major +
             "/1400-01.json"
         )

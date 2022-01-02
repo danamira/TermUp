@@ -26,19 +26,20 @@
   </div>
 </template>
 <script>
-  export default {
-    name:'MajorSwitch',
-    data:function() {
-      return {
-        newUser:localStorage.getItem('major')==null || localStorage.getItem('major'=="")
-      }
-    }
-  }
+export default {
+  name: "MajorSwitch",
+  data: function () {
+    return {
+      newUser:
+        localStorage.getItem("major") == null || localStorage.getItem("major" == ""),
+    };
+  },
+};
 </script>
 
 <style>
 #major_switch {
-  width: 1000px;
+  width: 840px;
   margin: 30px auto;
   min-height: 620px;
 }
@@ -51,27 +52,28 @@
   color: rgb(57, 77, 104);
 }
 .night_mode_on #major_switch h1 {
-  color:#fff;
+  color: #fff;
 }
 #major_switch .majors {
-  margin-top: 30px;
+  margin-top: 20px;
 }
 #major_switch .majors .major {
   color: #4f5f83;
   width: 200px;
-  height:45px;
-  margin:3px 5px;
+  height: 45px;
+  margin: 5px 5px;
   float: right;
   border: 1px solid #d4d4d4;
   padding: 10px;
   cursor: pointer;
   border-radius: 4px;
 }
-#major_switch .majors .major:hover , .night_mode_on #major_switch .majors .major{
+#major_switch .majors .major:hover,
+.night_mode_on #major_switch .majors .major {
   background: rgb(54, 60, 80);
   transition: 0.3s;
-  color:#fff;
-  border-color:rgb(54, 60, 80);
+  color: #fff;
+  border-color: rgb(54, 60, 80);
 }
 #major_switch .majors .major .mdi {
   display: block;
