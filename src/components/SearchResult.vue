@@ -23,9 +23,13 @@
       </ul>
     </div>
     <div class="options">
+      <span class="course_code" v-if="expanded">
+        <i class="mdi mdi-content-copy"></i>
+        {{course.code.farsiNum()}}
+      </span>
       <!-- The icon below passes component's course to the parent layer(SideBar) when clicked. SideBar will proceed and pass it to the Board component later. -->
-      <i class="mdi mdi-plus" v-on:click="$emit('pick',course)"></i>
-      <i class="mdi mdi-dots-horizontal" v-on:click="expanded=!expanded"></i>
+      <i class="button mdi mdi-plus" v-on:click="$emit('pick',course)"></i>
+      <i class="button mdi mdi-dots-horizontal" v-on:click="expanded=!expanded"></i>
     </div>
     
   </div>
@@ -45,7 +49,7 @@ export default {
 
 <style>
 .search_result .more_info {
-  margin-bottom: -15px;
+  margin-bottom: -10px;
 }
 .search_result ul {
   list-style: none;
@@ -126,7 +130,7 @@ export default {
   background: #8d9ba1;
   line-height: 25px;
 }
-.search_result .item .options .mdi {
+.search_result .item .options .button {
   display: block;
   float: left;
   margin-right: 6px;
@@ -138,6 +142,26 @@ export default {
   text-align: center;
   border-radius: 5px;
   cursor: pointer;
+}
+.search_result .options .course_code {
+  float: right;
+  display: block;
+  direction: ltr;
+  text-align: left;
+  height:25px;
+  font-size: 13px;
+  line-height: 27px;
+  background: #5d6778;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 0 5px;
+}
+.search_result .options .course_code .mdi {
+  float: left;
+  font-size: 14px;
+  line-height: 26px;
+  margin-right: 5px;
 }
 .search_result .item .options .mdi-plus {
   color: #fff;

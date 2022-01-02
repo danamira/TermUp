@@ -38,19 +38,30 @@
       </div>
     </header>
     <router-view ref="mamad"></router-view>
+    <div id="screenError" v-if="clientWidth<500">
+      <i class="mdi mdi-phone-rotate-landscape"></i>
+      <span class="errorTitle">صفحه نمایش بیش از حد کوچک</span>
+      <p>اگر با موبایل هستید، صفحه را به حالت افقی (Portrait) تغییر داده و صفحه را ریفرش کنید.</p>
+      <p>در کل توصیه می شود برای استفاده کامل صفحه نمایش حداقل {{"1230".farsiNum()}} پیکسل طول داشته باشد. تا نیاز به اسکرول افقی نباشد.</p>
+    </div>
     <Footer></Footer>
   </div>
 </template>
 
 <script>
 import Footer from "./components/Footer.vue";
+
 export default {
   name: "App",
   components: { Footer },
   data: function () {
     return {
       nightMode: localStorage.getItem("night_mode") || "off",
+      clientWidth:1000
     };
+  },
+  created(){
+    this.clientWidth=window.innerWidth
   },
   methods: {
     toggleTheme: function () {
@@ -90,6 +101,7 @@ body {
 }
 #app {
   overflow: hidden;
+  overflow-x: initial;
 }
 .night_mode_on {
   background: #0b1320;
@@ -97,17 +109,21 @@ body {
 #header {
   border-bottom: 1px solid #e1e5ea;
   height: 60px;
+  min-width: 1230px;
+  width: 100%;
   padding: 5px 20px;
 }
 #container {
   width: 100%;
   overflow: hidden;
+  min-width: 1230px;
   padding: 0 10px;
 }
 .week {
   padding-left: 10px;
   min-height: 700px;
   width: calc(100% - 380px);
+  min-width: 820px;
   float: right;
 }
 .left {
@@ -231,6 +247,9 @@ body {
 #footer {
   padding: 10px 20px;
   overflow: hidden;
+  min-width: 1230px;
+  width: 100%;
+  
 }
 #footer .copyright {
   color: #293240;
@@ -284,5 +303,36 @@ body {
 }
 .night_mode_on #footer .links a {
   color: #91959b;
+}
+#screenError {
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height: 100%;
+  background: #fff;
+  z-index: 1000;
+}
+#screenError .mdi {
+  font-size: 40px;
+  text-align: center;
+  display: block;
+  color: #3974da;
+  margin-top: 100px;
+}
+#screenError .errorTitle{
+  display: block;
+  text-align: center;
+  font-size: 20px;
+  color: #3b5063;
+  margin-bottom: 10px;
+}
+#screenError p {
+  display: block;
+  text-align: center;
+  color: #1c2534;
+  font-size: 15px;
+  margin:5px 0;
+  line-height: 26px;
 }
 </style>

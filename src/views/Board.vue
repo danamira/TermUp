@@ -296,7 +296,7 @@ export default {
   padding: 10px 5px;
 }
 .night_mode_on .course_block {
-  border-color: rgb(68, 69, 88) !important;
+  border-color: #0b1320 !important;
 }
 .course_block .title {
   display: block;
