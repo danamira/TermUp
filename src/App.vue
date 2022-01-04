@@ -41,7 +41,7 @@
     <div id="screenError" v-if="clientWidth<500">
       <i class="mdi mdi-phone-rotate-landscape"></i>
       <span class="errorTitle">صفحه نمایش بیش از حد کوچک</span>
-      <p>اگر با موبایل هستید، صفحه را به حالت افقی (Portrait) تغییر داده و صفحه را ریفرش کنید.</p>
+      <p>اگر با موبایل هستید، صفحه را به حالت افقی (Landscape) تغییر داده و صفحه را ریفرش کنید.</p>
       <p>در کل توصیه می شود برای استفاده کامل صفحه نمایش حداقل {{"1230".farsiNum()}} پیکسل طول داشته باشد. تا نیاز به اسکرول افقی نباشد.</p>
     </div>
     <Footer></Footer>
@@ -334,5 +334,7 @@ body {
   font-size: 15px;
   margin:5px 0;
   line-height: 26px;
+  padding: 0 10px;
+
 }
 </style>
