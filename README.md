@@ -1,6 +1,6 @@
-<h1>TermOstad</h1>
+<h1>TermUp</h1>
 <p align="center">
-	<img src="https://raw.githubusercontent.com/danamira/TermUp/main/.github/Preview.png"/>
+	<img src="https://github.com/danamira/TermUp/blob/master/.github/Preview.png"/>
 </p>
 <h2>💡 About the app</h2>
 <p>This is a tool for the students of University of Tehran helping them pick courses for their future semester. The app enables students to see their weekly schedule beforehand and find timing conflicts between the courses they're thinking about selecting rather than finding them through trial and error during the actual selection perioud. Users can search between the courses that are being taught in the next semester by entering the title of the course or the name of the professor who teaches the subject. Then they can add the course to their planning board and see how it looks among their other choices and know whether there are any timing conflicts between what they've already picked.</p>
