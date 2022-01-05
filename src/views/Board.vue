@@ -12,10 +12,10 @@
       <ul class="option_series">
         <li><i class="mdi mdi-printer"></i><span>چاپ انتخاب ها</span></li>
         <li><i class="mdi mdi-share-variant"></i><span>اشتراک گذاری</span></li>
-        <li id="del_all_button">
+        <li id="del_all_button" @click="unpickAll()">
           <i class="mdi mdi-close"></i><span>حذف همه</span>
         </li>
-        <li id="done">
+        <li id="done" :class="(intercepts.length == 0 && picked.length>0) ? 'Active' : 'disActive'">
           <i class="mdi mdi-check"></i><span>تایید انتخاب ها</span>
         </li>
       </ul>
@@ -179,6 +179,10 @@ export default {
     },
     pick: function (course) {
       this.picked.push(course);
+      this.updateStorage();
+    },
+    unpickAll() {
+      this.picked = [];
       this.updateStorage();
     },
   },
@@ -458,5 +462,21 @@ export default {
 }
 .night_mode_on .loading * {
   color: #85a6c5 !important;
+}
+#done.disActive {
+  cursor: default;
+  color: #485761 !important;
+  opacity: 0.4;
+}
+#done.disActive:hover {
+  color: #485761 !important;
+}
+.night_mode_on #done.disActive {
+  cursor: default;
+  color: #a3bac9 !important;
+  opacity: 0.4;
+}
+.night_mode_on #done.disActive:hover {
+  color: #a3bac9 !important;
 }
 </style>
