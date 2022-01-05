@@ -1,5 +1,33 @@
 <template>
   <div>
+    <header id="header">
+      <img src="../assets/logo.png" id="logo" />
+      <ul class="option_series">
+        <li>
+          <router-link to="/majors"
+            ><i class="mdi mdi-school"></i><span>تغییر رشته</span></router-link
+          >
+        </li>
+      </ul>
+      <ul class="option_series">
+        <li><i class="mdi mdi-printer"></i><span>چاپ انتخاب ها</span></li>
+        <li><i class="mdi mdi-share-variant"></i><span>اشتراک گذاری</span></li>
+        <li id="del_all_button">
+          <i class="mdi mdi-close"></i><span>حذف همه</span>
+        </li>
+        <li id="done">
+          <i class="mdi mdi-check"></i><span>تایید انتخاب ها</span>
+        </li>
+      </ul>
+      <div class="plans">
+        <i class="mdi mdi-arrow-down-drop-circle"></i>
+        <span>{{ "1400 | ترم 1".farsiNum() }}</span>
+      </div>
+
+      <div id="theme_switch" v-on:click="$emit('toggleTheme')">
+        <i class="mdi mdi-theme-light-dark"></i>
+      </div>
+    </header>
     <div v-if="courses.length >= 1" id="container">
       <div class="week" ref="week">
         <div class="alerts">
@@ -115,14 +143,13 @@ export default {
   },
   methods: {
     // `updateStorage` will be called after each pick/unpick action. This method updates the `courses_picked` array in localStorage to the latest value of `picked` in component's data object.
+    toggleTheme() {
+      alert("Changed");
+    },
     fetchData() {
       let app = this;
       axios
-        .get(
-          "/data/" +
-            this.$route.params.major +
-            "/1400-01.json"
-        )
+        .get("/data/" + this.$route.params.major + "/1400-01.json")
         .then((response) => {
           this.courses = response.data;
         })

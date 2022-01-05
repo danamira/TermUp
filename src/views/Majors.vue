@@ -1,27 +1,48 @@
 <template>
-  <div id="major_switch">
-    <h1 v-if="newUser">انتخاب رشته</h1>
-    <h1 v-else>تغییر رشته</h1>
-    <div class="warn" v-if="!newUser">
-      <p>
-        <i class="mdi mdi-alert-octagon"></i>
-        تغییر رشته موجب حذف انتخاب های ذخیره شده فعلی در مرورگر می شود. دقت
-        کنید!
-      </p>
-    </div>
-    <div class="majors">
-      <router-link to="/board/CivilEng">
-        <div class="major">
-          <i class="mdi mdi-account-hard-hat"></i>
-          <span>مهندسی عمران</span>
-        </div>
-      </router-link>
-      <router-link to="/board/Math">
-        <div class="major">
-          <i class="mdi mdi-math-integral"></i>
-          <span>ریاضیات و کاربرد ها</span>
-        </div>
-      </router-link>
+  <div>
+    <header id="header">
+      <img src="../assets/logo.png" id="logo" />
+      <ul class="option_series" v-if="$route.name != 'Board'">
+        <li>
+          <a v-on:click="$router.go(-1)">
+            <i class="mdi mdi-arrow-left-circle-outline"></i
+            ><span>برگشت به قبلی</span>
+          </a>
+        </li>
+      </ul>
+      <div class="plans">
+        <i class="mdi mdi-arrow-down-drop-circle"></i>
+        <span>{{ "1400 | ترم 1".farsiNum() }}</span>
+      </div>
+
+      <div id="theme_switch" v-on:click="$emit('toggleTheme')">
+        <i class="mdi mdi-theme-light-dark"></i>
+      </div>
+    </header>
+    <div id="major_switch">
+      <h1 v-if="newUser">انتخاب رشته</h1>
+      <h1 v-else>تغییر رشته</h1>
+      <div class="warn" v-if="!newUser">
+        <p>
+          <i class="mdi mdi-alert-octagon"></i>
+          تغییر رشته موجب حذف انتخاب های ذخیره شده فعلی در مرورگر می شود. دقت
+          کنید!
+        </p>
+      </div>
+      <div class="majors">
+        <router-link to="/board/CivilEng">
+          <div class="major">
+            <i class="mdi mdi-account-hard-hat"></i>
+            <span>مهندسی عمران</span>
+          </div>
+        </router-link>
+        <router-link to="/board/Math">
+          <div class="major">
+            <i class="mdi mdi-math-integral"></i>
+            <span>ریاضیات و کاربرد ها</span>
+          </div>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -31,7 +52,8 @@ export default {
   data: function () {
     return {
       newUser:
-        localStorage.getItem("major") == null || localStorage.getItem("major" == ""),
+        localStorage.getItem("major") == null ||
+        localStorage.getItem("major" == ""),
     };
   },
 };

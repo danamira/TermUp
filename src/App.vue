@@ -1,43 +1,6 @@
 <template>
   <div id="app" :class="'night_mode_' + this.nightMode">
-    <header id="header">
-      <img src="./assets/logo.png" id="logo" />
-      <ul class="option_series" v-if="$route.name != 'Board'">
-        <li>
-          <a v-on:click="$router.go(-1)">
-            <i class="mdi mdi-arrow-left-circle-outline"></i
-            ><span>برگشت به قبلی</span>
-          </a>
-        </li>
-      </ul>
-      <ul class="option_series">
-        <li>
-          <router-link to="/majors"
-            ><i class="mdi mdi-school"></i><span>تغییر رشته</span></router-link
-          >
-        </li>
-      </ul>
-      <ul class="option_series" v-if="$route.name == 'Board'">
-        <li><i class="mdi mdi-printer"></i><span>چاپ انتخاب ها</span></li>
-        <li><i class="mdi mdi-share-variant"></i><span>اشتراک گذاری</span></li>
-        <li id="del_all_button">
-          <i class="mdi mdi-close"></i><span>حذف همه</span>
-        </li>
-        <li id="done">
-          <i class="mdi mdi-check"></i><span>تایید انتخاب ها</span>
-        </li>
-      </ul>
-      <div class="plans">
-        <i class="mdi mdi-arrow-down-drop-circle"></i>
-        <span>{{ "1400 | ترم 1".farsiNum() }}</span>
-      </div>
-
-      <div id="theme_switch" v-on:click="toggleTheme">
-        <i class="mdi mdi-weather-night" v-if="nightMode == 'off'"></i>
-        <i class="mdi mdi-lightbulb" v-if="nightMode == 'on'"></i>
-      </div>
-    </header>
-    <router-view ref="mamad"></router-view>
+    <router-view @toggleTheme="toggleTheme"></router-view>
     <div id="screenError" v-if="clientWidth<500">
       <i class="mdi mdi-phone-rotate-landscape"></i>
       <span class="errorTitle">صفحه نمایش بیش از حد کوچک</span>
@@ -65,6 +28,7 @@ export default {
   },
   methods: {
     toggleTheme: function () {
+      // alert("Changing !");
       if (this.nightMode == "off") {
         this.nightMode = "on";
       } else {
@@ -223,6 +187,7 @@ body {
   margin-top: 8px;
   width: 35px;
   height: 35px;
+  font-size: 21px;
   line-height: 33px;
   border: 1px solid #7f899b;
   text-align: center;
