@@ -4,7 +4,7 @@
       <i class="mdi mdi-copyright"></i>{{ copyright.farsiNum() }}
     </p>
     <div class="links">
-      <a href="#">
+      <a :href="repoUrl" target="_blank">
         <i class="mdi mdi-open-in-new"></i>
         مخزن پروژه
       </a>
@@ -22,6 +22,7 @@ export default {
     return {
       copyright:
         "کپی رایت 2021 | ساخته شده در چاپ کاناپه.",
+      repoUrl:"https://github.com/danamira/TermUp"
     };
   },
 };

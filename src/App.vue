@@ -187,7 +187,7 @@ body {
   margin-top: 8px;
   width: 35px;
   height: 35px;
-  font-size: 21px;
+  font-size: 19.5px;
   line-height: 33px;
   border: 1px solid #7f899b;
   text-align: center;
