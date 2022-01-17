@@ -54,8 +54,11 @@ export default {
 .search_result ul {
   list-style: none;
   margin-top: 10px;
-  color: #3c4758;
+  color: #667181;
   overflow: hidden;
+}
+.night_mode_on .search_result ul {
+  color:#ffffffb5;
 }
 .search_result ul li{
   font-size: 14px;
@@ -68,6 +71,9 @@ export default {
   line-height: 23px;
   border-bottom: 1px dashed #eeeeee;
   position: relative;
+}
+.night_mode_on .search_result ul li{
+  border-bottom: 1px dashed #333646a3 !important;
 }
 .search_result ul li:last-child{
   border-bottom: none;
@@ -82,7 +88,10 @@ export default {
   border-radius: 3px;
   top:5px;
   position: absolute;
-} */
+} 
+.night_mode_on .search_result ul li:before {
+  background: #383b4a;
+} 
 .search_result ul li:nth-child(even) {
   border-left: none;
 }
@@ -98,6 +107,10 @@ export default {
   height: 25px;
   float: right;
   margin-left: 4px;
+}
+.night_mode_on .search_result ul li .mdi {
+  color: #ededed;
+  background: #33374a;
 }
 .search_result .item {
   width: 100%;
@@ -157,11 +170,15 @@ export default {
   cursor: pointer;
   padding: 0 5px;
 }
+.night_mode_on .search_result .options .course_code {
+  background: #2c3544;
+}
 .search_result .options .course_code .mdi {
   float: left;
   font-size: 14px;
   line-height: 26px;
   margin-right: 5px;
+  background: transparent !important;
 }
 .search_result .item .options .mdi-plus {
   color: #fff;

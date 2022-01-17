@@ -20,9 +20,9 @@
       </div>
     </header>
     <div id="major_switch">
-      <h1 v-if="newUser">انتخاب رشته</h1>
+      <h1 v-if="firstTimeVisit">انتخاب رشته</h1>
       <h1 v-else>تغییر رشته</h1>
-      <div class="warn" v-if="!newUser">
+      <div class="warn" v-if="!firstTimeVisit">
         <p>
           <i class="mdi mdi-alert-octagon"></i>
           تغییر رشته موجب حذف انتخاب های ذخیره شده فعلی در مرورگر می شود. دقت
@@ -51,7 +51,7 @@ export default {
   name: "MajorSwitch",
   data: function () {
     return {
-      newUser:
+      firstTimeVisit:
         localStorage.getItem("major") == null ||
         localStorage.getItem("major" == ""),
     };

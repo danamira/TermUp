@@ -57,6 +57,7 @@
           <div class="day" v-for="day in weekDays" :key="day[0]">
             <div class="day_title">{{ day[1] }}</div>
             <div class="course_blocks">
+                <transition-group name="list" tag="p">
               <div
                 v-for="block in blocks[day[0]]"
                 :key="block[0].code"
@@ -73,6 +74,7 @@
                 <span class="title">{{ block[0].title.farsiNum() }}</span>
                 <span class="pro">{{ block[0].professor }}</span>
               </div>
+                </transition-group>
             </div>
           </div>
         </div>
@@ -143,9 +145,6 @@ export default {
   },
   methods: {
     // `updateStorage` will be called after each pick/unpick action. This method updates the `courses_picked` array in localStorage to the latest value of `picked` in component's data object.
-    toggleTheme() {
-      alert("Changed");
-    },
     fetchData() {
       let app = this;
       axios
@@ -178,20 +177,22 @@ export default {
       this.updateStorage();
     },
     pick: function (course) {
-      this.picked.push(course);
+      let exist=0
+      this.picked.forEach(function(otherCourse){
+        if(course.code==otherCourse.code){
+          console.warn(otherCourse)
+          exist= 1
+        }
+      });
+      if(!exist){
+       this.picked.push(course);
       this.updateStorage();
+      }
     },
     unpickAll() {
       this.picked = [];
       this.updateStorage();
     },
-  },
-
-  mounted() {
-    // Calculating the width of each block/tile on the board. `$this.refs.week` refers to the div.week DOM element.
-    // this.baseBlockWidth =;
-    // console.warn("SKS")
-    // console.warn(this.$refs)
   },
 
   computed: {
@@ -235,11 +236,9 @@ export default {
             let result =
               block[3] >= otherBlock[3] &&
               block[3] < otherBlock[3] + otherBlock[2];
-            // console.log(result);
+
             let same = block[0].code == otherBlock[0].code;
-            // console.log(same);
-            // console.log(block, otherBlock);
-            // console.log("---------------------------------");
+
             if (result && !same) {
               let alreadyAdded = 0;
               cepts.forEach(function (c) {
@@ -478,5 +477,12 @@ export default {
 }
 .night_mode_on #done.disActive:hover {
   color: #a3bac9 !important;
+}
+.list-enter-active, .list-leave-active {
+  transition: all 0.5s;
+}
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
 }
 </style>

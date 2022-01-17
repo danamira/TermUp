@@ -28,7 +28,6 @@ export default {
   },
   methods: {
     toggleTheme: function () {
-      // alert("Changing !");
       if (this.nightMode == "off") {
         this.nightMode = "on";
       } else {
@@ -51,7 +50,14 @@ export default {
   padding: 0;
   font-family: IRANYekanWeb;
   font-weight: 100;
+  transition: background-color 0.3s,border-color 0.3s;
   margin: 0;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 *:focus {
   outline: none;
