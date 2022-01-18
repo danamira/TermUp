@@ -107,11 +107,14 @@ body {
 }
 .option_series {
   display: block;
-  margin-right: 20px;
   float: right;
+  padding: 0 5px;
   border-left: 1px solid #dbd9d9;
 }
-.option_series:nth-child(odd) {
+.option_series:first {
+    margin-right: 20px;
+}
+.option_series:last-of-type{
   border-left: 0px solid #fff !important;
 }
 .option_series li {

@@ -81,7 +81,7 @@ export default {
 .night_mode_on .search {
   background: #1c2534;
   color: #fff;
-  border: none !important;
+  border-color: #1c2534 !important;
 }
 .night_mode_on .search input {
   color: #fff;

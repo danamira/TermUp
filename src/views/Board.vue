@@ -12,10 +12,26 @@
       <ul class="option_series">
         <li><i class="mdi mdi-printer"></i><span>چاپ انتخاب ها</span></li>
         <li><i class="mdi mdi-share-variant"></i><span>اشتراک گذاری</span></li>
+
+        <li
+          :class="
+            intercepts.length == 0 && picked.length > 0 ? 'Active' : 'disActive'
+          "
+          @click="exportBoard"
+        >
+          <i class="mdi mdi-export-variant"></i><span>ذخیره برد</span>
+        </li>
         <li id="del_all_button" @click="unpickAll()">
           <i class="mdi mdi-close"></i><span>حذف همه</span>
         </li>
-        <li id="done" :class="(intercepts.length == 0 && picked.length>0) ? 'Active' : 'disActive'">
+      </ul>
+      <ul class="option_series">
+        <li
+          id="done"
+          :class="
+            intercepts.length == 0 && picked.length > 0 ? 'Active' : 'disActive'
+          "
+        >
           <i class="mdi mdi-check"></i><span>تایید انتخاب ها</span>
         </li>
       </ul>
@@ -57,24 +73,24 @@
           <div class="day" v-for="day in weekDays" :key="day[0]">
             <div class="day_title">{{ day[1] }}</div>
             <div class="course_blocks">
-                <transition-group name="list" tag="p">
-              <div
-                v-for="block in blocks[day[0]]"
-                :key="block[0].code"
-                class="course_block"
-                :style="{
-                  width: block[2] * baseBlockWidth + 'px',
-                  right: block[3] * baseBlockWidth + 'px',
-                }"
-              >
-                <i
-                  class="unpick mdi mdi-close"
-                  v-on:click="unpick(block[0])"
-                ></i>
-                <span class="title">{{ block[0].title.farsiNum() }}</span>
-                <span class="pro">{{ block[0].professor }}</span>
-              </div>
-                </transition-group>
+              <transition-group name="list" tag="p">
+                <div
+                  v-for="block in blocks[day[0]]"
+                  :key="block[0].code"
+                  class="course_block"
+                  :style="{
+                    width: block[2] * baseBlockWidth + 'px',
+                    right: block[3] * baseBlockWidth + 'px',
+                  }"
+                >
+                  <i
+                    class="unpick mdi mdi-close"
+                    v-on:click="unpick(block[0])"
+                  ></i>
+                  <span class="title">{{ block[0].title.farsiNum() }}</span>
+                  <span class="pro">{{ block[0].professor }}</span>
+                </div>
+              </transition-group>
             </div>
           </div>
         </div>
@@ -101,6 +117,8 @@
 <script>
 import SideBar from "../components/SideBar.vue";
 import axios from "axios";
+import html2canvas from "html2canvas";
+
 export default {
   name: "App",
   components: {
@@ -177,21 +195,33 @@ export default {
       this.updateStorage();
     },
     pick: function (course) {
-      let exist=0
-      this.picked.forEach(function(otherCourse){
-        if(course.code==otherCourse.code){
-          console.warn(otherCourse)
-          exist= 1
+      let exist = 0;
+      this.picked.forEach(function (otherCourse) {
+        if (course.code == otherCourse.code) {
+          console.warn(otherCourse);
+          exist = 1;
         }
       });
-      if(!exist){
-       this.picked.push(course);
-      this.updateStorage();
+      if (!exist) {
+        this.picked.push(course);
+        this.updateStorage();
       }
     },
     unpickAll() {
       this.picked = [];
       this.updateStorage();
+    },
+    exportBoard() {
+      let board = document.querySelector(".week_days");
+      html2canvas(board).then(function (canvas) {
+        let imageData=canvas.toDataURL()
+        let tmpLink = document.createElement("a");
+        tmpLink.download = "TermUp-Board.png";
+        tmpLink.href = imageData;
+        document.body.appendChild(tmpLink);
+        tmpLink.click();
+        document.body.removeChild(tmpLink);
+      });
     },
   },
 
@@ -271,6 +301,7 @@ export default {
   padding: 0 10px;
   min-height: 700px;
   width: calc(100% - 380px);
+  position: relative;
   float: right;
 }
 .week_days {
@@ -462,23 +493,24 @@ export default {
 .night_mode_on .loading * {
   color: #85a6c5 !important;
 }
-#done.disActive {
+.option_series li.disActive {
   cursor: default;
   color: #485761 !important;
   opacity: 0.4;
 }
-#done.disActive:hover {
+.option_series li.disActive:hover {
   color: #485761 !important;
 }
-.night_mode_on #done.disActive {
+.night_mode_on .option_series li.disActive {
   cursor: default;
   color: #a3bac9 !important;
   opacity: 0.4;
 }
-.night_mode_on #done.disActive:hover {
+.night_mode_on .option_series li.disActive:hover {
   color: #a3bac9 !important;
 }
-.list-enter-active, .list-leave-active {
+.list-enter-active,
+.list-leave-active {
   transition: all 0.5s;
 }
 .list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
