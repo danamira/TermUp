@@ -98,6 +98,9 @@ export default {
   padding-left: 36px;
   line-height: 36px;
 }
+.night_mode_on .search input::placeholder{
+  color: #ffffff61;
+}
 .search .mdi {
   position: absolute;
   left: 10px;

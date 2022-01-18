@@ -11,7 +11,6 @@
       </ul>
       <ul class="option_series">
         <li><i class="mdi mdi-printer"></i><span>چاپ انتخاب ها</span></li>
-        <li><i class="mdi mdi-share-variant"></i><span>اشتراک گذاری</span></li>
 
         <li
           :class="
@@ -212,6 +211,9 @@ export default {
       this.updateStorage();
     },
     exportBoard() {
+      if(this.intercepts.length != 0 || this.picked.length==0) {
+        return 0
+      }
       let board = document.querySelector(".week_days");
       html2canvas(board).then(function (canvas) {
         let imageData=canvas.toDataURL()
@@ -223,6 +225,18 @@ export default {
         document.body.removeChild(tmpLink);
       });
     },
+    exportShareUrl() {
+      this.showShareModal=1
+      let codes=[]
+      this.picked.forEach(function(course) {
+        codes.push(course.code)
+      })
+      let board={
+        'major':this.$route.params.major,
+        'courses':codes
+      }
+      this.shareUrl=(window.location.origin+"/shared?="+JSON.stringify(board))
+    }
   },
 
   computed: {
@@ -322,7 +336,7 @@ export default {
   border-bottom: none !important;
 }
 .night_mode_on .day {
-  border-color: #232732 !important;
+  border-color: #ffffff14 !important;
 }
 .day_title {
   width: 100px;
@@ -517,4 +531,45 @@ export default {
   opacity: 0;
   transform: translateY(30px);
 }
+#share_modal {
+  background: #000000ba;
+  width:100%;
+  height:100%;
+  position: fixed;
+  top:0;
+  right:0;
+  z-index: 10000;
+}
+.modal_box {  
+  width:500px;
+  max-width: 90%;
+  border-radius: 4px;
+  min-height: 125px;
+  margin:auto;
+  margin-top:100px;
+  background: #fff;
+}
+.modal_box .modal_box_header {
+  padding:10px 10px;
+  position: relative;
+  font-size: 14px;
+  border-bottom: 1px solid #e7e7e7;
+  color:#707070;
+}
+.modal_box .modal_box_header .mdi-close {
+  position: absolute;
+  left:10px;
+  top:0;
+  font-size: 16px;
+  line-height: 40px;
+  display: block;
+  cursor: pointer;
+}
+.modal_box .modal_box_content {
+  padding:10px;
+  overflow: hidden;
+  font-size: 13px;
+  color:rgb(44, 44, 44);
+}
 </style>
+
