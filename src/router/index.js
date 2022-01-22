@@ -16,7 +16,12 @@ const routes = [
   {
     path: '/board/:major',
     name: 'Board',
-    component: Board
+    component: Board,
+  },
+  {
+    path: '/result',
+    name: 'Result',
+    component:()=>import('../views/Result.vue')
   },
   {
     path: '/contributors',

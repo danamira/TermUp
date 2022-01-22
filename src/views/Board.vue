@@ -13,10 +13,8 @@
         <li><i class="mdi mdi-printer"></i><span>چاپ انتخاب ها</span></li>
 
         <li
-          :class="
-            intercepts.length == 0 && picked.length > 0 ? 'Active' : 'disActive'
-          "
-          @click="exportBoard"
+          :class="boardIsCompatible ? 'Active' : 'disActive'"
+          @click="exportAsImage"
         >
           <i class="mdi mdi-export-variant"></i><span>ذخیره برد</span>
         </li>
@@ -27,9 +25,8 @@
       <ul class="option_series">
         <li
           id="done"
-          :class="
-            intercepts.length == 0 && picked.length > 0 ? 'Active' : 'disActive'
-          "
+          :class="boardIsCompatible ? 'Active' : 'disActive'"
+          @click="finalize"
         >
           <i class="mdi mdi-check"></i><span>تایید انتخاب ها</span>
         </li>
@@ -146,6 +143,10 @@ export default {
     };
   },
   created() {
+    if (localStorage.getItem("finalized") == 1) {
+      this.$router.push('/result')
+      return 0
+    }
     let major = this.$route.params.major;
     if (localStorage.getItem("major") != major) {
       localStorage.courses_picked = "[]";
@@ -171,13 +172,11 @@ export default {
         })
         .catch(function (err) {
           app.errorFetching = 1;
-          console.error("Error!!!!", err);
+          console.error("Error in fetching JSON data:", err);
         });
     },
     updateStorage() {
       if (localStorage.getItem("courses_picked") === null) {
-        // console.log("NULL IT IS");
-        // console.log(this.picked);
         localStorage.setItem("courses_picked", JSON.stringify(this.picked));
       }
       localStorage.courses_picked = JSON.stringify(this.picked);
@@ -187,7 +186,6 @@ export default {
       this.picked.forEach(function (anotherCourse, index, arr) {
         let same = anotherCourse.code == course.code;
         if (same) {
-          // console.log("DELETED :" + index);
           arr.splice(index, 1);
         }
       });
@@ -197,7 +195,6 @@ export default {
       let exist = 0;
       this.picked.forEach(function (otherCourse) {
         if (course.code == otherCourse.code) {
-          console.warn(otherCourse);
           exist = 1;
         }
       });
@@ -209,14 +206,15 @@ export default {
     unpickAll() {
       this.picked = [];
       this.updateStorage();
+      this.$emit('flash',{msg:'با موفقیت حذف شد.',class:'success'})
     },
-    exportBoard() {
-      if(this.intercepts.length != 0 || this.picked.length==0) {
-        return 0
+    exportAsImage() {
+      if (this.intercepts.length != 0 || this.picked.length == 0) {
+        return 0;
       }
       let board = document.querySelector(".week_days");
       html2canvas(board).then(function (canvas) {
-        let imageData=canvas.toDataURL()
+        let imageData = canvas.toDataURL();
         let tmpLink = document.createElement("a");
         tmpLink.download = "TermUp-Board.png";
         tmpLink.href = imageData;
@@ -226,17 +224,23 @@ export default {
       });
     },
     exportShareUrl() {
-      this.showShareModal=1
-      let codes=[]
-      this.picked.forEach(function(course) {
-        codes.push(course.code)
-      })
-      let board={
-        'major':this.$route.params.major,
-        'courses':codes
-      }
-      this.shareUrl=(window.location.origin+"/shared?="+JSON.stringify(board))
-    }
+      this.showShareModal = 1;
+      let codes = [];
+      this.picked.forEach(function (course) {
+        codes.push(course.code);
+      });
+      let board = {
+        major: this.$route.params.major,
+        courses: codes,
+      };
+      this.shareUrl =
+        window.location.origin + "/shared?=" + JSON.stringify(board);
+    },
+    finalize() {
+      localStorage.setItem("finalized", 1);
+      this.$router.push("/result");
+      this.$emit('flash',{msg:'انتخاب ها نهایی شد.',class:'success'})
+    },
   },
 
   computed: {
@@ -276,7 +280,6 @@ export default {
       this.blocks.forEach(function (day) {
         day.forEach(function (block) {
           day.forEach(function (otherBlock) {
-            // console.log('NOW:'+block[0].courseName+otherBlock[0].courseName)
             let result =
               block[3] >= otherBlock[3] &&
               block[3] < otherBlock[3] + otherBlock[2];
@@ -292,7 +295,6 @@ export default {
                   (c[1].code == block[0].code &&
                     c[0].code == otherBlock[0].code)
                 ) {
-                  console.warn("EXIISTT");
                   alreadyAdded = 1;
                 }
               });
@@ -304,6 +306,10 @@ export default {
         });
       });
       return cepts;
+    },
+
+    boardIsCompatible: function () {
+      return this.intercepts.length == 0 && this.picked.length > 0;
     },
   },
 };
@@ -408,6 +414,9 @@ export default {
   border-radius: 4px;
   font-size: 14px;
 }
+.night_mode_on .intercepts {
+  background: #b42323;
+}
 .intercepts p {
   display: block;
   margin-bottom: 5px;
@@ -420,6 +429,9 @@ export default {
   color: #dfb9b9;
   padding: 2px 4px;
   border-radius: 7px;
+}
+.night_mode_on .intercepts .item span {
+  background: #7c2727;
 }
 .intercepts .item .mdi {
   float: right;
@@ -533,43 +545,43 @@ export default {
 }
 #share_modal {
   background: #000000ba;
-  width:100%;
-  height:100%;
+  width: 100%;
+  height: 100%;
   position: fixed;
-  top:0;
-  right:0;
+  top: 0;
+  right: 0;
   z-index: 10000;
 }
-.modal_box {  
-  width:500px;
+.modal_box {
+  width: 500px;
   max-width: 90%;
   border-radius: 4px;
   min-height: 125px;
-  margin:auto;
-  margin-top:100px;
+  margin: auto;
+  margin-top: 100px;
   background: #fff;
 }
 .modal_box .modal_box_header {
-  padding:10px 10px;
+  padding: 10px 10px;
   position: relative;
   font-size: 14px;
   border-bottom: 1px solid #e7e7e7;
-  color:#707070;
+  color: #707070;
 }
 .modal_box .modal_box_header .mdi-close {
   position: absolute;
-  left:10px;
-  top:0;
+  left: 10px;
+  top: 0;
   font-size: 16px;
   line-height: 40px;
   display: block;
   cursor: pointer;
 }
 .modal_box .modal_box_content {
-  padding:10px;
+  padding: 10px;
   overflow: hidden;
   font-size: 13px;
-  color:rgb(44, 44, 44);
+  color: rgb(44, 44, 44);
 }
 </style>
 

@@ -1,12 +1,27 @@
 <template>
   <div id="app" :class="'night_mode_' + this.nightMode">
-    <router-view @toggleTheme="toggleTheme"></router-view>
-    <div id="screenError" v-if="clientWidth<500">
+    <router-view @toggleTheme="toggleTheme" @flash="showFlash"></router-view>
+    <div id="screenError" v-if="clientWidth < 500">
       <i class="mdi mdi-phone-rotate-landscape"></i>
       <span class="errorTitle">صفحه نمایش بیش از حد کوچک</span>
-      <p>اگر با موبایل هستید، صفحه را به حالت افقی (Landscape) تغییر داده و صفحه را ریفرش کنید.</p>
-      <p>در کل توصیه می شود برای استفاده کامل صفحه نمایش حداقل {{"1230".farsiNum()}} پیکسل طول داشته باشد. تا نیاز به اسکرول افقی نباشد.</p>
+      <p>
+        اگر با موبایل هستید، صفحه را به حالت افقی (Landscape) تغییر داده و صفحه
+        را ریفرش کنید.
+      </p>
+      <p>
+        در کل توصیه می شود برای استفاده کامل صفحه نمایش حداقل
+        {{ "1230".farsiNum() }} پیکسل طول داشته باشد. تا نیاز به اسکرول افقی
+        نباشد.
+      </p>
     </div>
+      <transition name="slide-fade">
+    <div v-if="flashMessage.show" :class="'flash_message '+flashMessage.class" @click="hideFlash">
+      <i class="mdi mdi-check-circle" v-if="flashMessage.class=='success'"></i>
+      <i class="mdi mdi-close-circle" v-if="flashMessage.class=='error'"></i>
+      <i class="mdi mdi-alert-circle" v-if="flashMessage.class=='info'"></i>
+      {{flashMessage.msg}}
+    </div>
+      </transition>
     <Footer></Footer>
   </div>
 </template>
@@ -20,11 +35,12 @@ export default {
   data: function () {
     return {
       nightMode: localStorage.getItem("night_mode") || "off",
-      clientWidth:1000
+      clientWidth: 1000,
+      flashMessage:{show:0,msg:null,class:null}
     };
   },
-  created(){
-    this.clientWidth=window.innerWidth
+  created() {
+    this.clientWidth = window.innerWidth;
   },
   methods: {
     toggleTheme: function () {
@@ -40,6 +56,18 @@ export default {
         return window.innerWidth - 358 + "px";
       }
     },
+    showFlash(flashMsg){
+      this.flashMessage.msg=flashMsg.msg
+      this.flashMessage.class=flashMsg.class
+      this.flashMessage.show=1
+      let x=this
+      setTimeout(function() {
+        x.flashMessage.show=0
+      },5000)
+    },
+    hideFlash(){
+      this.flashMessage={show:0,mesg:null,class:null}
+    }
   },
 };
 </script>
@@ -50,11 +78,12 @@ export default {
   padding: 0;
   font-family: IRANYekanWeb;
   font-weight: 100;
-  transition: background-color 0.3s,border-color 0.3s;
+  transition: background-color 0.3s, border-color 0.3s;
   margin: 0;
 }
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
@@ -112,9 +141,9 @@ body {
   border-left: 1px solid #dbd9d9;
 }
 .option_series:first {
-    margin-right: 20px;
+  margin-right: 20px;
 }
-.option_series:last-of-type{
+.option_series:last-of-type {
   border-left: 0px solid #fff !important;
 }
 .option_series li {
@@ -223,7 +252,6 @@ body {
   overflow: hidden;
   min-width: 1230px;
   width: 100%;
-  
 }
 #footer .copyright {
   color: #293240;
@@ -280,9 +308,9 @@ body {
 }
 #screenError {
   position: fixed;
-  top:0;
-  left:0;
-  width:100%;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
   background: #fff;
   z-index: 1000;
@@ -294,7 +322,7 @@ body {
   color: #3974da;
   margin-top: 100px;
 }
-#screenError .errorTitle{
+#screenError .errorTitle {
   display: block;
   text-align: center;
   font-size: 20px;
@@ -306,9 +334,43 @@ body {
   text-align: center;
   color: #1c2534;
   font-size: 15px;
-  margin:5px 0;
+  margin: 5px 0;
   line-height: 26px;
   padding: 0 10px;
-
+}
+.flash_message {
+  position: fixed;
+  left:20px;
+  line-height:20px;
+  padding:9px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  bottom:20px;
+  z-index: 1000;
+  background: #293240;
+  color:#fff;
+}
+.flash_message .mdi {
+  float: right;
+  font-size: 19px;;
+  line-height:19px;
+  margin-left:6px;
+}
+.flash_message.success {
+  background: #10ad40;
+}
+.flash_message.error {
+  background: rgb(204, 48, 48);
+}
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to {
+  transform: translateX(10px);
+  opacity: 0;
 }
 </style>

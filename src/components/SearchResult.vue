@@ -4,7 +4,7 @@
       {{ course.title.farsiNum()}} <span>{{ course.professor }}</span>
     </h3>
     <div class="timing">
-      <span v-for="day in course.classDays" :key="day[1]">{{day[0]}} ( {{day[1][0].toString().farsiNum().replace(".","/")}} تا  {{day[1][1].toString().farsiNum().replace(".","/")}} )</span>
+      <span v-for="(day,i) in course.classDays" :key="i">{{day[0]}} ( {{day[1][0].toString().farsiNum().replace(".","/")}} تا  {{day[1][1].toString().farsiNum().replace(".","/")}} )</span>
     </div>
     <div class="more_info" v-if="expanded">
       <ul>
@@ -211,7 +211,7 @@ export default {
   padding-right:0 !important;
 }
 .night_mode_on .search_result .item {
-  border-color: transparent;
+  border-color: #1f2734;
   background: #1f2734;
 }
 .night_mode_on .search_result .item h3 {

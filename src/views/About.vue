@@ -4,7 +4,7 @@
       <img src="../assets/logo.png" id="logo" />
       <ul class="option_series" v-if="$route.name != 'Board'">
         <li>
-          <a v-on:click="$router.go(-1)">
+          <a @click="$router.go(-1)">
             <i class="mdi mdi-arrow-left-circle-outline"></i
             ><span>برگشت به قبلی</span>
           </a>

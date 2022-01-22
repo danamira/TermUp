@@ -20,7 +20,7 @@ export default {
   name: "Footer",
   data: function () {
     return {
-      copyright: "کپی رایت 2021 | ساخته شده در آزمایشگاه های پیشرفته کاناپه.",
+      copyright: "کپی رایت 2022 | ساخته شده در آزمایشگاه های پیشرفته کاناپه.",
       repoUrl: "https://github.com/danamira/TermUp"
     };
   },

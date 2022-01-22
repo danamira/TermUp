@@ -56,6 +56,12 @@ export default {
         localStorage.getItem("major" == ""),
     };
   },
+  created() {
+    if (localStorage.getItem("finalized") == 1) {
+      this.$router.push('/result')
+      return 0
+    }
+  }
 };
 </script>
 
