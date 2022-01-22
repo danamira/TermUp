@@ -1,7 +1,7 @@
 <template>
   <div>
     <header id="header">
-      <img src="../assets/logo.png" id="logo" />
+      <img src="../assets/logo.png" id="logo" alt="Logo for TermUp">
       <ul class="option_series" v-if="$route.name != 'Board'">
         <li>
           <a v-on:click="$router.go(-1)">

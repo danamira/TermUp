@@ -1,7 +1,7 @@
 <template>
   <div>
     <header id="header">
-      <img src="../assets/logo.png" id="logo" />
+      <img src="../assets/logo.png" id="logo" alt="Logo for TermUp">
       <ul class="option_series">
         <li>
           <router-link to="/majors"
@@ -151,9 +151,10 @@ export default {
     if (localStorage.getItem("major") != major) {
       localStorage.courses_picked = "[]";
       this.picked = [];
+      localStorage.setItem("major", major);
+      this.$emit('flash',{msg:'رشته انتخاب شد.',class:'success'})
     }
 
-    localStorage.setItem("major", major);
     this.fetchData();
     // console.warn(this)
   },

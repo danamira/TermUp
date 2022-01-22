@@ -1,7 +1,7 @@
 <template>
   <div>
     <header id="header">
-      <img src="../assets/logo.png" id="logo" />
+      <img src="../assets/logo.png" id="logo" alt="Logo for TermUp">
       <ul class="option_series" v-if="$route.name != 'Board'">
         <li>
           <a @click="$router.go(-1)">
@@ -47,7 +47,7 @@
         میگیره. در نسخه جدید قابلیت های جدید اضافه شده، خیلی مشکلات رفع شده. کد
         بهینه تر و سریع تری داریم. امکان مشارکت سایر رشته ها اضافه شده و اینکه
         کد قابلیت خوندن و توسعه رو داره.
-        <img src="../assets/PoweredByVue.png" alt="قدرت گرفته از Vue.js" />
+        <img src="../assets/PoweredByVue.png" alt="قدرت گرفته از Vue.js">
         ترمآپ در هر دو نسخه موجود از فریم ورک فوق العاده Vue.js استفاده
         میکنه. ویو باعث شده که توسعه و بروزرسانی خیلی خیلی سریع برای من که خودم
         دانشجو هستم ممکن باشه. اکثر کار رو ویو انجام میده و من صرفا یه پیاده
