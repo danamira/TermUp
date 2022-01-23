@@ -23,7 +23,7 @@
       </ul>
     </div>
     <div class="options">
-      <span class="course_code" v-if="expanded">
+      <span class="course_code" v-if="expanded" @click="copyCode(course.code)">
         <i class="mdi mdi-content-copy"></i>
         {{course.code.farsiNum()}}
       </span>
@@ -39,6 +39,12 @@
 export default {
   name: "SearchResult",
   props: ["course"],
+  methods:{
+     copyCode(code) {
+      navigator.clipboard.writeText(code);
+      this.$emit("flash", { msg: "کپی شد!", class: "success" });
+    },
+  },
   data() {
     return {
       expanded:0

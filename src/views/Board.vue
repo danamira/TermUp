@@ -91,7 +91,7 @@
           </div>
         </div>
       </div>
-      <SideBar :courses="courses" v-on:pick="pick"></SideBar>
+      <SideBar :courses="courses" v-on:pick="pick" @flash="passFlash"></SideBar>
     </div>
     <div v-else id="container">
       <div class="fetchError" v-if="errorFetching">
@@ -242,6 +242,9 @@ export default {
       this.$router.push("/result");
       this.$emit("flash", { msg: "انتخاب ها نهایی شد.", class: "success" });
     },
+     passFlash(flashMsg) {
+      this.$emit('flash',flashMsg)
+    }
   },
 
   computed: {

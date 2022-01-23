@@ -14,7 +14,7 @@
             "
             v-bind:course="course"
             v-on:pick="pick"
-          ></SearchResult>
+           @flash="passFlash"></SearchResult>
         </div>
       </div>
       <div v-else>
@@ -54,6 +54,9 @@ export default {
       this.$emit("pick", course);
       this.query = "";
     },
+    passFlash(flashMsg) {
+      this.$emit('flash',flashMsg)
+    }
   },
   components: {
     SearchResult,
@@ -69,7 +72,7 @@ export default {
   padding: 0 10px;
 }
 .night_mode_on .sidebar {
-  border-color: #293240;
+  border-color:rgba(255,255,255,0.15)
 }
 .search {
   background: #fff;

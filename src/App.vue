@@ -173,7 +173,8 @@ body {
   /* color:#8a96aa */
 }
 .night_mode_on #header {
-  border-color: #293240;
+  /* border-color: #293240; */
+  border-color:rgba(255,255,255,0.15)
 }
 .night_mode_on .option_series {
   border-color: #293240;
