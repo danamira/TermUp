@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Board from '../views/Board.vue'
+import config from '../config'
 
-let availableMajors=['CivilEng','Math']
+let availableMajors=config.majors
 Vue.use(VueRouter)
 
 const routes = [
@@ -11,6 +12,8 @@ const routes = [
     if(availableMajors.includes(major)){
       return '/board/'+major;
     }
+    localStorage.removeItem('major')
+    localStorage.removeItem('courses_picked')
     return '/majors'
   }},
   {
@@ -40,6 +43,11 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+  },
+  {
+    path:'/404',
+    name:'NotFound',
+    component:()=>import('../views/404.vue')
   }
 ]
 

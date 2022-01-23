@@ -33,7 +33,7 @@
       </ul>
       <div class="plans">
         <i class="mdi mdi-arrow-down-drop-circle"></i>
-        <span>{{ "1400 | ترم 1".farsiNum() }}</span>
+        <span>ترم {{currentSemester.farsiNum()}}</span>
       </div>
 
       <div id="theme_switch" v-on:click="$emit('toggleTheme')">
@@ -114,7 +114,7 @@
 import SideBar from "../components/SideBar.vue";
 import axios from "axios";
 import html2canvas from "html2canvas";
-
+import config from '../config'
 export default {
   name: "App",
   components: {
@@ -123,6 +123,7 @@ export default {
   data: function () {
     return {
       // `openHours` consists of the hours which courses are presented in. This usually is the Univerity's work hours.
+      currentSemester:config.currentSemester.replace('-',' | '),
       openHours: [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
       courses: [],
       errorFetching: 0,
@@ -148,6 +149,10 @@ export default {
       return 0;
     }
     let major = this.$route.params.major;
+    if(!config.majors.includes(major)){
+      this.$router.push('/404')
+      return -1
+    }
     if (localStorage.getItem("major") != major) {
       localStorage.courses_picked = "[]";
       this.picked = [];
@@ -167,7 +172,7 @@ export default {
     fetchData() {
       let app = this;
       axios
-        .get("/data/" + this.$route.params.major + "/1400-01.json")
+        .get("/data/" + this.$route.params.major + "/"+config.currentSemester+".json")
         .then((response) => {
           this.courses = response.data;
         })

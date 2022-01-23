@@ -106,12 +106,12 @@ a {
   color: inherit;
 }
 body {
-  direction: rtl;
+  direction: rtl;  
 }
 #app {
   overflow: hidden;
   overflow-x: initial;
-  /* padd */
+  min-height: 100%;
   padding-bottom: 60px;
   position: relative;
 }
