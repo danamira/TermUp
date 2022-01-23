@@ -26,3 +26,58 @@ export default {
   },
 };
 </script>
+<style>
+
+#footer {
+  padding: 10px 20px;
+  overflow: hidden;
+  min-width: 1230px;
+  width: 100%;
+  position: absolute;
+  bottom:0
+}
+#footer .copyright {
+  color: #293240;
+  display: block;
+  float: right;
+  line-height: 24px;
+  font-size: 14px;
+}
+#footer .copyright .mdi {
+  display: block;
+  float: right;
+  line-height: 23px;
+  font-size: 20px;
+  margin-left: 6px;
+}
+#footer .copyright span {
+  color: rgb(95, 111, 255);
+  cursor: pointer;
+  font-size: 14px;
+}
+.links {
+  float: left;
+}
+.links a {
+  display: block;
+  float: left;
+  padding: 0 10px;
+  color: #334052;
+  line-height: 20px;
+  height: 20px;
+  text-decoration: none;
+  font-size: 14px;
+  border-right: 1px solid #b9c3c7;
+}
+.links a:last-child {
+  border-right: none;
+}
+.links a .mdi {
+  font-size: 19px;
+  color: #7f899b;
+  float: right;
+  display: block;
+  margin-left: 4px;
+  line-height: 18px;
+}
+</style>
