@@ -14,14 +14,24 @@
         نباشد.
       </p>
     </div>
-      <transition name="slide-fade">
-    <div v-if="flashMessage.show" :class="'flash_message '+flashMessage.class" @click="hideFlash">
-      <i class="mdi mdi-check-circle" v-if="flashMessage.class=='success'"></i>
-      <i class="mdi mdi-close-circle" v-if="flashMessage.class=='error'"></i>
-      <i class="mdi mdi-alert-circle" v-if="flashMessage.class=='info'"></i>
-      {{flashMessage.msg}}
-    </div>
-      </transition>
+    <transition name="slide-fade">
+      <div
+        v-if="flashMessage.show"
+        :class="'flash_message ' + flashMessage.class"
+        @click="hideFlash"
+      >
+        <i
+          class="mdi mdi-check-circle"
+          v-if="flashMessage.class == 'success'"
+        ></i>
+        <i
+          class="mdi mdi-close-circle"
+          v-if="flashMessage.class == 'error'"
+        ></i>
+        <i class="mdi mdi-alert-circle" v-if="flashMessage.class == 'info'"></i>
+        {{ flashMessage.msg }}
+      </div>
+    </transition>
     <Footer></Footer>
   </div>
 </template>
@@ -36,7 +46,7 @@ export default {
     return {
       nightMode: localStorage.getItem("night_mode") || "off",
       clientWidth: 1000,
-      flashMessage:{show:0,msg:null,class:null}
+      flashMessage: { show: 0, msg: null, class: null },
     };
   },
   created() {
@@ -56,18 +66,18 @@ export default {
         return window.innerWidth - 358 + "px";
       }
     },
-    showFlash(flashMsg){
-      this.flashMessage.msg=flashMsg.msg
-      this.flashMessage.class=flashMsg.class
-      this.flashMessage.show=1
-      let x=this
-      setTimeout(function() {
-        x.flashMessage.show=0
-      },5000)
+    showFlash(flashMsg) {
+      this.flashMessage.msg = flashMsg.msg;
+      this.flashMessage.class = flashMsg.class;
+      this.flashMessage.show = 1;
+      let x = this;
+      setTimeout(function () {
+        x.flashMessage.show = 0;
+      }, 5000);
     },
-    hideFlash(){
-      this.flashMessage={show:0,mesg:null,class:null}
-    }
+    hideFlash() {
+      this.flashMessage = { show: 0, mesg: null, class: null };
+    },
   },
 };
 </script>
@@ -76,7 +86,7 @@ export default {
 * {
   box-sizing: border-box;
   padding: 0;
-  font-family: IRANYekanWeb;
+  font-family: IRANYekanWeb,IRANSans,Yekan,BYekan,Vazir;
   font-weight: 100;
   transition: background-color 0.3s, border-color 0.3s;
   margin: 0;
@@ -340,22 +350,22 @@ body {
 }
 .flash_message {
   position: fixed;
-  left:20px;
-  line-height:20px;
-  padding:9px 12px;
+  left: 20px;
+  line-height: 20px;
+  padding: 9px 12px;
   cursor: pointer;
   border-radius: 4px;
   font-size: 14px;
-  bottom:20px;
+  bottom: 20px;
   z-index: 1000;
   background: #293240;
-  color:#fff;
+  color: #fff;
 }
 .flash_message .mdi {
   float: right;
-  font-size: 19px;;
-  line-height:19px;
-  margin-left:6px;
+  font-size: 19px;
+  line-height: 19px;
+  margin-left: 6px;
 }
 .flash_message.success {
   background: #10ad40;
@@ -364,12 +374,13 @@ body {
   background: rgb(204, 48, 48);
 }
 .slide-fade-enter-active {
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 .slide-fade-leave-active {
-  transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
 }
-.slide-fade-enter, .slide-fade-leave-to {
+.slide-fade-enter,
+.slide-fade-leave-to {
   transform: translateX(10px);
   opacity: 0;
 }

@@ -1,7 +1,7 @@
 <template>
   <div>
     <header id="header">
-      <img src="../assets/logo.png" id="logo" alt="Logo for TermUp">
+      <img src="../assets/logo.png" id="logo" alt="Logo for TermUp" />
       <ul class="option_series">
         <li>
           <router-link to="/majors"
@@ -144,15 +144,15 @@ export default {
   },
   created() {
     if (localStorage.getItem("finalized") == 1) {
-      this.$router.push('/result')
-      return 0
+      this.$router.push("/result");
+      return 0;
     }
     let major = this.$route.params.major;
     if (localStorage.getItem("major") != major) {
       localStorage.courses_picked = "[]";
       this.picked = [];
       localStorage.setItem("major", major);
-      this.$emit('flash',{msg:'رشته انتخاب شد.',class:'success'})
+      this.$emit("flash", { msg: "رشته انتخاب شد.", class: "success" });
     }
 
     this.fetchData();
@@ -207,7 +207,7 @@ export default {
     unpickAll() {
       this.picked = [];
       this.updateStorage();
-      this.$emit('flash',{msg:'با موفقیت حذف شد.',class:'success'})
+      this.$emit("flash", { msg: "با موفقیت حذف شد.", class: "success" });
     },
     exportAsImage() {
       if (this.intercepts.length != 0 || this.picked.length == 0) {
@@ -240,7 +240,7 @@ export default {
     finalize() {
       localStorage.setItem("finalized", 1);
       this.$router.push("/result");
-      this.$emit('flash',{msg:'انتخاب ها نهایی شد.',class:'success'})
+      this.$emit("flash", { msg: "انتخاب ها نهایی شد.", class: "success" });
     },
   },
 

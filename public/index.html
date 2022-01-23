@@ -9,8 +9,13 @@
   <title>
     <%= htmlWebpackPlugin.options.title + " | Winter 1400" %>
   </title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
+  
+  <!-- CDN stylesheet for Material Design Icons. Version 6.5.95 is included in the public directory. -->
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css"> -->
+  
+  <!-- CDN script source for html2canvas (In case you don't want to use NPM package.)-->
   <!-- <script src="http://html2canvas.hertzen.com/dist/html2canvas.min.js"></script> -->
+  
   <style>
     @font-face {
     font-family: 'IRANYekanWeb';
@@ -24,6 +29,7 @@
     font-style: normal;
 }
   </style>
+  <link rel="stylesheet" href="/css/materialdesignicons.min.css">
 </head>
 
 <body>
