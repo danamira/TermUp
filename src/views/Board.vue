@@ -1,11 +1,11 @@
 <template>
   <div>
     <header id="header">
-      <img src="../assets/logo.png" id="logo" alt="Logo for TermUp" />
+      <img id="logo" alt="Logo for TermUp" src="../assets/logo.png"/>
       <ul class="option_series">
         <li>
           <router-link to="/majors"
-            ><i class="mdi mdi-school"></i><span>تغییر رشته</span></router-link
+          ><i class="mdi mdi-school"></i><span>تغییر رشته</span></router-link
           >
         </li>
       </ul>
@@ -13,8 +13,8 @@
         <li><i class="mdi mdi-printer"></i><span>چاپ انتخاب ها</span></li>
 
         <li
-          :class="boardIsCompatible ? 'Active' : 'disActive'"
-          @click="exportAsImage"
+            :class="boardIsCompatible ? 'Active' : 'disActive'"
+            @click="exportAsImage"
         >
           <i class="mdi mdi-export-variant"></i><span>ذخیره برد</span>
         </li>
@@ -24,16 +24,16 @@
       </ul>
       <ul class="option_series">
         <li
-          id="done"
-          :class="boardIsCompatible ? 'Active' : 'disActive'"
-          @click="finalize"
+            id="done"
+            :class="boardIsCompatible ? 'Active' : 'disActive'"
+            @click="finalize"
         >
           <i class="mdi mdi-check"></i><span>تایید انتخاب ها</span>
         </li>
       </ul>
       <div class="plans">
         <i class="mdi mdi-arrow-down-drop-circle"></i>
-        <span>ترم {{currentSemester.farsiNum()}}</span>
+        <span>ترم {{ currentSemester.farsiNum() }}</span>
       </div>
 
       <div id="theme_switch" v-on:click="$emit('toggleTheme')">
@@ -41,11 +41,11 @@
       </div>
     </header>
     <div v-if="courses.length >= 1" id="container">
-      <div class="week" ref="week">
+      <div ref="week" class="week">
         <div class="alerts">
-          <div class="intercepts" v-if="intercepts.length >= 1">
+          <div v-if="intercepts.length >= 1" class="intercepts">
             <p>درس های متداخل پیدا شد:</p>
-            <div class="item" v-for="set in intercepts" :key="set[0].code">
+            <div v-for="set in intercepts" :key="set[0].code" class="item">
               <i class="mdi mdi-arrow-left"></i>
               {{ set[0].title.farsiNum() }}
               <span>{{ set[0].code.toString().farsiNum() }}</span> و
@@ -58,30 +58,30 @@
           <div class="week_head">
             <ul class="hours">
               <li
-                v-for="h in openHours"
-                :key="h"
-                :style="'width:' + baseBlockWidth + 'px'"
+                  v-for="h in openHours"
+                  :key="h"
+                  :style="'width:' + baseBlockWidth + 'px'"
               >
                 {{ h.toString().farsiNum() }}
               </li>
             </ul>
           </div>
-          <div class="day" v-for="day in weekDays" :key="day[0]">
+          <div v-for="day in weekDays" :key="day[0]" class="day">
             <div class="day_title">{{ day[1] }}</div>
             <div class="course_blocks">
               <transition-group name="list" tag="p">
                 <div
-                  v-for="block in blocks[day[0]]"
-                  :key="block[0].code"
-                  class="course_block"
-                  :style="{
+                    v-for="block in blocks[day[0]]"
+                    :key="block[0].code"
+                    :style="{
                     width: block[2] * baseBlockWidth + 'px',
                     right: block[3] * baseBlockWidth + 'px',
                   }"
+                    class="course_block"
                 >
                   <i
-                    class="unpick mdi mdi-close"
-                    v-on:click="unpick(block[0])"
+                      class="unpick mdi mdi-close"
+                      v-on:click="unpick(block[0])"
                   ></i>
                   <span class="title">{{ block[0].title.farsiNum() }}</span>
                   <span class="pro">{{ block[0].professor }}</span>
@@ -91,10 +91,10 @@
           </div>
         </div>
       </div>
-      <SideBar :courses="courses" v-on:pick="pick" @flash="passFlash"></SideBar>
+      <SideBar :courses="courses" @flash="passFlash" v-on:pick="pick"></SideBar>
     </div>
     <div v-else id="container">
-      <div class="fetchError" v-if="errorFetching">
+      <div v-if="errorFetching" class="fetchError">
         <i class="mdi mdi-emoticon-sad-outline"></i>
         <h3>خطا در دریافت اطلاعات</h3>
         <p>
@@ -115,6 +115,7 @@ import SideBar from "../components/SideBar.vue";
 import axios from "axios";
 import html2canvas from "html2canvas";
 import config from '../config'
+
 export default {
   name: "App",
   components: {
@@ -123,7 +124,7 @@ export default {
   data: function () {
     return {
       // `openHours` consists of the hours which courses are presented in. This usually is the Univerity's work hours.
-      currentSemester:config.currentSemester.replace('-',' | '),
+      currentSemester: config.currentSemester.replace('-', ' | '),
       openHours: [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
       courses: [],
       errorFetching: 0,
@@ -149,7 +150,7 @@ export default {
       return 0;
     }
     let major = this.$route.params.major;
-    if(!config.majors.includes(major)){
+    if (!config.majors.includes(major)) {
       this.$router.push('/404')
       return -1
     }
@@ -157,7 +158,7 @@ export default {
       localStorage.courses_picked = "[]";
       this.picked = [];
       localStorage.setItem("major", major);
-      this.$emit("flash", { msg: "رشته انتخاب شد.", class: "success" });
+      this.$emit("flash", {msg: "رشته انتخاب شد.", class: "success"});
     }
 
     this.fetchData();
@@ -165,21 +166,21 @@ export default {
   },
   updated() {
     this.baseBlockWidth =
-      (this.$refs.week.clientWidth - 70) / this.openHours.length;
+        (this.$refs.week.clientWidth - 70) / this.openHours.length;
   },
   methods: {
     // `updateStorage` will be called after each pick/unpick action. This method updates the `courses_picked` array in localStorage to the latest value of `picked` in component's data object.
     fetchData() {
       let app = this;
       axios
-        .get("/data/" + this.$route.params.major + "/"+config.currentSemester+".json")
-        .then((response) => {
-          this.courses = response.data;
-        })
-        .catch(function (err) {
-          app.errorFetching = 1;
-          console.error("Error in fetching JSON data:", err);
-        });
+          .get("/data/" + this.$route.params.major + "/" + config.currentSemester + ".json")
+          .then((response) => {
+            this.courses = response.data;
+          })
+          .catch(function (err) {
+            app.errorFetching = 1;
+            console.error("Error in fetching JSON data:", err);
+          });
     },
     updateStorage() {
       if (localStorage.getItem("courses_picked") === null) {
@@ -212,7 +213,7 @@ export default {
     unpickAll() {
       this.picked = [];
       this.updateStorage();
-      this.$emit("flash", { msg: "با موفقیت حذف شد.", class: "success" });
+      this.$emit("flash", {msg: "با موفقیت حذف شد.", class: "success"});
     },
     exportAsImage() {
       if (this.intercepts.length != 0 || this.picked.length == 0) {
@@ -240,15 +241,15 @@ export default {
         courses: codes,
       };
       this.shareUrl =
-        window.location.origin + "/shared?=" + JSON.stringify(board);
+          window.location.origin + "/shared?=" + JSON.stringify(board);
     },
     finalize() {
       localStorage.setItem("finalized", 1);
       this.$router.push("/result");
-      this.$emit("flash", { msg: "انتخاب ها نهایی شد.", class: "success" });
+      this.$emit("flash", {msg: "انتخاب ها نهایی شد.", class: "success"});
     },
-     passFlash(flashMsg) {
-      this.$emit('flash',flashMsg)
+    passFlash(flashMsg) {
+      this.$emit('flash', flashMsg)
     }
   },
 
@@ -290,8 +291,8 @@ export default {
         day.forEach(function (block) {
           day.forEach(function (otherBlock) {
             let result =
-              block[3] >= otherBlock[3] &&
-              block[3] < otherBlock[3] + otherBlock[2];
+                block[3] >= otherBlock[3] &&
+                block[3] < otherBlock[3] + otherBlock[2];
 
             let same = block[0].code == otherBlock[0].code;
 
@@ -299,10 +300,10 @@ export default {
               let alreadyAdded = 0;
               cepts.forEach(function (c) {
                 if (
-                  (c[0].code == block[0].code &&
-                    c[1].code == otherBlock[0].code) ||
-                  (c[1].code == block[0].code &&
-                    c[0].code == otherBlock[0].code)
+                    (c[0].code == block[0].code &&
+                        c[1].code == otherBlock[0].code) ||
+                    (c[1].code == block[0].code &&
+                        c[0].code == otherBlock[0].code)
                 ) {
                   alreadyAdded = 1;
                 }
@@ -333,9 +334,11 @@ export default {
   position: relative;
   float: right;
 }
+
 .week_days {
   margin-top: 25px;
 }
+
 .day {
   width: 100%;
   overflow: hidden;
@@ -347,12 +350,15 @@ export default {
   margin-bottom: 4px;
   border-bottom: 1px solid #eaf0f1;
 }
+
 .day:last-child {
   border-bottom: none !important;
 }
+
 .night_mode_on .day {
   border-color: #ffffff14 !important;
 }
+
 .day_title {
   width: 100px;
   background: #3178c3;
@@ -367,10 +373,12 @@ export default {
   font-size: 14px;
   right: -29px;
 }
+
 .course_blocks {
   position: relative;
   float: right;
 }
+
 .course_block {
   float: right;
   position: absolute;
@@ -385,14 +393,17 @@ export default {
   overflow: hidden;
   padding: 10px 5px;
 }
+
 .night_mode_on .course_block {
   border-color: #0b1320 !important;
 }
+
 .course_block .title {
   display: block;
   cursor: default;
   font-size: 14px;
 }
+
 .course_block .pro {
   font-size: 12px;
   color: rgb(180, 187, 206);
@@ -401,20 +412,24 @@ export default {
   cursor: default;
   display: block;
 }
+
 .week_head {
   margin-bottom: 20px;
   overflow: hidden;
   padding-right: 48px;
 }
+
 .hours {
   overflow: hidden;
   color: #acafb1;
 }
+
 .hours li {
   display: block;
   float: right;
   width: 60px;
 }
+
 .intercepts {
   background: #d12a2a;
   color: #fff;
@@ -423,30 +438,37 @@ export default {
   border-radius: 4px;
   font-size: 14px;
 }
+
 .night_mode_on .intercepts {
   background: #b42323;
 }
+
 .intercepts p {
   display: block;
   margin-bottom: 5px;
 }
+
 .intercepts .item {
   padding: 5px 0;
 }
+
 .intercepts .item span {
   background: #992929;
   color: #dfb9b9;
   padding: 2px 4px;
   border-radius: 7px;
 }
+
 .night_mode_on .intercepts .item span {
   background: #7c2727;
 }
+
 .intercepts .item .mdi {
   float: right;
   margin-left: 5px;
   line-height: 18px;
 }
+
 .course_block .unpick {
   position: absolute;
   bottom: 7px;
@@ -463,9 +485,11 @@ export default {
   opacity: 0;
   transition: 0.4s;
 }
+
 .course_block:hover .unpick {
   opacity: 1;
 }
+
 .week_head .hours li:before {
   content: "";
   display: block;
@@ -474,12 +498,14 @@ export default {
   width: 1px;
   background: #000;
 }
+
 .fetchError {
   width: 700px;
   margin: auto;
   margin-top: 100px;
   margin-bottom: 300px;
 }
+
 .fetchError .mdi {
   font-size: 60px;
   display: block;
@@ -487,15 +513,18 @@ export default {
   color: rgb(235, 57, 57);
   text-align: center;
 }
+
 .fetchError h3 {
   font-size: 19px;
   color: rgb(235, 57, 57);
   display: block;
   text-align: center;
 }
+
 .night_mode_on .fetchError * {
   color: #85a6c5 !important;
 }
+
 .fetchError p {
   font-size: 14px;
   line-height: 32px;
@@ -504,54 +533,67 @@ export default {
   border-right: 2px solid;
   margin-top: 18px;
 }
+
 .loading {
   width: 700px;
   margin: auto;
   margin-top: 100px;
   margin-bottom: 360px;
 }
+
 .loading .mdi {
   font-size: 60px;
   display: block;
   text-align: center;
   color: rgb(56, 64, 85);
 }
+
 .loading h3 {
   display: block;
   text-align: center;
   font-size: 16px;
   color: rgb(43, 51, 66);
 }
+
 .night_mode_on .loading h3 {
   color: rgb(81, 80, 129);
 }
+
 .night_mode_on .loading * {
   color: #85a6c5 !important;
 }
+
 .option_series li.disActive {
   cursor: default;
   color: #485761 !important;
   opacity: 0.4;
 }
+
 .option_series li.disActive:hover {
   color: #485761 !important;
 }
+
 .night_mode_on .option_series li.disActive {
   cursor: default;
   color: #a3bac9 !important;
   opacity: 0.4;
 }
+
 .night_mode_on .option_series li.disActive:hover {
   color: #a3bac9 !important;
 }
+
 .list-enter-active,
 .list-leave-active {
   transition: all 0.5s;
 }
-.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */
+{
   opacity: 0;
   transform: translateY(30px);
 }
+
 #share_modal {
   background: #000000ba;
   width: 100%;
@@ -561,6 +603,7 @@ export default {
   right: 0;
   z-index: 10000;
 }
+
 .modal_box {
   width: 500px;
   max-width: 90%;
@@ -570,6 +613,7 @@ export default {
   margin-top: 100px;
   background: #fff;
 }
+
 .modal_box .modal_box_header {
   padding: 10px 10px;
   position: relative;
@@ -577,6 +621,7 @@ export default {
   border-bottom: 1px solid #e7e7e7;
   color: #707070;
 }
+
 .modal_box .modal_box_header .mdi-close {
   position: absolute;
   left: 10px;
@@ -586,6 +631,7 @@ export default {
   display: block;
   cursor: pointer;
 }
+
 .modal_box .modal_box_content {
   padding: 10px;
   overflow: hidden;

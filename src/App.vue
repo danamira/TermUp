@@ -1,7 +1,7 @@
 <template>
   <div id="app" :class="'night_mode_' + this.nightMode">
-    <router-view @toggleTheme="toggleTheme" @flash="showFlash"></router-view>
-    <div id="screenError" v-if="clientWidth < 500">
+    <router-view @flash="showFlash" @toggleTheme="toggleTheme"></router-view>
+    <div id="screenError">
       <i class="mdi mdi-phone-rotate-landscape"></i>
       <span class="errorTitle">صفحه نمایش بیش از حد کوچک</span>
       <p>
@@ -15,20 +15,19 @@
       </p>
     </div>
     <transition name="slide-fade">
-      <div
-        v-if="flashMessage.show"
-        :class="'flash_message ' + flashMessage.class"
-        @click="hideFlash"
+      <div v-if="flashMessage.show"
+           :class="'flash_message ' + flashMessage.class"
+           @click="hideFlash"
       >
         <i
-          class="mdi mdi-check-circle"
-          v-if="flashMessage.class == 'success'"
+            v-if="flashMessage.class === 'success'"
+            class="mdi mdi-check-circle"
         ></i>
         <i
-          class="mdi mdi-close-circle"
-          v-if="flashMessage.class == 'error'"
+            v-if="flashMessage.class === 'error'"
+            class="mdi mdi-close-circle"
         ></i>
-        <i class="mdi mdi-alert-circle" v-if="flashMessage.class == 'info'"></i>
+        <i v-if="flashMessage.class === 'info'" class="mdi mdi-alert-circle"></i>
         {{ flashMessage.msg }}
       </div>
     </transition>
@@ -41,16 +40,12 @@ import Footer from "./components/Footer.vue";
 
 export default {
   name: "App",
-  components: { Footer },
+  components: {Footer},
   data: function () {
     return {
       nightMode: localStorage.getItem("night_mode") || "off",
-      clientWidth: 1000,
-      flashMessage: { show: 0, msg: null, class: null },
+      flashMessage: {show: 0, msg: null, class: null},
     };
-  },
-  created() {
-    this.clientWidth = window.innerWidth;
   },
   methods: {
     toggleTheme: function () {
@@ -76,7 +71,7 @@ export default {
       }, 5000);
     },
     hideFlash() {
-      this.flashMessage = { show: 0, mesg: null, class: null };
+      this.flashMessage = {show: 0, mesg: null, class: null};
     },
   },
 };
@@ -86,28 +81,35 @@ export default {
 * {
   box-sizing: border-box;
   padding: 0;
-  font-family: IRANYekanWeb,IRANSans,Yekan,BYekan,Vazir;
+  font-family: IRANYekanWeb, IRANSans, Yekan, BYekan, Vazir;
   font-weight: 100;
   transition: background-color 0.3s, border-color 0.3s;
   margin: 0;
 }
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
+{
   opacity: 0;
 }
+
 *:focus {
   outline: none;
 }
+
 a {
   text-decoration: none;
   color: inherit;
 }
+
 body {
-  direction: rtl;  
+  direction: rtl;
 }
+
 #app {
   overflow: hidden;
   overflow-x: initial;
@@ -115,9 +117,11 @@ body {
   padding-bottom: 60px;
   position: relative;
 }
+
 .night_mode_on {
   background: #0b1320;
 }
+
 #header {
   border-bottom: 1px solid #e1e5ea;
   height: 60px;
@@ -125,12 +129,14 @@ body {
   width: 100%;
   padding: 5px 20px;
 }
+
 #container {
   width: 100%;
   overflow: hidden;
   min-width: 1230px;
   padding: 0 10px;
 }
+
 .week {
   padding-left: 10px;
   min-height: 700px;
@@ -138,27 +144,33 @@ body {
   min-width: 820px;
   float: right;
 }
+
 .left {
   float: left;
 }
+
 #header #logo {
   height: 45px;
   float: right;
   display: block;
   margin-top: 4px;
 }
+
 .option_series {
   display: block;
   float: right;
   padding: 0 5px;
   border-left: 1px solid #dbd9d9;
 }
-.option_series:first {
+
+.option_series:first-child {
   margin-right: 20px;
 }
+
 .option_series:last-of-type {
   border-left: 0px solid #fff !important;
 }
+
 .option_series li {
   display: block;
   height: 48px;
@@ -172,34 +184,43 @@ body {
   font-size: 13px;
   margin-top: 1px;
 }
+
 .option_series li.active {
   /* color:#8a96aa */
 }
+
 .night_mode_on #header {
   /* border-color: #293240; */
-  border-color:rgba(255,255,255,0.15)
+  border-color: rgba(255, 255, 255, 0.15)
 }
+
 .night_mode_on .option_series {
   border-color: #293240;
 }
+
 .night_mode_on .option_series li {
   color: #929bab;
 }
+
 .option_series li:hover {
   color: #3974da;
   transition: 0.3s;
 }
+
 .night_mode_on .option_series li:hover {
   color: rgb(255, 255, 255);
 }
+
 .option_series li .mdi {
   margin-top: 5px;
   display: block;
   font-size: 22px;
 }
+
 #del_all_button {
   color: #f74848 !important;
 }
+
 .plans {
   background: #dae5e9;
   float: left;
@@ -210,12 +231,15 @@ body {
   padding: 0 10px;
   cursor: pointer;
 }
+
 .night_mode_on .plans {
   background: #1c2534;
 }
+
 .night_mode_on .plans span {
   color: #788aa8;
 }
+
 .plans .mdi {
   float: right;
   line-height: 35px;
@@ -223,6 +247,7 @@ body {
   font-size: 18px;
   color: #5a6a85;
 }
+
 .plans span {
   color: #5f77a1;
   float: left;
@@ -231,6 +256,7 @@ body {
   font-size: 13.5px;
   margin-right: 10px;
 }
+
 #theme_switch {
   /* transition: 0.5s; */
   float: left;
@@ -247,29 +273,36 @@ body {
   border-radius: 12px;
   cursor: pointer;
 }
+
 .night_mode_on #theme_switch {
   background: #3b5063;
   border-color: #3b5063;
   color: #fff;
 }
+
 .night_mode_on #theme_switch:hover {
   background: #fab112;
   border-color: #fab112;
 }
+
 #theme_switch:hover {
   background: #7f899b;
   color: #fff;
   transition: 0.2s;
 }
+
 #done:hover {
   color: rgb(2, 189, 86);
 }
+
 .night_mode_on #footer .copyright {
   color: #91959b;
 }
+
 .night_mode_on #footer .links a {
   color: #91959b;
 }
+
 #screenError {
   position: fixed;
   top: 0;
@@ -277,8 +310,10 @@ body {
   width: 100%;
   height: 100%;
   background: #fff;
+  display: none;
   z-index: 1000;
 }
+
 #screenError .mdi {
   font-size: 40px;
   text-align: center;
@@ -286,6 +321,7 @@ body {
   color: #3974da;
   margin-top: 100px;
 }
+
 #screenError .errorTitle {
   display: block;
   text-align: center;
@@ -293,6 +329,7 @@ body {
   color: #3b5063;
   margin-bottom: 10px;
 }
+
 #screenError p {
   display: block;
   text-align: center;
@@ -302,6 +339,7 @@ body {
   line-height: 26px;
   padding: 0 10px;
 }
+
 .flash_message {
   position: fixed;
   left: 20px;
@@ -315,27 +353,38 @@ body {
   background: #293240;
   color: #fff;
 }
+
 .flash_message .mdi {
   float: right;
   font-size: 19px;
   line-height: 19px;
   margin-left: 6px;
 }
+
 .flash_message.success {
   background: #10ad40;
 }
+
 .flash_message.error {
   background: rgb(204, 48, 48);
 }
+
 .slide-fade-enter-active {
   transition: all 0.3s ease;
 }
+
 .slide-fade-leave-active {
   transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
 }
+
 .slide-fade-enter,
 .slide-fade-leave-to {
   transform: translateX(10px);
   opacity: 0;
+}
+@media only screen and (max-width: 700px) {
+  #screenError {
+    display: block;
+  }
 }
 </style>
