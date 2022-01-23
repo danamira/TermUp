@@ -4,9 +4,7 @@
       <img id="logo" alt="Logo for TermUp" src="../assets/logo.png"/>
       <ul class="option_series">
         <li>
-          <router-link to="/majors"
-          ><i class="mdi mdi-school"></i><span>تغییر رشته</span></router-link
-          >
+          <router-link to="/majors"><i class="mdi mdi-school"></i><span>تغییر رشته</span></router-link>
         </li>
       </ul>
       <ul class="option_series">
@@ -18,9 +16,11 @@
         >
           <i class="mdi mdi-export-variant"></i><span>ذخیره برد</span>
         </li>
+
         <li id="del_all_button" @click="unpickAll()">
           <i class="mdi mdi-close"></i><span>حذف همه</span>
         </li>
+
       </ul>
       <ul class="option_series">
         <li
@@ -123,7 +123,7 @@ export default {
   },
   data: function () {
     return {
-      // `openHours` consists of the hours which courses are presented in. This usually is the Univerity's work hours.
+      // `openHours` consists of the hours which courses are presented in. This usually is the University's work hours.
       currentSemester: config.currentSemester.replace('-', ' | '),
       openHours: [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
       courses: [],
@@ -169,6 +169,7 @@ export default {
         (this.$refs.week.clientWidth - 70) / this.openHours.length;
   },
   methods: {
+
     // `updateStorage` will be called after each pick/unpick action. This method updates the `courses_picked` array in localStorage to the latest value of `picked` in component's data object.
     fetchData() {
       let app = this;
@@ -182,12 +183,14 @@ export default {
             console.error("Error in fetching JSON data:", err);
           });
     },
+
     updateStorage() {
       if (localStorage.getItem("courses_picked") === null) {
         localStorage.setItem("courses_picked", JSON.stringify(this.picked));
       }
       localStorage.courses_picked = JSON.stringify(this.picked);
     },
+
     // `unpick` takes a course object and finds the corresponding course in `picked` array and removes it from there.
     unpick(course) {
       this.picked.forEach(function (anotherCourse, index, arr) {
@@ -198,6 +201,7 @@ export default {
       });
       this.updateStorage();
     },
+
     pick: function (course) {
       let exist = 0;
       this.picked.forEach(function (otherCourse) {
@@ -210,11 +214,13 @@ export default {
         this.updateStorage();
       }
     },
+
     unpickAll() {
       this.picked = [];
       this.updateStorage();
       this.$emit("flash", {msg: "با موفقیت حذف شد.", class: "success"});
     },
+
     exportAsImage() {
       if (this.intercepts.length != 0 || this.picked.length == 0) {
         return 0;
@@ -230,31 +236,21 @@ export default {
         document.body.removeChild(tmpLink);
       });
     },
-    exportShareUrl() {
-      this.showShareModal = 1;
-      let codes = [];
-      this.picked.forEach(function (course) {
-        codes.push(course.code);
-      });
-      let board = {
-        major: this.$route.params.major,
-        courses: codes,
-      };
-      this.shareUrl =
-          window.location.origin + "/shared?=" + JSON.stringify(board);
-    },
+
     finalize() {
       localStorage.setItem("finalized", 1);
       this.$router.push("/result");
       this.$emit("flash", {msg: "انتخاب ها نهایی شد.", class: "success"});
     },
+
     passFlash(flashMsg) {
       this.$emit('flash', flashMsg)
     }
   },
 
   computed: {
-    /* `blocks` computed property returns an array containing 6 arrays each correponding to a day in week and containing the picked courses that have a class on that day.
+
+    /* `blocks` computed property returns an array containing 6 arrays each corresponding to a day in week and containing the picked courses that have a class on that day.
     For instance, blocks[0] contains all the courses in `picked` which have a class in saturday. */
     blocks: function () {
       // this.intercepts = [];
@@ -283,6 +279,7 @@ export default {
       });
       return all;
     },
+
     /* `intercepts` computed property includes arrays containg courses which intersect each other.
      If courses A and B both have a class at the same time on the same day, `intercepts` would contain an array with courses A and B inside it.*/
     intercepts: function () {
@@ -490,20 +487,10 @@ export default {
   opacity: 1;
 }
 
-.week_head .hours li:before {
-  content: "";
-  display: block;
-  position: absolute;
-  height: 1000x;
-  width: 1px;
-  background: #000;
-}
 
 .fetchError {
   width: 700px;
-  margin: auto;
-  margin-top: 100px;
-  margin-bottom: 300px;
+  margin: 100px auto 300px;
 }
 
 .fetchError .mdi {

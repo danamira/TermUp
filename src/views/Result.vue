@@ -25,7 +25,7 @@
     <div class="courses_result">
       <h3>
         درس های انتخاب شده:
-        <span>مجموع واحد ها : {{ "24".farsiNum() }}</span>
+        <span> مجموع واحد ها : {{ totalPicked.farsiNum() }} </span>
       </h3>
       <div class="result_caution">
         <i class="mdi mdi-alert-circle"></i>
@@ -94,6 +94,16 @@ export default {
       this.$emit("flash", { msg: "کپی شد!", class: "success" });
     },
   },
+  computed:{
+    totalPicked() {
+      let pickedValues=this.picked.map((course)=>course.total)
+      let result=0;
+      pickedValues.forEach(function (value){
+        result+=parseInt(value)
+      })
+      return result.toString()
+    }
+  }
 };
 </script>
 <style>
