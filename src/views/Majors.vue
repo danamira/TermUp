@@ -30,16 +30,10 @@
         </p>
       </div>
       <div class="majors">
-        <router-link to="/board/CivilEng">
-          <div class="major">
-            <i class="mdi mdi-account-hard-hat"></i>
-            <span>مهندسی عمران</span>
-          </div>
-        </router-link>
-        <router-link to="/board/Math">
-          <div class="major">
-            <i class="mdi mdi-math-integral"></i>
-            <span>ریاضیات و کاربرد ها</span>
+        <router-link v-for="(major,i) in majorsList" :key="i" :to="'/board/'+major[0]">
+          <div class="major"  v-if="availableMajors.includes(major[0])">
+            <i :class="'mdi '+major[2]"></i>
+            <span>{{major[1]}}</span>
           </div>
         </router-link>
       </div>
@@ -47,10 +41,15 @@
   </div>
 </template>
 <script>
+import config from "../config.js";
+import {majorsList} from "../config.js";
+
 export default {
   name: "MajorSwitch",
   data: function () {
     return {
+      majorsList:majorsList,
+      availableMajors:config.majors,
       firstTimeVisit:
         localStorage.getItem("major") == null ||
         localStorage.getItem("major" == ""),
