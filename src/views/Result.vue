@@ -11,7 +11,11 @@
         </li>
       </ul>
       <ul class="option_series">
-        <li><i class="mdi mdi-printer"></i><span>چاپ انتخاب ها</span></li>
+        <li>
+          <router-link to="/print" target="_blank">
+            <i class="mdi mdi-printer"></i><span>چاپ انتخاب ها</span>
+          </router-link>
+        </li>
       </ul>
       <div class="plans">
         <i class="mdi mdi-arrow-down-drop-circle"></i>
@@ -219,7 +223,7 @@ export default {
 }
 .picked_item .code:hover span:nth-child(1) {
   opacity: 0;
-  transition: 0;
+  transition: 0s;
 }
 .picked_item .code:hover span:nth-child(2) {
   transition: 0.4s;
@@ -260,7 +264,7 @@ export default {
     color:#9babc7
 }
 .night_mode_on .picked_item h4 {
-  color:rgb(186, 191, 211);
+  color:#eceef7;
 }
 .night_mode_on .picked_item h4 span {
   background: #202733 !important;

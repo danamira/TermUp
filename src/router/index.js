@@ -27,6 +27,11 @@ const routes = [
     component:()=>import('../views/Result.vue')
   },
   {
+    path: '/print',
+    name: 'Print',
+    component:()=>import('../views/Print.vue')
+  },
+  {
     path: '/contributors',
     name: 'Credits',
     component: () => import('../views/About.vue')

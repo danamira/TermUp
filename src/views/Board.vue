@@ -8,7 +8,12 @@
         </li>
       </ul>
       <ul class="option_series">
-        <li><i class="mdi mdi-printer"></i><span>چاپ انتخاب ها</span></li>
+        <li>
+          <router-link to="/print" target="_blank">
+            <i class="mdi mdi-printer"></i><span>چاپ انتخاب ها</span>
+          </router-link>
+
+        </li>
 
         <li
             :class="boardIsCompatible ? 'Active' : 'disActive'"

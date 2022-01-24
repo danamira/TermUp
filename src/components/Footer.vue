@@ -33,8 +33,6 @@ export default {
   overflow: hidden;
   min-width: 1230px;
   width: 100%;
-  position: absolute;
-  bottom:0
 }
 #footer .copyright {
   color: #293240;

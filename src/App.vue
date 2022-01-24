@@ -114,7 +114,7 @@ body {
   overflow: hidden;
   overflow-x: initial;
   min-height: 100%;
-  padding-bottom: 60px;
+
   position: relative;
 }
 
