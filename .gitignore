@@ -21,9 +21,3 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
-
-#IRANYekan font files
-public/fonts/IRANYekanWeb.eot
-public/fonts/IRANYekanWeb.woff
-public/fonts/IRANYekanWeb.ttf
-public/fonts/IRANYekanWeb.woff2
