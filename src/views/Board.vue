@@ -230,7 +230,7 @@ export default {
       if (this.intercepts.length != 0 || this.picked.length == 0) {
         return 0;
       }
-      let board = document.querySelector(".week_days");
+      let board = document.querySelector(".week");
       html2canvas(board).then(function (canvas) {
         let imageData = canvas.toDataURL();
         let tmpLink = document.createElement("a");

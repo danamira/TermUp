@@ -97,10 +97,10 @@ export default {
 }
 #major_switch .majors .major:hover,
 .night_mode_on #major_switch .majors .major {
-  background: rgb(54, 60, 80);
+  background: #1c2534;
   transition: 0.3s;
   color: #fff;
-  border-color: rgb(54, 60, 80);
+  border-color:#1c2534;
 }
 #major_switch .majors .major .mdi {
   display: block;
