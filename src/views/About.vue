@@ -55,6 +55,10 @@
         رشته شما هم به پروژه اضافه بشه و اسمتون به عنوان مشارکت کننده اینجا بیاد:
         <a :href="'mailto:'+devEmail">{{devEmail}}</a>
       </p>
+      <ul class="contributors">
+        <li>میلاد ماهار | ایده کار و داده های رشته عمران</li>
+        <li>امین زینالی | داده های رشته برق</li>
+      </ul>
     </div>
   </div>
 </template>
@@ -99,6 +103,20 @@
 }
 .night_mode_on #about_view p {
   color: rgba(255, 255, 255, 0.67) !important;
+}
+.contributors {
+  margin:15px 0;
+  overflow: hidden;
+  list-style: none;
+}
+.contributors li {
+  font-size: 14px;
+  color: rgb(65, 75, 104);
+  line-height: 20px;
+  display: block;
+  float: right;
+  width:33%;
+  text-align: center;
 }
 </style>
 <script>
