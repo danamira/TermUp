@@ -1,6 +1,6 @@
 export default {
     currentSemester:'1400-02',
-    majors:['CivilEng','IndEng','ElecEng','MechEng','Metalogy','CompEng','Math','OilEng','Geography','Psychology','SurvEng','ChemEng']
+    majors:['CivilEng','IndEng','ElecEng','MechEng','Metallurgy','CompEng','Math','OilEng','Geography','Psychology','SurvEng','ChemEng']
 }
 
 export let majorsList= [
