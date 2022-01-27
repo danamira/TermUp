@@ -115,6 +115,7 @@
 .contributors li {
   font-size: 14px;
   color: rgb(65, 75, 104);
+  padding:8px 2px;
   line-height: 20px;
   display: block;
   float: right;

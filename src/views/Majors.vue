@@ -1,7 +1,7 @@
 <template>
   <div>
     <header id="header">
-      <img src="../assets/logo.png" id="logo" alt="Logo for TermUp">
+      <img src="../assets/logo.png" id="logo" alt="Logo for TermUp" />
       <ul class="option_series" v-if="$route.name != 'Board'">
         <li>
           <a v-on:click="$router.go(-1)">
@@ -12,7 +12,7 @@
       </ul>
       <div class="plans">
         <i class="mdi mdi-arrow-down-drop-circle"></i>
-        <span>{{ "1400 | ترم 1".farsiNum() }}</span>
+        <span>ترم {{ currentSemester.farsiNum() }}</span>
       </div>
 
       <div id="theme_switch" v-on:click="$emit('toggleTheme')">
@@ -30,10 +30,14 @@
         </p>
       </div>
       <div class="majors">
-        <router-link v-for="(major,i) in majorsList" :key="i" :to="'/board/'+major[0]">
-          <div class="major"  v-if="availableMajors.includes(major[0])">
-            <i :class="'mdi '+major[2]"></i>
-            <span>{{major[1]}}</span>
+        <router-link
+          v-for="(major, i) in majorsList"
+          :key="i"
+          :to="'/board/' + major[0]"
+        >
+          <div class="major" v-if="availableMajors.includes(major[0])">
+            <i :class="'mdi ' + major[2]"></i>
+            <span>{{ major[1] }}</span>
           </div>
         </router-link>
       </div>
@@ -42,14 +46,16 @@
 </template>
 <script>
 import config from "../config.js";
-import {majorsList} from "../config.js";
+import { majorsList } from "../config.js";
 
 export default {
   name: "MajorSwitch",
   data: function () {
     return {
-      majorsList:majorsList,
-      availableMajors:config.majors,
+      majorsList: majorsList,
+      availableMajors: config.majors,
+      currentSemester: config.currentSemester.replace("-", " | "),
+
       firstTimeVisit:
         localStorage.getItem("major") == null ||
         localStorage.getItem("major" == ""),
@@ -57,10 +63,10 @@ export default {
   },
   created() {
     if (localStorage.getItem("finalized") == 1) {
-      this.$router.push('/result')
-      return 0
+      this.$router.push("/result");
+      return 0;
     }
-  }
+  },
 };
 </script>
 
@@ -100,7 +106,7 @@ export default {
   background: #1c2534;
   transition: 0.3s;
   color: #fff;
-  border-color:#1c2534;
+  border-color: #1c2534;
 }
 #major_switch .majors .major .mdi {
   display: block;
