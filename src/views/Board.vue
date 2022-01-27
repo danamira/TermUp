@@ -243,6 +243,9 @@ export default {
     },
 
     finalize() {
+      if (this.intercepts.length != 0 || this.picked.length == 0) {
+        return 0;
+      }
       localStorage.setItem("finalized", 1);
       this.$router.push("/result");
       this.$emit("flash", {msg: "انتخاب ها نهایی شد.", class: "success"});
