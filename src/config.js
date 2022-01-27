@@ -1,6 +1,6 @@
 export default {
     currentSemester:'1400-02',
-    majors:['Math','CivilEng','ElecEng','CompEng']
+    majors:['Math','CivilEng','ElecEng','CompEng','Geography']
 }
 
 export let majorsList= [
@@ -8,5 +8,6 @@ export let majorsList= [
     ['Math','ریاضیات و کاربرد ها','mdi-math-integral'],
     ['MechEng','مهندسی مکانیک','mdi-tools'],
     ['ElecEng','مهندسی برق','mdi-flash'],
-    ['CompEng','مهندسی کامپیوتر','mdi-code-array']
+    ['ElecEng','مهندسی برق','mdi-flash'],
+    ['Geography','جغرافیا','mdi-earth']
 ]
