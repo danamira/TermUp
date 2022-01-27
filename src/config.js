@@ -10,7 +10,7 @@ export let majorsList= [
     ['IndEng','مهندسی صنایع','mdi-factory'],
     ['CompEng','مهندسی کامپیوتر','mdi-code-array'],
     ['ChemEng','مهندسی شیمی','mdi-flask'],
-    ['Metalogy','مهندسی مواد','mdi-cup'],
+    ['Metallurgy','مهندسی مواد','mdi-cup'],
     ['OilEng','مهندسی نفت','mdi-barrel'],
     ['Math','ریاضیات و کاربرد ها','mdi-math-integral'],
     ['SurvEng','مهندسی نقشه برداری','mdi-map'],
