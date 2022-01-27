@@ -1,14 +1,15 @@
 export default {
     currentSemester:'1400-02',
-    majors:['CivilEng','ElecEng','MechEng','Metalogy','CompEng','Math','Geography']
+    majors:['CivilEng','IndEng','ElecEng','MechEng','Metalogy','CompEng','Math','Geography']
 }
 
 export let majorsList= [
     ['CivilEng','مهندسی عمران','mdi-account-hard-hat'],
-    ['Math','ریاضیات و کاربرد ها','mdi-math-integral'],
     ['MechEng','مهندسی مکانیک','mdi-tools'],
     ['ElecEng','مهندسی برق','mdi-flash'],
+    ['IndEng','مهندسی صنایع','mdi-factory'],
     ['CompEng','مهندسی کامپیوتر','mdi-code-array'],
     ['Metalogy','مهندسی مواد','mdi-cup'],
+    ['Math','ریاضیات و کاربرد ها','mdi-math-integral'],
     ['Geography','جغرافیا','mdi-earth']
 ]
