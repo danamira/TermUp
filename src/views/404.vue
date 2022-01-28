@@ -37,13 +37,13 @@ p {
   margin-top: 10px;
   color: #334158;
 }
-a{
-    background: #edf2f5;
-    display: block;
-    text-align: center;
-    font-size: 14px;
-    margin: 10px 129px 15px;
-    padding: 8px;
-    border-radius: 4px;
+a {
+  background: #edf2f5;
+  display: block;
+  text-align: center;
+  font-size: 14px;
+  margin: 10px 129px 15px;
+  padding: 8px;
+  border-radius: 4px;
 }
 </style>

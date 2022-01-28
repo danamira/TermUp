@@ -15,19 +15,23 @@
       </p>
     </div>
     <transition name="slide-fade">
-      <div v-if="flashMessage.show"
-           :class="'flash_message ' + flashMessage.class"
-           @click="hideFlash"
+      <div
+        v-if="flashMessage.show"
+        :class="'flash_message ' + flashMessage.class"
+        @click="hideFlash"
       >
         <i
-            v-if="flashMessage.class === 'success'"
-            class="mdi mdi-check-circle"
+          v-if="flashMessage.class === 'success'"
+          class="mdi mdi-check-circle"
         ></i>
         <i
-            v-if="flashMessage.class === 'error'"
-            class="mdi mdi-close-circle"
+          v-if="flashMessage.class === 'error'"
+          class="mdi mdi-close-circle"
         ></i>
-        <i v-if="flashMessage.class === 'info'" class="mdi mdi-alert-circle"></i>
+        <i
+          v-if="flashMessage.class === 'info'"
+          class="mdi mdi-alert-circle"
+        ></i>
         {{ flashMessage.msg }}
       </div>
     </transition>
@@ -40,11 +44,11 @@ import Footer from "./components/Footer.vue";
 
 export default {
   name: "App",
-  components: {Footer},
+  components: { Footer },
   data: function () {
     return {
       nightMode: localStorage.getItem("night_mode") || "off",
-      flashMessage: {show: 0, msg: null, class: null},
+      flashMessage: { show: 0, msg: null, class: null },
     };
   },
   methods: {
@@ -71,7 +75,7 @@ export default {
       }, 5000);
     },
     hideFlash() {
-      this.flashMessage = {show: 0, mesg: null, class: null};
+      this.flashMessage = { show: 0, mesg: null, class: null };
     },
   },
 };
@@ -88,7 +92,9 @@ export default {
   direction: rtl !important;
 }
 
-html, body, #app {
+html,
+body,
+#app {
   min-height: 100%;
 }
 
@@ -97,8 +103,7 @@ html, body, #app {
   transition: opacity 0.5s;
 }
 
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
-{
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
 
@@ -198,7 +203,7 @@ body {
 
 .night_mode_on #header {
   /* border-color: #293240; */
-  border-color: rgba(255, 255, 255, 0.15)
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 .night_mode_on .option_series {
@@ -384,7 +389,8 @@ body {
   transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
-.slide-fade-enter, .slide-fade-leave-to {
+.slide-fade-enter,
+.slide-fade-leave-to {
   transform: translateX(10px);
   opacity: 0;
 }

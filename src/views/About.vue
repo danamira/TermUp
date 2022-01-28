@@ -1,7 +1,7 @@
 <template>
   <div>
     <header id="header">
-      <img src="../assets/logo.png" id="logo" alt="Logo for TermUp">
+      <img src="../assets/logo.png" id="logo" alt="Logo for TermUp" />
       <ul class="option_series" v-if="$route.name != 'Board'">
         <li>
           <a @click="$router.go(-1)">
@@ -12,8 +12,10 @@
       </ul>
       <ul class="option_series">
         <li>
-          <a :href="'mailto:'+devEmail"
-          ><i class="mdi mdi-comment-quote-outline"></i><span>ثبت بازخورد</span></a>
+          <a :href="'mailto:' + devEmail"
+            ><i class="mdi mdi-comment-quote-outline"></i
+            ><span>ثبت بازخورد</span></a
+          >
         </li>
       </ul>
       <div class="plans">
@@ -38,18 +40,26 @@
       </p>
       <h2>ترمآپ چطور ساخته شده؟</h2>
       <p>
-        ترمآپ از ترمیناتور شریف ایده گرفته شده. ورژن اولیه برای ترم پاییز هزار و چهارصد تست شد و ورژن عمومی در ترم دوم همین سال قابل دسترس هست.
-        <br>
-        <img src="../assets/PoweredByVue.png" alt="ترمآپ قدرت گرفته از ویو">
-        ترمآپ از فریم ورک Vue.js استفاده میکنه. تمامی اطلاعات و تنظیمات شما در مرورگرتون ذخیره میشن و بجز شما هیچکس دیگه ای بشون دسترسی نداره.
-        برای اینکه تنظیمات و انتخاب هاتون رو سیو کنید میتونید از localStorage مرورگر پشتیبان بگیرید، میتونید خروجی PDF و PNG هم دریافت کنید.
-        اگر یک برد براتون کافی نیست میتونید از حالت Incognito مرورگرتون استفاده کنید یا اینکه با مروگر های مختلف/دیوایس های مختلف سر بزنید که برد های متفاوت داشته باشید.
-        <br>
-        برای بررسی کد و گرفتن بیلد برای خودتون میتونید به مخزن پروژه در گیت هاب سر بزنید تا مطابق نیاز خودتون اپ رو تغییر بدید. اگر نظری پیشنهادی دارید از گزینه ثبت بازخورد میتونید با من در ارتباط باشید.
-  
+        ترمآپ از ترمیناتور شریف ایده گرفته شده. ورژن اولیه برای ترم پاییز هزار و
+        چهارصد تست شد و ورژن عمومی در ترم دوم همین سال قابل دسترس هست.
+        <br />
+        <img src="../assets/PoweredByVue.png" alt="ترمآپ قدرت گرفته از ویو" />
+        ترمآپ از فریم ورک Vue.js استفاده میکنه. تمامی اطلاعات و تنظیمات شما در
+        مرورگرتون ذخیره میشن و بجز شما هیچکس دیگه ای بشون دسترسی نداره. برای
+        اینکه تنظیمات و انتخاب هاتون رو سیو کنید میتونید از localStorage مرورگر
+        پشتیبان بگیرید، میتونید خروجی PDF و PNG هم دریافت کنید. اگر یک برد
+        براتون کافی نیست میتونید از حالت Incognito مرورگرتون استفاده کنید یا
+        اینکه با مروگر های مختلف/دیوایس های مختلف سر بزنید که برد های متفاوت
+        داشته باشید.
+        <br />
+        برای بررسی کد و گرفتن بیلد برای خودتون میتونید به مخزن پروژه در گیت هاب
+        سر بزنید تا مطابق نیاز خودتون اپ رو تغییر بدید. اگر نظری پیشنهادی دارید
+        از گزینه ثبت بازخورد میتونید با من در ارتباط باشید.
       </p>
       <h2>کیا به توسعه کمک کردن؟</h2>
-      <p>افراد زیر در ترم جاری به توسعه ترمآپ کمک کردن. همینجا ازشون تشکر میکنیم:</p>
+      <p>
+        افراد زیر در ترم جاری به توسعه ترمآپ کمک کردن. همینجا ازشون تشکر میکنیم:
+      </p>
       <ul class="contributors">
         <li class="special"><i class="mdi mdi-star"></i> میلاد ماهار</li>
         <li><i class="mdi mdi-code-tags"></i> ادیب رضایی</li>
@@ -114,37 +124,37 @@
   color: rgba(255, 255, 255, 0.67) !important;
 }
 .contributors {
-  margin:15px 0;
+  margin: 15px 0;
   overflow: hidden;
   list-style: none;
 }
 .contributors li {
   font-size: 14px;
   color: rgb(65, 75, 104);
-  padding:0 5px;
+  padding: 0 5px;
   border-left: 1px solid #ededed;
-  margin:18px 0;
+  margin: 18px 0;
   line-height: 20px;
   display: block;
   float: right;
-  width:33%;
+  width: 33%;
   text-align: center;
   height: 20px;
 }
-.contributors li:nth-child(3n){
+.contributors li:nth-child(3n) {
   border-left: none !important;
 }
 .contributors li.special {
-  color:rgb(0, 207, 128);
+  color: rgb(0, 207, 128);
 }
 </style>
 <script>
 export default {
-  name:'About',
-  data:function() {
+  name: "About",
+  data: function () {
     return {
-      devEmail:'dana.mr8822@gmail.com'
-    }
-  }
-}
+      devEmail: "dana.mr8822@gmail.com",
+    };
+  },
+};
 </script>

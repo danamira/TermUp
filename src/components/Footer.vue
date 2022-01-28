@@ -1,7 +1,7 @@
 <template>
   <div id="footer">
     <p class="copyright">
-      <i class="mdi mdi-copyright"></i>{{copyright.farsiNum()}}
+      <i class="mdi mdi-copyright"></i>{{ copyright.farsiNum() }}
     </p>
     <div class="links">
       <a :href="repoUrl" target="_blank">
@@ -21,13 +21,12 @@ export default {
   data: function () {
     return {
       copyright: "کپی رایت 2022 | ساخته شده در آزمایشگاه های پیشرفته کاناپه.",
-      repoUrl: "https://github.com/danamira/TermUp"
+      repoUrl: "https://github.com/danamira/TermUp",
     };
   },
 };
 </script>
 <style>
-
 #footer {
   padding: 10px 20px;
   overflow: hidden;
