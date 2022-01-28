@@ -1,7 +1,7 @@
 <template>
   <div id="footer">
     <p class="copyright">
-      <i class="mdi mdi-copyright"></i>{{ copyright.farsiNum() }}
+      <i class="mdi mdi-copyright"></i>{{ copyright.farsiNum() }} | توسعه داده شده از روی بیکاری توسط<a href="https://t.me/danamirafzal" target="_blank">danamirafzal@.</a>
     </p>
     <div class="links">
       <a :href="repoUrl" target="_blank">
@@ -20,7 +20,7 @@ export default {
   name: "Footer",
   data: function () {
     return {
-      copyright: "کپی رایت 2022 | ساخته شده در آزمایشگاه های پیشرفته کاناپه.",
+      copyright: "کپی رایت 2022",
       repoUrl: "https://github.com/danamira/TermUp",
     };
   },
@@ -32,6 +32,7 @@ export default {
   overflow: hidden;
   min-width: 1230px;
   width: 100%;
+  margin-top: 30px;
   flex: none;
 }
 #footer .copyright {
@@ -41,17 +42,22 @@ export default {
   line-height: 24px;
   font-size: 14px;
 }
-#footer .copyright .mdi {
+#footer .copyright .mdi-copyright {
   display: block;
   float: right;
   line-height: 23px;
   font-size: 20px;
   margin-left: 6px;
 }
-#footer .copyright span {
-  color: rgb(95, 111, 255);
-  cursor: pointer;
-  font-size: 14px;
+#footer .copyright a {
+    /* border: 1px solid  ; */
+    cursor: pointer;
+    font-size: 14px;
+    color: rgb(85, 95, 112);
+    padding: 1px 6px;
+    border-radius: 4px;
+    direction: ltr !important;
+    text-align: left;
 }
 .links {
   float: left;
