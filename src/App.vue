@@ -87,6 +87,10 @@ export default {
   margin: 0;
 }
 
+html, body, #app {
+  height: 100%;
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s;
@@ -114,7 +118,9 @@ body {
   overflow: hidden;
   overflow-x: initial;
   min-height: 100%;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: relative;
 }
 
