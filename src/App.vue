@@ -85,10 +85,11 @@ export default {
   font-weight: 100;
   transition: background-color 0.3s, border-color 0.3s;
   margin: 0;
+  direction: rtl !important;
 }
 
 html, body, #app {
-  height: 100%;
+  min-height: 100%;
 }
 
 .fade-enter-active,
@@ -118,8 +119,8 @@ body {
   overflow: hidden;
   overflow-x: initial;
   min-height: 100%;
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
   justify-content: space-between;
   position: relative;
 }
