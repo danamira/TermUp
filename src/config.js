@@ -1,6 +1,6 @@
 export default {
     currentSemester:'1400-02',
-    majors:['CivilEng','PolEng','UrbnEng','IndEng','Econ','ElecEng','Mngmnt','MechEng','Metallurgy','CompEng','EngSci','Math','OilEng','Geography','MineEng','Psychology','SurvEng','ChemEng','Arch']
+    majors:['Painting','CivilEng','PolEng','UrbnEng','IndEng','Econ','ElecEng','Mngmnt','MechEng','Metallurgy','CompEng','EngSci','Math','OilEng','Geography','MineEng','Psychology','SurvEng','ChemEng','Arch']
 }
 
 export let majorsList= [
@@ -23,4 +23,5 @@ export let majorsList= [
     ['Psychology','روانشناسی','mdi-brain'],
     ['Mngmnt','مدیریت','mdi-account-tie'],
     ['Econ','اقتصاد','mdi-chart-areaspline'],
+    ['Painting','نقاشی','mdi-brush'],
 ]
