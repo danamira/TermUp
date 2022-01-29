@@ -29,6 +29,9 @@ export default {
     "ChemEng",
     "Arch",
     "GrdnngEng",
+    "FoodSci",
+    "MechBio",
+    "CompEngFar"
   ],
 };
 
@@ -61,4 +64,8 @@ export let majorsList = [
   ["EngPhys", "فیزیک مهندسی", "mdi-bike-fast"],
   ["Commu", "علوم ارتباطات", "mdi-chat"],
   ["GrdnngEng", "مهندسی باغبانی", "mdi-tree"],
+  ["FoodSci", "مهندسی صنایع غذایی", "mdi-food"],
+  ["MechBio","مکانیک بیوسیستم",'mdi-bio'],
+  ["CompEngFar", "کامپیوتر (فارابی)", "mdi-code-array"],
+
 ];

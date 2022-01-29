@@ -167,6 +167,13 @@ body {
   display: block;
   margin-top: 4px;
 }
+#header #logo_night {
+   height: 45px;
+  float: right;
+  display: block;
+  margin-top: 4px;
+  display: none;
+}
 
 .option_series {
   display: block;

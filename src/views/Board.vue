@@ -1,7 +1,7 @@
 <template>
   <div>
     <header id="header">
-      <img id="logo" alt="Logo for TermUp" src="../assets/logo.png"/>
+      <img id="logo" alt="Logo for TermUp" src="../assets/logo.png">
       <ul class="option_series">
         <li>
           <router-link to="/majors"><i class="mdi mdi-school"></i><span>تغییر رشته</span></router-link>
