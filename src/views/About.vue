@@ -62,7 +62,7 @@
       </p>
       <ul class="contributors">
         <li class="special"><i class="mdi mdi-star"></i> میلاد ماهار</li>
-        <li><i class="mdi mdi-code-tags"></i> ادیب رضایی</li>
+        <li class="special"><i class="mdi mdi-code-tags"></i> ادیب رضایی</li>
         <li>محمدامین زینالی</li>
         <li>فاطمه اکبری</li>
         <li>سینا نائینیان</li>

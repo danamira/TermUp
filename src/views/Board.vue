@@ -116,6 +116,8 @@
   </div>
 </template>
 <script>
+
+
 import SideBar from "../components/SideBar.vue";
 import axios from "axios";
 import html2canvas from "html2canvas";
@@ -154,6 +156,7 @@ export default {
       this.$router.push("/result");
       return 0;
     }
+  
     let major = this.$route.params.major;
     if (!config.majors.includes(major)) {
       this.$router.push('/404')
@@ -589,49 +592,5 @@ export default {
   transform: translateY(30px);
 }
 
-#share_modal {
-  background: #000000ba;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 10000;
-}
-
-.modal_box {
-  width: 500px;
-  max-width: 90%;
-  border-radius: 4px;
-  min-height: 125px;
-  margin: auto;
-  margin-top: 100px;
-  background: #fff;
-}
-
-.modal_box .modal_box_header {
-  padding: 10px 10px;
-  position: relative;
-  font-size: 14px;
-  border-bottom: 1px solid #e7e7e7;
-  color: #707070;
-}
-
-.modal_box .modal_box_header .mdi-close {
-  position: absolute;
-  left: 10px;
-  top: 0;
-  font-size: 16px;
-  line-height: 40px;
-  display: block;
-  cursor: pointer;
-}
-
-.modal_box .modal_box_content {
-  padding: 10px;
-  overflow: hidden;
-  font-size: 13px;
-  color: rgb(44, 44, 44);
-}
 </style>
 

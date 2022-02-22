@@ -14,6 +14,14 @@
         نباشد.
       </p>
     </div>
+    <div id="modal_back" v-if="!seenTheBanner">
+      <div class="modal_box" id="banner_modal">
+        <div class="modal_box_header">
+          <i class="mdi mdi-close" @click="closeBanner"></i>
+        </div>
+        <img src="./assets/Banner_01.png" alt="ترمآپ در حذف و اضافه بالاست." @click="closeBanner">
+      </div>
+    </div>
     <transition name="slide-fade">
       <div
         v-if="flashMessage.show"
@@ -48,8 +56,14 @@ export default {
   data: function () {
     return {
       nightMode: localStorage.getItem("night_mode") || "off",
+      seenTheBanner:1,
       flashMessage: { show: 0, msg: null, class: null },
     };
+  },
+  created() {
+  if (localStorage.getItem("seenTheBanner") != "YES") {
+      this.seenTheBanner=0;
+    }
   },
   methods: {
     toggleTheme: function () {
@@ -59,6 +73,10 @@ export default {
         this.nightMode = "off";
       }
       localStorage.setItem("night_mode", this.nightMode);
+    },
+    closeBanner() {
+      localStorage.setItem("seenTheBanner","YES");
+      this.seenTheBanner=1;
     },
     getWidth: function (element) {
       if (element == "week") {
@@ -400,6 +418,66 @@ body {
 .slide-fade-leave-to {
   transform: translateX(10px);
   opacity: 0;
+}
+
+#modal_back {
+  background: #000000ba;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 10000;
+}
+
+.modal_box {
+  width: 500px;
+  max-width: 90%;
+  border-radius: 4px;
+  min-height: 125px;
+  margin: auto;
+  margin-top: 100px;
+  background: #fff;
+}
+
+.modal_box .modal_box_header {
+  padding: 10px 10px;
+  position: relative;
+  font-size: 14px;
+  min-height:42px;
+  overflow: hidden;
+  border-bottom: 1px solid #e7e7e7;
+  color: #707070;
+}
+.clear {
+  clear: both;
+}
+.modal_box .modal_box_header .mdi-close {
+  position: absolute;
+  left: 10px;
+  top: 0;
+  font-size: 16px;
+  line-height: 40px;
+  display: block;
+  cursor: pointer;
+}
+
+.modal_box .modal_box_content {
+  padding: 10px;
+  overflow: hidden;
+  font-size: 13px;
+  color: rgb(44, 44, 44);
+}
+#banner_modal {
+  width:670px;
+  padding:5px;
+  max-width: calc(100%-20px);
+}
+#banner_modal img {
+  display: block;
+  cursor: pointer;
+  width:100%;
+  
 }
 @media only screen and (max-width: 700px) {
   #screenError {
