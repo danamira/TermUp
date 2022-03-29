@@ -101,13 +101,19 @@ export default {
   cursor: pointer;
   border-radius: 4px;
 }
-#major_switch .majors .major:hover,
 .night_mode_on #major_switch .majors .major {
-  background: #1c2534;
+  background: #151c28;
   transition: 0.3s;
-  color: #fff;
-  border-color: #1c2534;
+  color: rgba(255, 255, 255, 0.692);
+  border-color: #151c28;
 }
+#major_switch .majors .major:hover {
+  background: #151c28;
+  transition: 0.3s;
+  color: rgba(255, 255, 255,1);
+  border-color: #151c28;
+}
+
 #major_switch .majors .major .mdi {
   display: block;
   font-size: 22px;

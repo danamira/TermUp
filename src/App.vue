@@ -57,7 +57,7 @@ export default {
     return {
       nightMode: localStorage.getItem("night_mode") || "off",
       seenTheBanner:1,
-      showModal:1,
+      showModal:0,
       flashMessage: { show: 0, msg: null, class: null },
     };
   },
@@ -421,7 +421,7 @@ body {
   opacity: 0;
 }
 
-#modal_back {
+#modal_back,#new_course_modal_back {
   background: #000000ba;
   width: 100%;
   height: 100%;

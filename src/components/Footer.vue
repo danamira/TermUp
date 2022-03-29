@@ -59,6 +59,9 @@ export default {
     direction: ltr !important;
     text-align: left;
 }
+.night_mode_on #footer .copyright a {
+  color:rgb(169 169 169);
+}
 .links {
   float: left;
 }
@@ -84,4 +87,5 @@ export default {
   margin-left: 4px;
   line-height: 18px;
 }
+
 </style>
