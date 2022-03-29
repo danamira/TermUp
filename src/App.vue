@@ -14,7 +14,7 @@
         نباشد.
       </p>
     </div>
-    <div id="modal_back" v-if="!seenTheBanner">
+    <div id="modal_back" v-if="!seenTheBanner && showModal">
       <div class="modal_box" id="banner_modal">
         <div class="modal_box_header">
           <i class="mdi mdi-close" @click="closeBanner"></i>
@@ -57,6 +57,7 @@ export default {
     return {
       nightMode: localStorage.getItem("night_mode") || "off",
       seenTheBanner:1,
+      showModal:1,
       flashMessage: { show: 0, msg: null, class: null },
     };
   },
