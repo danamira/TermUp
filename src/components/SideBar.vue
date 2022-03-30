@@ -144,8 +144,14 @@ export default {
       this.query = "";
     },
     addHourToNewClass() {
-      if(parseInt(this.newClassStartsAt)>=parseInt(this.newClassEndsAt)) {
-        this.$emit('flash',{class:'error',msg:'زمان شروع و پایان تطابق ندارند!'})
+      let start=parseInt(this.newClassStartsAt);
+      let end=parseInt(this.newClassEndsAt);
+      if(start>=end) {
+        this.$emit('flash',{class:'error',msg:'ترتیب زمان شروع و پایان صحیح نیست!'})
+        return -1;
+      }
+      if(start <8 || start>20 || end<8 || end >20) {
+        this.$emit('flash',{class:'error',msg:'زمان وارد شده در بازه قابل قبول نیست!'})
         return -1;
       }
       
