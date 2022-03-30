@@ -1,10 +1,12 @@
 <template>
   <div>
     <header id="header">
-      <img id="logo" alt="Logo for TermUp" src="../assets/logo.png">
+      <img id="logo" alt="Logo for TermUp" src="../assets/logo.png" />
       <ul class="option_series">
         <li>
-          <router-link to="/majors"><i class="mdi mdi-school"></i><span>تغییر رشته</span></router-link>
+          <router-link to="/majors"
+            ><i class="mdi mdi-school"></i><span>تغییر رشته</span></router-link
+          >
         </li>
       </ul>
       <ul class="option_series">
@@ -12,12 +14,11 @@
           <router-link to="/print" target="_blank">
             <i class="mdi mdi-printer"></i><span>چاپ انتخاب ها</span>
           </router-link>
-
         </li>
 
         <li
-            :class="boardIsCompatible ? 'Active' : 'disActive'"
-            @click="exportAsImage"
+          :class="boardIsCompatible ? 'Active' : 'disActive'"
+          @click="exportAsImage"
         >
           <i class="mdi mdi-export-variant"></i><span>ذخیره برد</span>
         </li>
@@ -25,13 +26,12 @@
         <li id="del_all_button" @click="unpickAll()">
           <i class="mdi mdi-close"></i><span>حذف همه</span>
         </li>
-
       </ul>
       <ul class="option_series">
         <li
-            id="done"
-            :class="boardIsCompatible ? 'Active' : 'disActive'"
-            @click="finalize"
+          id="done"
+          :class="boardIsCompatible ? 'Active' : 'disActive'"
+          @click="finalize"
         >
           <i class="mdi mdi-check"></i><span>تایید انتخاب ها</span>
         </li>
@@ -63,9 +63,9 @@
           <div class="week_head">
             <ul class="hours">
               <li
-                  v-for="h in openHours"
-                  :key="h"
-                  :style="'width:' + baseBlockWidth + 'px'"
+                v-for="h in openHours"
+                :key="h"
+                :style="'width:' + baseBlockWidth + 'px'"
               >
                 {{ h.toString().farsiNum() }}
               </li>
@@ -76,17 +76,17 @@
             <div class="course_blocks">
               <transition-group name="list" tag="p">
                 <div
-                    v-for="block in blocks[day[0]]"
-                    :key="block[0].code"
-                    :style="{
+                  v-for="block in blocks[day[0]]"
+                  :key="block[0].code"
+                  :style="{
                     width: block[2] * baseBlockWidth + 'px',
                     right: block[3] * baseBlockWidth + 'px',
                   }"
-                    class="course_block"
+                  class="course_block"
                 >
                   <i
-                      class="unpick mdi mdi-close"
-                      v-on:click="unpick(block[0])"
+                    class="unpick mdi mdi-close"
+                    v-on:click="unpick(block[0])"
                   ></i>
                   <span class="title">{{ block[0].title.farsiNum() }}</span>
                   <span class="pro">{{ block[0].professor }}</span>
@@ -116,12 +116,10 @@
   </div>
 </template>
 <script>
-
-
 import SideBar from "../components/SideBar.vue";
 import axios from "axios";
 import html2canvas from "html2canvas";
-import config from '../config'
+import config from "../config";
 
 export default {
   name: "App",
@@ -131,7 +129,7 @@ export default {
   data: function () {
     return {
       // `openHours` consists of the hours which courses are presented in. This usually is the University's work hours.
-      currentSemester: config.currentSemester.replace('-', ' | '),
+      currentSemester: config.currentSemester.replace("-", " | "),
       openHours: [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
       courses: [],
       errorFetching: 0,
@@ -156,18 +154,18 @@ export default {
       this.$router.push("/result");
       return 0;
     }
-  
+
     let major = this.$route.params.major;
     if (!config.majors.includes(major)) {
-      this.$router.push('/404')
-      return -1
+      this.$router.push("/404");
+      return -1;
     }
     if (localStorage.getItem("major") != major) {
       localStorage.courses_picked = "[]";
       this.picked = [];
       localStorage.setItem("major", major);
-      localStorage.setItem("userCourses", '[]');
-      this.$emit("flash", {msg: "رشته انتخاب شد.", class: "success"});
+      localStorage.setItem("userCourses", "[]");
+      this.$emit("flash", { msg: "رشته انتخاب شد.", class: "success" });
     }
 
     this.fetchData();
@@ -175,22 +173,27 @@ export default {
   },
   updated() {
     this.baseBlockWidth =
-        (this.$refs.week.clientWidth - 70) / this.openHours.length;
+      (this.$refs.week.clientWidth - 70) / this.openHours.length;
   },
   methods: {
-
     // `updateStorage` will be called after each pick/unpick action. This method updates the `courses_picked` array in localStorage to the latest value of `picked` in component's data object.
     fetchData() {
       let app = this;
       axios
-          .get("/data/" + this.$route.params.major + "/" + config.currentSemester + ".json")
-          .then((response) => {
-            this.courses = response.data;
-          })
-          .catch(function (err) {
-            app.errorFetching = 1;
-            console.error("Error in fetching JSON data:", err);
-          });
+        .get(
+          "/data/" +
+            this.$route.params.major +
+            "/" +
+            config.currentSemester +
+            ".json"
+        )
+        .then((response) => {
+          this.courses = response.data;
+        })
+        .catch(function (err) {
+          app.errorFetching = 1;
+          console.error("Error in fetching JSON data:", err);
+        });
     },
 
     updateStorage() {
@@ -227,7 +230,7 @@ export default {
     unpickAll() {
       this.picked = [];
       this.updateStorage();
-      this.$emit("flash", {msg: "با موفقیت حذف شد.", class: "success"});
+      this.$emit("flash", { msg: "با موفقیت حذف شد.", class: "success" });
     },
 
     exportAsImage() {
@@ -252,16 +255,15 @@ export default {
       }
       localStorage.setItem("finalized", 1);
       this.$router.push("/result");
-      this.$emit("flash", {msg: "انتخاب ها نهایی شد.", class: "success"});
+      this.$emit("flash", { msg: "انتخاب ها نهایی شد.", class: "success" });
     },
 
     passFlash(flashMsg) {
-      this.$emit('flash', flashMsg)
-    }
+      this.$emit("flash", flashMsg);
+    },
   },
 
   computed: {
-
     /* `blocks` computed property returns an array containing 6 arrays each corresponding to a day in week and containing the picked courses that have a class on that day.
     For instance, blocks[0] contains all the courses in `picked` which have a class in saturday. */
     blocks: function () {
@@ -300,8 +302,8 @@ export default {
         day.forEach(function (block) {
           day.forEach(function (otherBlock) {
             let result =
-                block[3] >= otherBlock[3] &&
-                block[3] < otherBlock[3] + otherBlock[2];
+              block[3] >= otherBlock[3] &&
+              block[3] < otherBlock[3] + otherBlock[2];
 
             let same = block[0].code == otherBlock[0].code;
 
@@ -309,10 +311,10 @@ export default {
               let alreadyAdded = 0;
               cepts.forEach(function (c) {
                 if (
-                    (c[0].code == block[0].code &&
-                        c[1].code == otherBlock[0].code) ||
-                    (c[1].code == block[0].code &&
-                        c[0].code == otherBlock[0].code)
+                  (c[0].code == block[0].code &&
+                    c[1].code == otherBlock[0].code) ||
+                  (c[1].code == block[0].code &&
+                    c[0].code == otherBlock[0].code)
                 ) {
                   alreadyAdded = 1;
                 }
@@ -499,7 +501,6 @@ export default {
   opacity: 1;
 }
 
-
 .fetchError {
   width: 700px;
   margin: 100px auto 300px;
@@ -587,11 +588,9 @@ export default {
   transition: all 0.5s;
 }
 
-.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */
-{
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
   opacity: 0;
   transform: translateY(30px);
 }
-
 </style>
 

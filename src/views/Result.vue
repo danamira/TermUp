@@ -98,16 +98,16 @@ export default {
       this.$emit("flash", { msg: "کپی شد!", class: "success" });
     },
   },
-  computed:{
+  computed: {
     totalPicked() {
-      let pickedValues=this.picked.map((course)=>course.total)
-      let result=0;
-      pickedValues.forEach(function (value){
-        result+=parseInt(value)
-      })
-      return result.toString()
-    }
-  }
+      let pickedValues = this.picked.map((course) => course.total);
+      let result = 0;
+      pickedValues.forEach(function (value) {
+        result += parseInt(value);
+      });
+      return result.toString();
+    },
+  },
 };
 </script>
 <style>
@@ -141,7 +141,7 @@ export default {
   float: right;
   padding: 0 15px;
   border-left: 1px solid #ededed;
-  height:225px;
+  height: 225px;
   overflow: hidden;
   margin: 15px 0;
 }
@@ -241,38 +241,40 @@ export default {
   line-height: 26px;
 }
 .result_caution .mdi {
- margin-left: 5px;
-    position: absolute;
-    left: -5px;
-    bottom: 2px;
-    font-size: 72px;
-    transform: rotate(10deg);
-    color: hsla(218, 53%, 24%, 0.07);
+  margin-left: 5px;
+  position: absolute;
+  left: -5px;
+  bottom: 2px;
+  font-size: 72px;
+  transform: rotate(10deg);
+  color: hsla(218, 53%, 24%, 0.07);
 }
 .night_mode_on .courses_result h3 {
-  color:#fff;
+  color: #fff;
 }
 .night_mode_on .result_caution {
   background: #202733 !important;
-  color:rgb(186, 191, 211);
+  color: rgb(186, 191, 211);
 }
 .night_mode_on .result_caution .mdi {
-  color:rgba(157, 164, 189,0.07);
+  color: rgba(157, 164, 189, 0.07);
 }
 .night_mode_on .picked_item .code {
   background: #1c2534;
-    color:#9babc7
+  color: #9babc7;
 }
 .night_mode_on .picked_item h4 {
-  color:#eceef7;
+  color: #eceef7;
 }
 .night_mode_on .picked_item h4 span {
   background: #202733 !important;
 }
-.night_mode_on .picked_item,.night_mode_on .picked_item ul{
-  border-color:rgba(255,255,255,0.1)
+.night_mode_on .picked_item,
+.night_mode_on .picked_item ul {
+  border-color: rgba(255, 255, 255, 0.1);
 }
-.night_mode_on .picked_item ul li,.night_mode_on .picked_item ul li .mdi{
-  color:rgb(156, 161, 180);
+.night_mode_on .picked_item ul li,
+.night_mode_on .picked_item ul li .mdi {
+  color: rgb(156, 161, 180);
 }
 </style>

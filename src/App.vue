@@ -233,7 +233,7 @@ body {
 
 .night_mode_on #header {
   /* border-color: #293240; */
-  border-color: rgba(255, 255, 255, 0.15);
+  border-color: rgb(255 255 255 / 9%);
 }
 
 .night_mode_on .option_series {

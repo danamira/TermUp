@@ -72,11 +72,20 @@
           </select>
           <div class="hline"></div>
           <label>ساعت های کلاس:</label>
-          <div class="newCourseClasses" v-if="newCourse.classDays.length!=0">
-                <span class="newCourseClass" v-for="(day,i) in newCourse.classDays" :key="i">{{day[0]}} ( {{day[1][0].toString().farsiNum().replace(".","/")}} تا  {{day[1][1].toString().farsiNum().replace(".","/")}} )</span>
-                <span class="delete_all_hours" @click="newCourse.classDays=[]">حذف همه</span>
+          <div class="newCourseClasses" v-if="newCourse.classDays.length != 0">
+            <span
+              class="newCourseClass"
+              v-for="(day, i) in newCourse.classDays"
+              :key="i"
+              >{{ day[0] }} (
+              {{ day[1][0].toString().farsiNum().replace(".", "/") }} تا
+              {{ day[1][1].toString().farsiNum().replace(".", "/") }} )</span
+            >
+            <span class="delete_all_hours" @click="newCourse.classDays = []"
+              >حذف همه</span
+            >
           </div>
-          
+
           <div class="add_hour">
             <select v-model="newClassDay">
               <option value="شنبه">شنبه</option>
@@ -86,10 +95,22 @@
               <option value="چهار شنبه">چهارشنبه</option>
               <option value="پنج شنبه">پنجشنبه</option>
             </select>
-             از 
-            <input type="number" min="8" max="20" placeholder="ساعت شروع" v-model="newClassStartsAt">
-             تا 
-            <input type="number" min="8" max="20" placeholder="ساعت پایان" v-model="newClassEndsAt">
+            از
+            <input
+              type="number"
+              min="8"
+              max="20"
+              placeholder="ساعت شروع"
+              v-model="newClassStartsAt"
+            />
+            تا
+            <input
+              type="number"
+              min="8"
+              max="20"
+              placeholder="ساعت پایان"
+              v-model="newClassEndsAt"
+            />
             <i class="mdi mdi-plus" @click="addHourToNewClass"></i>
           </div>
           <button @click="addNewCourse" id="add_new_course">اضافه کردن</button>
@@ -113,24 +134,24 @@ export default {
       newCourse: {
         title: "",
         professor: "",
-        capacity: '-',
+        capacity: "-",
         gender: "مختلط",
         total: 2,
         code: "-",
         classDays: [],
-        exam:'-',
-        location:'-',
+        exam: "-",
+        location: "-",
       },
-      newClassStartsAt:null,
-      newClassEndsAt:null,
-      newClassDay:'شنبه',
+      newClassStartsAt: null,
+      newClassEndsAt: null,
+      newClassDay: "شنبه",
       userCourses: JSON.parse(localStorage.getItem("userCourses")) || [],
     };
   },
   computed: {
     found: function () {
       let quer = this.query;
-      return (this.courses.concat(this.userCourses)).filter(function (course) {
+      return this.courses.concat(this.userCourses).filter(function (course) {
         return (
           course.title.startsWith(quer) || course.professor.startsWith(quer)
         );
@@ -144,45 +165,56 @@ export default {
       this.query = "";
     },
     addHourToNewClass() {
-      let start=parseInt(this.newClassStartsAt);
-      let end=parseInt(this.newClassEndsAt);
-      if(start>=end) {
-        this.$emit('flash',{class:'error',msg:'ترتیب زمان شروع و پایان صحیح نیست!'})
+      let start = parseInt(this.newClassStartsAt);
+      let end = parseInt(this.newClassEndsAt);
+      if (start >= end) {
+        this.$emit("flash", {
+          class: "error",
+          msg: "ترتیب زمان شروع و پایان صحیح نیست!",
+        });
         return -1;
       }
-      if(start <8 || start>20 || end<8 || end >20) {
-        this.$emit('flash',{class:'error',msg:'زمان وارد شده در بازه قابل قبول نیست!'})
+      if (start < 8 || start > 20 || end < 8 || end > 20) {
+        this.$emit("flash", {
+          class: "error",
+          msg: "زمان وارد شده در بازه قابل قبول نیست!",
+        });
         return -1;
       }
-      
-      this.newCourse.classDays.push([this.newClassDay,[this.newClassStartsAt,this.newClassEndsAt]])
-      this.newClassDay='شنبه';
-      this.newClassStartsAt=null;
-      this.newClassEndsAt=null;
+
+      this.newCourse.classDays.push([
+        this.newClassDay,
+        [this.newClassStartsAt, this.newClassEndsAt],
+      ]);
+      this.newClassDay = "شنبه";
+      this.newClassStartsAt = null;
+      this.newClassEndsAt = null;
     },
     addNewCourse() {
-      let x=this.newCourse;
-      if(x.classDays.length==0) {
-        this.$emit('flash',{class:'error',msg:'هیچ بازه زمانی اضافه نشده!'})
+      let x = this.newCourse;
+      if (x.classDays.length == 0) {
+        this.$emit("flash", {
+          class: "error",
+          msg: "هیچ بازه زمانی اضافه نشده!",
+        });
         return -1;
       }
-      x.code='TUP-'+String(parseInt(Math.random()*1000000000));
-      this.userCourses.push(x)
-      localStorage.setItem('userCourses',JSON.stringify(this.userCourses))
+      x.code = "TUP-" + String(parseInt(Math.random() * 1000000000));
+      this.userCourses.push(x);
+      localStorage.setItem("userCourses", JSON.stringify(this.userCourses));
       this.show_new_course_modal = 0;
-      this.newCourse=   {
+      this.newCourse = {
         title: "",
         professor: "",
-        capacity: '-',
+        capacity: "-",
         gender: "مختلط",
         total: 2,
         code: "-",
         classDays: [],
-        exam:'-',
-        location:'-'
+        exam: "-",
+        location: "-",
       };
       this.$emit("flash", { msg: "اضافه شد!", class: "success" });
-
     },
     passFlash(flashMsg) {
       this.$emit("flash", flashMsg);
@@ -203,7 +235,7 @@ export default {
 }
 
 .night_mode_on .sidebar {
-  border-color: rgba(255, 255, 255, 0.15);
+  border-color:rgb(255 255 255 / 9%);
 }
 
 .search {
@@ -346,30 +378,31 @@ export default {
 }
 .add_hour .mdi {
   color: rgb(11, 172, 131);
- display: block;
-    width: 40px;
-    border:1px solid #ededed;
-    float: left;
-    height: 40px;
-    margin-top:1px;
-    cursor: pointer;
-    border-radius: 4px;
-    float: left;
-    margin-left: 4px;
-    text-align: center;
-    line-height: 40px;
-    display: block;
-    font-size: 24px;
+  display: block;
+  width: 40px;
+  border: 1px solid #ededed;
+  float: left;
+  height: 40px;
+  margin-top: 1px;
+  cursor: pointer;
+  border-radius: 4px;
+  float: left;
+  margin-left: 4px;
+  text-align: center;
+  line-height: 40px;
+  display: block;
+  font-size: 24px;
 }
 .newCourseClasses {
   overflow: hidden;
-  padding:5px 0;
+  padding: 5px 0;
   margin-bottom: 10px;
 }
-.newCourseClass,.delete_all_hours {
+.newCourseClass,
+.delete_all_hours {
   background: #5a6270;
-  color:#ffffff;
-  padding:2px 10px;
+  color: #ffffff;
+  padding: 2px 10px;
   font-size: 13px;
   margin-left: 4px;
   border-radius: 4px;
@@ -377,13 +410,13 @@ export default {
 }
 .delete_all_hours {
   background: #fff;
-  border:1px solid #ededed;
-  color:#5a6270;
+  border: 1px solid #ededed;
+  color: #5a6270;
   cursor: pointer;
 }
-.delete_all_hours:hover{
+.delete_all_hours:hover {
   background: rgb(221 49 64);
   border-color: rgb(221 49 64);
-  color:#fff;
+  color: #fff;
 }
 </style>

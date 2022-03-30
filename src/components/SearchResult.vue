@@ -1,37 +1,46 @@
 <template>
   <div class="item">
     <h3>
-      {{ course.title.farsiNum()}} <span>{{ course.professor }}</span>
+      {{ course.title.farsiNum() }} <span>{{ course.professor }}</span>
     </h3>
     <div class="timing">
-      <span v-for="(day,i) in course.classDays" :key="i">{{day[0]}} ( {{day[1][0].toString().farsiNum().replace(".","/")}} تا  {{day[1][1].toString().farsiNum().replace(".","/")}} )</span>
+      <span v-for="(day, i) in course.classDays" :key="i"
+        >{{ day[0] }} (
+        {{ day[1][0].toString().farsiNum().replace(".", "/") }} تا
+        {{ day[1][1].toString().farsiNum().replace(".", "/") }} )</span
+      >
     </div>
     <div class="more_info" v-if="expanded">
       <ul>
-        <li><i class="mdi mdi-account-multiple"></i>
-        <span>ظرفیت:</span>
-        {{(course.capacity).toString().farsiNum()}}
+        <li>
+          <i class="mdi mdi-account-multiple"></i>
+          <span>ظرفیت:</span>
+          {{ course.capacity.toString().farsiNum() }}
         </li>
-        <li><i class="mdi mdi-gender-male-female"></i>
-        <span>جنسیت:</span>
-        {{(course.gender).toString().farsiNum()}}
+        <li>
+          <i class="mdi mdi-gender-male-female"></i>
+          <span>جنسیت:</span>
+          {{ course.gender.toString().farsiNum() }}
         </li>
-        <li><i class="mdi mdi-school"></i>
-        <span>واحد:</span>
-        {{(course.total).toString().farsiNum()}}
+        <li>
+          <i class="mdi mdi-school"></i>
+          <span>واحد:</span>
+          {{ course.total.toString().farsiNum() }}
         </li>
       </ul>
     </div>
     <div class="options">
       <span class="course_code" v-if="expanded" @click="copyCode(course.code)">
         <i class="mdi mdi-content-copy"></i>
-        {{course.code.farsiNum()}}
+        {{ course.code.farsiNum() }}
       </span>
       <!-- The icon below passes component's course to the parent layer(SideBar) when clicked. SideBar will proceed and pass it to the Board component later. -->
-      <i class="button mdi mdi-plus" v-on:click="$emit('pick',course)"></i>
-      <i class="button mdi mdi-dots-horizontal" v-on:click="expanded=!expanded"></i>
+      <i class="button mdi mdi-plus" v-on:click="$emit('pick', course)"></i>
+      <i
+        class="button mdi mdi-dots-horizontal"
+        v-on:click="expanded = !expanded"
+      ></i>
     </div>
-    
   </div>
 </template>
 
@@ -39,17 +48,17 @@
 export default {
   name: "SearchResult",
   props: ["course"],
-  methods:{
-     copyCode(code) {
+  methods: {
+    copyCode(code) {
       navigator.clipboard.writeText(code);
       this.$emit("flash", { msg: "کپی شد!", class: "success" });
     },
   },
   data() {
     return {
-      expanded:0
-    }
-  }
+      expanded: 0,
+    };
+  },
 };
 </script>
 
@@ -64,9 +73,9 @@ export default {
   overflow: hidden;
 }
 .night_mode_on .search_result ul {
-  color:#ffffffb5;
+  color: #ffffffb5;
 }
-.search_result ul li{
+.search_result ul li {
   font-size: 14px;
   display: block;
   margin: 5px 0;
@@ -78,26 +87,26 @@ export default {
   border-bottom: 1px dashed #eeeeee;
   position: relative;
 }
-.night_mode_on .search_result ul li{
+.night_mode_on .search_result ul li {
   border-bottom: 1px dashed #333646a3 !important;
 }
-.search_result ul li:last-child{
+.search_result ul li:last-child {
   border-bottom: none;
- }
-.search_result ul li:before{
-  content: '';
+}
+.search_result ul li:before {
+  content: "";
   display: block;
   background: #e7edf0;
   width: 9px;
   height: 9px;
-  left:0;
+  left: 0;
   border-radius: 3px;
-  top:5px;
+  top: 5px;
   position: absolute;
-} 
+}
 .night_mode_on .search_result ul li:before {
   background: #383b4a;
-} 
+}
 .search_result ul li:nth-child(even) {
   border-left: none;
 }
@@ -108,7 +117,7 @@ export default {
   color: #4e536e;
   background: #e7edf0;
   display: block;
-  width:25px;
+  width: 25px;
   text-align: center;
   height: 25px;
   float: right;
@@ -167,7 +176,7 @@ export default {
   display: block;
   direction: ltr;
   text-align: left;
-  height:25px;
+  height: 25px;
   font-size: 13px;
   line-height: 27px;
   background: #5d6778;
@@ -201,8 +210,8 @@ export default {
 }
 .search_result .item .timing span {
   display: block;
-  float:right;
-  padding:0 7px;
+  float: right;
+  padding: 0 7px;
   border-left: 1px solid #bab9c4;
   color: #5a6a85;
   margin-left: 5px;
@@ -213,8 +222,8 @@ export default {
   border-left: none !important;
 }
 
-.search_result .item .timing span:first-child{
-  padding-right:0 !important;
+.search_result .item .timing span:first-child {
+  padding-right: 0 !important;
 }
 .night_mode_on .search_result .item {
   border-color: #1f2734;
