@@ -353,7 +353,7 @@ body {
   height: 100%;
   background: #fff;
   display: none;
-  z-index: 1000;
+  z-index: 100000;
 }
 
 #screenError .mdi {

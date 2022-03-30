@@ -166,6 +166,7 @@ export default {
       localStorage.courses_picked = "[]";
       this.picked = [];
       localStorage.setItem("major", major);
+      localStorage.setItem("userCourses", '[]');
       this.$emit("flash", {msg: "رشته انتخاب شد.", class: "success"});
     }
 

@@ -124,13 +124,13 @@ export default {
       newClassStartsAt:null,
       newClassEndsAt:null,
       newClassDay:'شنبه',
-
+      userCourses: JSON.parse(localStorage.getItem("userCourses")) || [],
     };
   },
   computed: {
     found: function () {
       let quer = this.query;
-      return this.courses.filter(function (course) {
+      return (this.courses.concat(this.userCourses)).filter(function (course) {
         return (
           course.title.startsWith(quer) || course.professor.startsWith(quer)
         );
@@ -161,7 +161,8 @@ export default {
         return -1;
       }
       x.code=String(parseInt(Math.random()*1000000000));
-      this.courses.push(x);
+      this.userCourses.push(x)
+      localStorage.setItem('userCourses',JSON.stringify(this.userCourses))
       this.show_new_course_modal = 0;
       this.newCourse={
         title: "",
