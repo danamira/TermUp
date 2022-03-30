@@ -115,12 +115,12 @@ export default {
         professor: "",
         capacity: '-',
         gender: "مختلط",
-        total: 3,
+        total: 2,
         code: "-",
         classDays: [],
+        exam:'-',
+        location:'-',
       },
-      exam:'-',
-      location:'-',
       newClassStartsAt:null,
       newClassEndsAt:null,
       newClassDay:'شنبه',
@@ -160,16 +160,16 @@ export default {
         this.$emit('flash',{class:'error',msg:'هیچ بازه زمانی اضافه نشده!'})
         return -1;
       }
-      x.code=String(parseInt(Math.random()*1000000000));
+      x.code='TUP-'+String(parseInt(Math.random()*1000000000));
       this.userCourses.push(x)
       localStorage.setItem('userCourses',JSON.stringify(this.userCourses))
       this.show_new_course_modal = 0;
-      this.newCourse={
+      this.newCourse=   {
         title: "",
         professor: "",
         capacity: '-',
         gender: "مختلط",
-        total: 3,
+        total: 2,
         code: "-",
         classDays: [],
         exam:'-',
