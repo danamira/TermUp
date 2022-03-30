@@ -19,7 +19,11 @@
         <div class="modal_box_header">
           <i class="mdi mdi-close" @click="closeBanner"></i>
         </div>
-        <img src="./assets/Banner_01.png" alt="ترمآپ در حذف و اضافه بالاست." @click="closeBanner">
+        <img
+          src="./assets/Banner_01.png"
+          alt="ترمآپ در حذف و اضافه بالاست."
+          @click="closeBanner"
+        />
       </div>
     </div>
     <transition name="slide-fade">
@@ -56,14 +60,14 @@ export default {
   data: function () {
     return {
       nightMode: localStorage.getItem("night_mode") || "off",
-      seenTheBanner:1,
-      showModal:0,
+      seenTheBanner: 1,
+      showModal: 0,
       flashMessage: { show: 0, msg: null, class: null },
     };
   },
   created() {
-  if (localStorage.getItem("seenTheBanner") != "YES") {
-      this.seenTheBanner=0;
+    if (localStorage.getItem("seenTheBanner") != "YES") {
+      this.seenTheBanner = 0;
     }
   },
   methods: {
@@ -76,8 +80,8 @@ export default {
       localStorage.setItem("night_mode", this.nightMode);
     },
     closeBanner() {
-      localStorage.setItem("seenTheBanner","YES");
-      this.seenTheBanner=1;
+      localStorage.setItem("seenTheBanner", "YES");
+      this.seenTheBanner = 1;
     },
     getWidth: function (element) {
       if (element == "week") {
@@ -187,7 +191,7 @@ body {
   margin-top: 4px;
 }
 #header #logo_night {
-   height: 45px;
+  height: 45px;
   float: right;
   display: block;
   margin-top: 4px;
@@ -387,7 +391,7 @@ body {
   border-radius: 4px;
   font-size: 14px;
   bottom: 20px;
-  z-index: 1000;
+  z-index: 100001;
   background: #293240;
   color: #fff;
 }
@@ -421,7 +425,8 @@ body {
   opacity: 0;
 }
 
-#modal_back,#new_course_modal_back {
+#modal_back,
+#new_course_modal_back {
   background: #000000ba;
   width: 100%;
   height: 100%;
@@ -445,7 +450,7 @@ body {
   padding: 10px 10px;
   position: relative;
   font-size: 14px;
-  min-height:42px;
+  min-height: 42px;
   overflow: hidden;
   border-bottom: 1px solid #e7e7e7;
   color: #707070;
@@ -470,15 +475,14 @@ body {
   color: rgb(44, 44, 44);
 }
 #banner_modal {
-  width:670px;
-  padding:5px;
+  width: 670px;
+  padding: 5px;
   max-width: calc(100%-20px);
 }
 #banner_modal img {
   display: block;
   cursor: pointer;
-  width:100%;
-  
+  width: 100%;
 }
 @media only screen and (max-width: 700px) {
   #screenError {

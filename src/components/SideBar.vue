@@ -72,8 +72,9 @@
           </select>
           <div class="hline"></div>
           <label>ساعت های کلاس:</label>
-          <div class="newCourseClasses">
+          <div class="newCourseClasses" v-if="newCourse.classDays.length!=0">
                 <span class="newCourseClass" v-for="(day,i) in newCourse.classDays" :key="i">{{day[0]}} ( {{day[1][0].toString().farsiNum().replace(".","/")}} تا  {{day[1][1].toString().farsiNum().replace(".","/")}} )</span>
+                <span class="delete_all_hours" @click="newCourse.classDays=[]">حذف همه</span>
           </div>
           
           <div class="add_hour">
@@ -112,7 +113,7 @@ export default {
       newCourse: {
         title: "",
         professor: "",
-        capacity: 1,
+        capacity: '-',
         gender: "مختلط",
         total: 3,
         code: "-",
@@ -143,6 +144,11 @@ export default {
       this.query = "";
     },
     addHourToNewClass() {
+      if(parseInt(this.newClassStartsAt)>=parseInt(this.newClassEndsAt)) {
+        this.$emit('flash',{class:'error',msg:'زمان شروع و پایان تطابق ندارند!'})
+        return -1;
+      }
+      
       this.newCourse.classDays.push([this.newClassDay,[this.newClassStartsAt,this.newClassEndsAt]])
       this.newClassDay='شنبه';
       this.newClassStartsAt=null;
@@ -150,20 +156,26 @@ export default {
     },
     addNewCourse() {
       let x=this.newCourse;
-      x.code=parseInt(Math.random()*1000000000);
+      if(x.classDays.length==0) {
+        this.$emit('flash',{class:'error',msg:'هیچ بازه زمانی اضافه نشده!'})
+        return -1;
+      }
+      x.code=String(parseInt(Math.random()*1000000000));
       this.courses.push(x);
       this.show_new_course_modal = 0;
       this.newCourse={
         title: "",
         professor: "",
-        capacity: 1,
+        capacity: '-',
         gender: "مختلط",
         total: 3,
         code: "-",
         classDays: [],
         exam:'-',
         location:'-'
-      }
+      };
+      this.$emit("flash", { msg: "اضافه شد!", class: "success" });
+
     },
     passFlash(flashMsg) {
       this.$emit("flash", flashMsg);
@@ -286,6 +298,7 @@ export default {
 #new_course select {
   display: block;
   width: 100%;
+  background: #fff;
   border: 1px solid #ededed;
   padding: 10px;
   border-radius: 4px;
@@ -346,7 +359,7 @@ export default {
   padding:5px 0;
   margin-bottom: 10px;
 }
-.newCourseClass {
+.newCourseClass,.delete_all_hours {
   background: #5a6270;
   color:#ffffff;
   padding:2px 10px;
@@ -354,5 +367,16 @@ export default {
   margin-left: 4px;
   border-radius: 4px;
   line-height: 20px;
+}
+.delete_all_hours {
+  background: #fff;
+  border:1px solid #ededed;
+  color:#5a6270;
+  cursor: pointer;
+}
+.delete_all_hours:hover{
+  background: rgb(221 49 64);
+  border-color: rgb(221 49 64);
+  color:#fff;
 }
 </style>
