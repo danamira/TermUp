@@ -49,7 +49,13 @@
       <div class="modal_box" id="new_course">
         <div class="modal_box_header">
           <span>درس جدید</span>
-          <i class="mdi mdi-close" @click="show_new_course_modal = 0"></i>
+          <i
+            class="mdi mdi-close"
+            @click="
+              show_new_course_modal = 0;
+              resetNewCourseForm();
+            "
+          ></i>
         </div>
         <div class="modal_box_content">
           <label>عنوان درس:</label>
@@ -165,6 +171,9 @@ export default {
       this.query = "";
     },
     addHourToNewClass() {
+      if (this.newClassStartsAt == null || this.newClassEndsAt == null) {
+        return 0;
+      }
       let start = parseInt(this.newClassStartsAt);
       let end = parseInt(this.newClassEndsAt);
       if (start >= end) {
@@ -190,6 +199,19 @@ export default {
       this.newClassStartsAt = null;
       this.newClassEndsAt = null;
     },
+    resetNewCourseForm() {
+      this.newCourse = {
+        title: "",
+        professor: "",
+        capacity: "-",
+        gender: "مختلط",
+        total: 2,
+        code: "-",
+        classDays: [],
+        exam: "-",
+        location: "-",
+      };
+    },
     addNewCourse() {
       let x = this.newCourse;
       if (x.classDays.length == 0) {
@@ -203,17 +225,7 @@ export default {
       this.userCourses.push(x);
       localStorage.setItem("userCourses", JSON.stringify(this.userCourses));
       this.show_new_course_modal = 0;
-      this.newCourse = {
-        title: "",
-        professor: "",
-        capacity: "-",
-        gender: "مختلط",
-        total: 2,
-        code: "-",
-        classDays: [],
-        exam: "-",
-        location: "-",
-      };
+      this.resetNewCourseForm();
       this.$emit("flash", { msg: "اضافه شد!", class: "success" });
     },
     passFlash(flashMsg) {
@@ -235,7 +247,7 @@ export default {
 }
 
 .night_mode_on .sidebar {
-  border-color:rgb(255 255 255 / 9%);
+  border-color: rgb(255 255 255 / 9%);
 }
 
 .search {
