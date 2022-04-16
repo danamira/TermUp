@@ -445,6 +445,9 @@ body {
   margin-top: 100px;
   background: #fff;
 }
+.night_mode_on .modal_box {
+  background: #111620;
+}
 
 .modal_box .modal_box_header {
   padding: 10px 10px;
@@ -454,6 +457,10 @@ body {
   overflow: hidden;
   border-bottom: 1px solid #e7e7e7;
   color: #707070;
+}
+.night_mode_on .modal_box .modal_box_header {
+  border-color:rgba(255, 255, 255, 0.096);
+  color:rgba(255, 255, 255, 0.63);
 }
 .clear {
   clear: both;

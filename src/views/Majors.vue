@@ -25,8 +25,7 @@
       <div class="warn" v-if="!firstTimeVisit">
         <p>
           <i class="mdi mdi-alert-octagon"></i>
-          تغییر رشته موجب حذف انتخاب های ذخیره شده فعلی در مرورگر می شود. دقت
-          کنید!
+          توجه کنید که خروج از رشته باعث حذف درس های رشته فعلی از برد خواهد شد.
         </p>
       </div>
       <div class="majors">
@@ -96,7 +95,7 @@ export default {
   height: 45px;
   margin: 5px 5px;
   float: right;
-  border: 1px solid #d4d4d4;
+  border: 1px solid #ececec;
   padding: 10px;
   cursor: pointer;
   border-radius: 4px;
@@ -125,12 +124,17 @@ export default {
   font-size: 14px;
 }
 #major_switch .warn {
-  background: #f7a900;
-  color: #fff;
+  background: #f5f5f5;
+  border-right:2px solid #f7a900;
+  color: rgb(75, 76, 92);
   border-radius: 4px;
   width: 600px;
   margin: auto;
   padding: 10px;
+}
+.night_mode_on #major_switch .warn {
+  background: #151c28;
+  color:#ffffffaf;
 }
 #major_switch p {
   font-size: 14px;
@@ -138,6 +142,7 @@ export default {
 }
 #major_switch .warn .mdi {
   float: right;
+  color:#f7a900;
   font-size: 22px;
   margin-left: 7px;
   line-height: 22px;

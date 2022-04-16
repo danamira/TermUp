@@ -198,7 +198,9 @@ export default {
       this.newClassDay = "شنبه";
       this.newClassStartsAt = null;
       this.newClassEndsAt = null;
+      return 1;
     },
+    // Resets the new course form to the original state after the user adds a course or decides to close the form.
     resetNewCourseForm() {
       this.newCourse = {
         title: "",
@@ -227,6 +229,7 @@ export default {
       this.show_new_course_modal = 0;
       this.resetNewCourseForm();
       this.$emit("flash", { msg: "اضافه شد!", class: "success" });
+      return 1;
     },
     passFlash(flashMsg) {
       this.$emit("flash", flashMsg);
@@ -336,7 +339,6 @@ export default {
   display: block;
   margin-top: 20px;
   width: 100%;
-
   font-size: 14px;
   padding: 10px 10px;
   background: #2c67cf;
@@ -349,18 +351,27 @@ export default {
 #new_course select {
   display: block;
   width: 100%;
-  background: #fff;
+  background: rgba(255, 255, 255);
   border: 1px solid #ededed;
   padding: 10px;
   border-radius: 4px;
   line-height: 20px;
   margin-bottom: 0px;
 }
+.night_mode_on #new_course input,
+.night_mode_on #new_course select {
+  border-color: rgba(255, 255, 255, 0);
+  background: #ffffff08;
+  color:rgba(255, 255, 255, 0.733);
+}
 #new_course label {
   padding: 8px 0;
   display: block;
   font-size: 12.5px;
   padding-right: 2px;
+}
+.night_mode_on #new_course label {
+  color:rgba(255, 255, 255, 0.562);
 }
 #new_course label:first-child {
   padding-top: 0;
@@ -376,10 +387,16 @@ export default {
   background: #ededed;
   margin: 10px 0;
 }
+.night_mode_on .hline {
+  opacity: 0.1;
+}
 .add_hour {
   overflow: hidden;
   width: auto;
   margin: auto;
+}
+.night_mode_on .add_hour {
+  color:rgba(255, 255, 255, 0.596);
 }
 .add_hour input,
 .add_hour select {
@@ -405,6 +422,11 @@ export default {
   display: block;
   font-size: 24px;
 }
+.night_mode_on .add_hour .mdi {
+  background: rgb(11, 172, 131);
+  color:#fff;
+  border-color:rgb(11, 172, 131);
+}
 .newCourseClasses {
   overflow: hidden;
   padding: 5px 0;
@@ -425,6 +447,11 @@ export default {
   border: 1px solid #ededed;
   color: #5a6270;
   cursor: pointer;
+}
+.night_mode_on .delete_all_hours{
+  background:#94191f;
+  border-color: #94191f;
+  color:#fff;
 }
 .delete_all_hours:hover {
   background: rgb(221 49 64);
