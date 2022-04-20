@@ -2,6 +2,7 @@
 	<img src="https://github.com/danamira/TermUp/blob/master/.github/TUP-LOGO.png" alt="TermUP logo">
 </p>
 <h1 align="center">TermUp</h1>
+<h3 align="center">Assistant tool for planning your courses.</h3>
 <p align="center">
 	<img src="https://github.com/danamira/TermUp/blob/master/.github/Preview.png" alt="Preview image for TermUp">
 </p>
