@@ -184,15 +184,27 @@ body {
   float: left;
 }
 
-#header #logo {
+#header .logo {
   height: 45px;
   float: right;
-  display: block;
   margin-top: 4px;
-  border-left:1px solid #dbd9d9;
   padding-left:15px;
 }
-#header #logo_night {
+.logo_day {
+  display: block;
+  border-left:1px solid #dbd9d9 !important;
+}
+.logo_night {
+  display: none;
+  border-left:1px solid #293240 !important;
+}
+.night_mode_on .logo_day {
+  display: none;
+}
+.night_mode_on .logo_night {
+  display: block !important;
+}
+#header .logo_night {
   height: 45px;
   float: right;
   display: block;

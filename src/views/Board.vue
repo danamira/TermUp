@@ -1,7 +1,8 @@
 <template>
   <div>
     <header id="header">
-      <img id="logo" alt="Logo for TermUp" src="../assets/logo.png" />
+      <img class="logo logo_day" alt="Logo for TermUp" src="../assets/logo.png">
+      <img class="logo logo_night" alt="Logo for TermUp" src="../assets/logo_night.png">
       <ul class="option_series">
         <li>
           <router-link to="/majors"

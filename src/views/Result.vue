@@ -1,7 +1,9 @@
 <template>
   <div id="result_container">
     <header id="header">
-      <img src="../assets/logo.png" id="logo" />
+    <img class="logo logo_day" alt="Logo for TermUp" src="../assets/logo.png">
+      <img class="logo logo_night" alt="Logo for TermUp" src="../assets/logo_night.png">
+      
       <ul class="option_series" v-if="$route.name != 'Board'">
         <li>
           <a @click="edit">

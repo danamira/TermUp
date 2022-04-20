@@ -1,8 +1,9 @@
 <template>
   <div>
     <header id="header">
-      <img src="../assets/logo.png" id="logo" alt="Logo for TermUp" />
-      <ul class="option_series" v-if="$route.name != 'Board'">
+      <img class="logo logo_day" alt="Logo for TermUp" src="../assets/logo.png">
+      <img class="logo logo_night" alt="Logo for TermUp" src="../assets/logo_night.png">
+            <ul class="option_series" v-if="$route.name != 'Board'">
         <li>
           <a v-on:click="$router.go(-1)">
             <i class="mdi mdi-arrow-left-circle-outline"></i

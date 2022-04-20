@@ -1,4 +1,4 @@
-<template>
+N<template>
   <div class="sidebar">
     <div class="search">
       <input v-model="query" placeholder="جستجو درس/استاد" type="text" />
@@ -316,6 +316,9 @@ export default {
   display: block;
   text-align: center;
   color: #384862;
+}
+.night_mode_on .nothing_found .title {
+  color: #7c8eab !important;
 }
 .nothing_found p {
   font-size: 13px;
