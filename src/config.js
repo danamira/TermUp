@@ -37,6 +37,7 @@ export default {
 };
 
 export let majorsList = [
+  ["_Blank", "برد خالی", "mdi-account-hard-hat"],
   ["CivilEng", "مهندسی عمران", "mdi-account-hard-hat"],
   ["MechEng", "مهندسی مکانیک", "mdi-tools"],
   ["ElecEng", "مهندسی برق", "mdi-flash"],

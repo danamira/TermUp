@@ -189,6 +189,8 @@ body {
   float: right;
   display: block;
   margin-top: 4px;
+  border-left:1px solid #dbd9d9;
+  padding-left:15px;
 }
 #header #logo_night {
   height: 45px;
