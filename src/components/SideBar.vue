@@ -256,7 +256,7 @@ export default {
 .search {
   background: #fff;
   border: 1px solid #ededed;
-  border-radius: 4px;
+  border-radius: 10px;
   position: relative;
   margin: 10px 0;
 }
@@ -335,7 +335,7 @@ export default {
   background: #2c67cf;
   border: none;
   color: #fff;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
 }
 #add_new_course {
@@ -347,7 +347,7 @@ export default {
   background: #2c67cf;
   border: none;
   color: #fff;
-  border-radius: 5px;
+  border-radius: 12px;
   cursor: pointer;
 }
 #new_course input,
@@ -357,7 +357,7 @@ export default {
   background: rgba(255, 255, 255);
   border: 1px solid #ededed;
   padding: 10px;
-  border-radius: 4px;
+  border-radius: 10px;
   line-height: 20px;
   margin-bottom: 0px;
 }
@@ -417,7 +417,7 @@ export default {
   height: 40px;
   margin-top: 1px;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 12px;
   float: left;
   margin-left: 4px;
   text-align: center;
@@ -442,7 +442,7 @@ export default {
   padding: 2px 10px;
   font-size: 13px;
   margin-left: 4px;
-  border-radius: 4px;
+  border-radius: 7px;
   line-height: 20px;
 }
 .delete_all_hours {

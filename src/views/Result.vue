@@ -72,7 +72,7 @@
           </ul>
           <div class="code" @click="copyCode(course.code)">
             <span>{{ course.code.farsiNum() }}</span>
-            <span>!برای کپی کلیک کنید</span>
+            <span><i class="mdi mdi-content-copy"></i></span>
           </div>
         </div>
       </div>
@@ -128,9 +128,9 @@ export default {
 .courses_result h3 span {
   float: left;
   background: rgb(30, 106, 221);
-  padding: 2px 4px;
+  padding: 2px 6px;
   font-size: 13.5px;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #fff;
   line-height: 20px;
   display: block;
@@ -161,7 +161,7 @@ export default {
   color: #fff;
   line-height: 20px;
   padding: 2px 8px;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 .picked_item h5 {
   margin: 5px 0;
@@ -188,7 +188,7 @@ export default {
   float: right;
   font-size: 20px;
   line-height: 24px;
-  color: rgb(30, 106, 221);
+  color: rgb(84 93 106);
   margin-left: 5px;
 }
 .picked_item li.location {
@@ -200,12 +200,15 @@ export default {
   background: #e8ecee;
   position: relative;
   color: #202938;
-  line-height: 26px;
+  line-height: 28px;
   padding: 3px 0;
-  border-radius: 4px;
+  border-radius: 12px;
   font-size: 14px;
   direction: ltr !important;
   cursor: pointer;
+}
+.picked_item .code .mdi {
+  font-size:18px;
 }
 .picked_item .code span:nth-child(1) {
   transition: 0.1s;
@@ -235,7 +238,7 @@ export default {
   background: #dae5e9;
   color: #424f64;
   padding: 10px 15px;
-  border-radius: 4px;
+  border-radius: 12px;
   font-size: 13px;
   overflow: hidden;
   position: relative;

@@ -113,7 +113,7 @@ export default {
 .search_result ul li .mdi {
   font-size: 15px;
   line-height: 25px;
-  border-radius: 5px;
+  border-radius: 7px;
   color: #4e536e;
   background: #e7edf0;
   display: block;
@@ -121,7 +121,7 @@ export default {
   text-align: center;
   height: 25px;
   float: right;
-  margin-left: 4px;
+  margin-left: 8px;
 }
 .night_mode_on .search_result ul li .mdi {
   color: #ededed;
@@ -133,7 +133,7 @@ export default {
   border: 1px solid #ededed;
   padding: 10px;
   margin-bottom: 6px;
-  border-radius: 4px;
+  border-radius: 10px;
 }
 .search_result .item h3 {
   overflow: hidden;
@@ -168,7 +168,7 @@ export default {
   line-height: 25px;
   color: #5a6a85;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 7px;
   cursor: pointer;
 }
 .search_result .options .course_code {
@@ -181,7 +181,7 @@ export default {
   line-height: 27px;
   background: #5d6778;
   color: #fff;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
   padding: 0 5px;
 }

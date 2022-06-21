@@ -99,7 +99,7 @@ export default {
   border: 1px solid #ececec;
   padding: 10px;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 10px;
 }
 .night_mode_on #major_switch .majors .major {
   background: #151c28;
@@ -126,9 +126,9 @@ export default {
 }
 #major_switch .warn {
   background: #f5f5f5;
-  border-right:2px solid #f7a900;
+  /* border-right:2px solid #f7a900; */
   color: rgb(75, 76, 92);
-  border-radius: 4px;
+  border-radius: 10px;
   width: 600px;
   margin: auto;
   padding: 10px;

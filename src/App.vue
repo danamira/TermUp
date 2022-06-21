@@ -282,7 +282,7 @@ body {
   float: left;
   /* width: 96px; */
   height: 35px;
-  border-radius: 4px;
+  border-radius: 10px;
   margin-top: 8px;
   padding: 0 10px;
   cursor: pointer;
@@ -317,7 +317,7 @@ body {
   /* transition: 0.5s; */
   float: left;
   display: block;
-  margin-left: 15px;
+  margin-left: 8px;
   margin-top: 8px;
   width: 35px;
   height: 35px;
@@ -453,7 +453,7 @@ body {
 .modal_box {
   width: 500px;
   max-width: 90%;
-  border-radius: 4px;
+  border-radius: 12px;
   min-height: 125px;
   margin: auto;
   margin-top: 100px;

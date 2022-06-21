@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@jamescoyle/vue-icon": "^0.1.2",
+    "@liara/cli": "^2.24.0",
     "@mdi/js": "^6.5.95",
     "axios": "^0.24.0",
     "core-js": "^3.6.5",

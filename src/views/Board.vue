@@ -378,7 +378,7 @@ export default {
   height: 42px;
   transform: rotate(90deg);
   line-height: 42px;
-  border-radius: 4px;
+  border-radius: 8px;
   text-align: center;
   position: absolute;
   top: 29px;
@@ -398,7 +398,7 @@ export default {
   background: #202733;
   z-index: 1000;
   color: #fff;
-  border-radius: 4px;
+  border-radius: 8px;
   float: right;
   border-left: 1px solid rgb(255, 255, 255);
   border-right: 1px solid rgb(255, 255, 255);
@@ -447,7 +447,7 @@ export default {
   color: #fff;
   margin-top: 10px;
   padding: 10px 20px;
-  border-radius: 4px;
+  border-radius: 12px;
   font-size: 14px;
 }
 
