@@ -27,11 +27,7 @@
           >
         </li>
       </ul>
-      <div class="plans">
-        <i class="mdi mdi-arrow-down-drop-circle"></i>
-        <span>{{ "1400 | ترم 1".farsiNum() }}</span>
-      </div>
-
+      
       <div id="theme_switch" v-on:click="$emit('toggleTheme')">
         <i class="mdi mdi-theme-light-dark"></i>
       </div>

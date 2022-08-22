@@ -1,5 +1,47 @@
 export default {
-  currentSemester: "1400-02",
+  sems:[
+    {code:"1401-01","title":"ترم پاییز 1401",majors:["ElecEng"]},
+    {
+      code:"1400-02",
+      title:"ترم بهار 1400",
+      majors: [
+        "Commu",
+        "EngPhys",
+        "Stats",
+        "BioTech",
+        "Law",
+        "Physics",
+        "CS",
+        "Painting",
+        "CivilEng",
+        "PolEng",
+        "UrbnEng",
+        "IndEng",
+        "Econ",
+        "ElecEng",
+        "Mngmnt",
+        "MechEng",
+        "Metallurgy",
+        "CompEng",
+        "EngSci",
+        "Math",
+        "OilEng",
+        "Geography",
+        "MineEng",
+        "Psychology",
+        "SurvEng",
+        "ChemEng",
+        "Arch",
+        "GrdnngEng",
+        "FoodSci",
+        "MechBio",
+        "CompEngFar",
+        "AppChem"
+      ],
+    }
+  ],
+  
+  currentSemester: "1401-01",
   majors: [
     "Commu",
     "EngPhys",

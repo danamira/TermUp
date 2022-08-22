@@ -37,9 +37,9 @@
           <i class="mdi mdi-check"></i><span>تایید انتخاب ها</span>
         </li>
       </ul>
-      <div class="plans">
-        <i class="mdi mdi-arrow-down-drop-circle"></i>
-        <span>ترم {{ currentSemester.farsiNum() }}</span>
+      <div class="plans" @click="$emit('next-sem')">
+        <i class="mdi mdi-calendar"></i>
+        <span>{{ currentSemester.farsiNum() }}</span>
       </div>
 
       <div id="theme_switch" v-on:click="$emit('toggleTheme')">
@@ -130,7 +130,7 @@ export default {
   data: function () {
     return {
       // `openHours` consists of the hours which courses are presented in. This usually is the University's work hours.
-      currentSemester: config.currentSemester.replace("-", " | "),
+      currentSemester: config.sems.filter(function(x) {return x.code == localStorage.getItem("sem")})[0].title.replace("-", " | "),
       openHours: [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
       courses: [],
       errorFetching: 0,
@@ -185,7 +185,7 @@ export default {
           "/data/" +
             this.$route.params.major +
             "/" +
-            config.currentSemester +
+            localStorage.getItem("sem") +
             ".json"
         )
         .then((response) => {
@@ -275,19 +275,19 @@ export default {
           if (day[0].trim() == "شنبه") {
             all[0].push([course, day[1], day[1][1] - day[1][0], day[1][0] - 7]);
           }
-          if (day[0].trim() == "یک شنبه") {
+          else if (day[0].trim() == "یک شنبه") {
             all[1].push([course, day[1], day[1][1] - day[1][0], day[1][0] - 7]);
           }
-          if (day[0].trim() == "دو شنبه") {
+          else if (day[0].trim() == "دو شنبه") {
             all[2].push([course, day[1], day[1][1] - day[1][0], day[1][0] - 7]);
           }
-          if (day[0].trim() == "سه شنبه") {
+          else if (day[0].trim() == "سه شنبه") {
             all[3].push([course, day[1], day[1][1] - day[1][0], day[1][0] - 7]);
           }
-          if (day[0].trim() == "چهار شنبه") {
+          else if (day[0].trim() == "چهار شنبه") {
             all[4].push([course, day[1], day[1][1] - day[1][0], day[1][0] - 7]);
           }
-          if (day[0].trim() == "پنج شنبه") {
+          else if (day[0].trim() == "پنج شنبه") {
             all[5].push([course, day[1], day[1][1] - day[1][0], day[1][0] - 7]);
           }
         });

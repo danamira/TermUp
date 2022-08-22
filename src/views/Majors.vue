@@ -1,9 +1,17 @@
 <template>
   <div>
     <header id="header">
-      <img class="logo logo_day" alt="Logo for TermUp" src="../assets/logo.png">
-      <img class="logo logo_night" alt="Logo for TermUp" src="../assets/logo_night.png">
-            <ul class="option_series" v-if="$route.name != 'Board'">
+      <img
+        class="logo logo_day"
+        alt="Logo for TermUp"
+        src="../assets/logo.png"
+      />
+      <img
+        class="logo logo_night"
+        alt="Logo for TermUp"
+        src="../assets/logo_night.png"
+      />
+      <ul class="option_series" v-if="$route.name != 'Board'">
         <li>
           <a v-on:click="$router.go(-1)">
             <i class="mdi mdi-arrow-left-circle-outline"></i
@@ -11,9 +19,10 @@
           </a>
         </li>
       </ul>
-      <div class="plans">
-        <i class="mdi mdi-arrow-down-drop-circle"></i>
-        <span>ترم {{ currentSemester.farsiNum() }}</span>
+
+      <div class="plans" @click="$emit('next-sem')">
+        <i class="mdi mdi-calendar"></i>
+        <span>{{ currentSemester.farsiNum() }}</span>
       </div>
 
       <div id="theme_switch" v-on:click="$emit('toggleTheme')">
@@ -47,14 +56,19 @@
 <script>
 import config from "../config.js";
 import { majorsList } from "../config.js";
-
 export default {
   name: "MajorSwitch",
   data: function () {
     return {
       majorsList: majorsList,
-      availableMajors: config.majors,
-      currentSemester: config.currentSemester.replace("-", " | "),
+      availableMajors: config.sems.filter(function (x) {
+        return x.code == localStorage.getItem("sem");
+      })[0].majors,
+      currentSemester: config.sems
+        .filter(function (x) {
+          return x.code == localStorage.getItem("sem");
+        })[0]
+        .title.replace("-", " | "),
 
       firstTimeVisit:
         localStorage.getItem("major") == null ||
@@ -110,7 +124,7 @@ export default {
 #major_switch .majors .major:hover {
   background: #151c28;
   transition: 0.3s;
-  color: rgba(255, 255, 255,1);
+  color: rgba(255, 255, 255, 1);
   border-color: #151c28;
 }
 
@@ -135,7 +149,7 @@ export default {
 }
 .night_mode_on #major_switch .warn {
   background: #151c28;
-  color:#ffffffaf;
+  color: #ffffffaf;
 }
 #major_switch p {
   font-size: 14px;
@@ -143,7 +157,7 @@ export default {
 }
 #major_switch .warn .mdi {
   float: right;
-  color:#f7a900;
+  color: #f7a900;
   font-size: 22px;
   margin-left: 7px;
   line-height: 22px;

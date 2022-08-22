@@ -1,6 +1,10 @@
 <template>
   <div id="app" :class="'night_mode_' + this.nightMode">
-    <router-view @flash="showFlash" @toggleTheme="toggleTheme"></router-view>
+    <router-view
+      @flash="showFlash"
+      @toggleTheme="toggleTheme"
+      @next-sem="updateSem"
+    ></router-view>
     <div id="screenError">
       <i class="mdi mdi-phone-rotate-landscape"></i>
       <span class="errorTitle">صفحه نمایش بیش از حد کوچک</span>
@@ -53,7 +57,7 @@
 
 <script>
 import Footer from "./components/Footer.vue";
-
+import config from "./config";
 export default {
   name: "App",
   components: { Footer },
@@ -69,8 +73,28 @@ export default {
     if (localStorage.getItem("seenTheBanner") != "YES") {
       this.seenTheBanner = 0;
     }
+    if (!localStorage.getItem("sem")) {
+      alert("FUCK");
+      localStorage.setItem("sem", config.sems[0].code);
+    }
   },
   methods: {
+    updateSem: function () {
+      
+      // @todo: Implement this properly!!!
+
+      let sem = localStorage.getItem("sem");
+      if (sem == "1401-01") {
+        localStorage.setItem("sem", "1400-02");
+      } else {
+        localStorage.setItem("sem", "1401-01");
+      }
+      localStorage.setItem("userCourses", "[]");
+      localStorage.removeItem("major");
+      this.$router.push('/');
+      window.location.reload();
+    },
+
     toggleTheme: function () {
       if (this.nightMode == "off") {
         this.nightMode = "on";
@@ -188,15 +212,15 @@ body {
   height: 45px;
   float: right;
   margin-top: 4px;
-  padding-left:15px;
+  padding-left: 15px;
 }
 .logo_day {
   display: block;
-  border-left:1px solid #dbd9d9 !important;
+  border-left: 1px solid #dbd9d9 !important;
 }
 .logo_night {
   display: none;
-  border-left:1px solid #293240 !important;
+  border-left: 1px solid #293240 !important;
 }
 .night_mode_on .logo_day {
   display: none;
@@ -473,8 +497,8 @@ body {
   color: #707070;
 }
 .night_mode_on .modal_box .modal_box_header {
-  border-color:rgba(255, 255, 255, 0.096);
-  color:rgba(255, 255, 255, 0.63);
+  border-color: rgba(255, 255, 255, 0.096);
+  color: rgba(255, 255, 255, 0.63);
 }
 .clear {
   clear: both;
