@@ -74,7 +74,6 @@ export default {
       this.seenTheBanner = 0;
     }
     if (!localStorage.getItem("sem")) {
-      alert("FUCK");
       localStorage.setItem("sem", config.sems[0].code);
     }
   },
