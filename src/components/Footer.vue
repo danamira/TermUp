@@ -1,7 +1,7 @@
 <template>
   <div id="footer">
     <p class="copyright">
-      <i class="mdi mdi-copyright"></i>{{ copyright.farsiNum() }} | توسعه داده شده از روی بیکاری توسط<a href="https://t.me/danamirafzal" target="_blank">danamirafzal@.</a>
+      <i class="mdi mdi-copyright"></i>{{ copyright.farsiNum() }} | توسعه داده شده در دانشکده ریاضی، آمار و علوم کامپیوتر.
     </p>
     <div class="links">
       <a :href="repoUrl" target="_blank">

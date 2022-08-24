@@ -1,6 +1,6 @@
 export default {
   sems:[
-    {code:"1401-01","title":"ترم پاییز 1401",majors:["ElecEng","MechEng","CivilEng","LangEng"]},
+    {code:"1401-01","title":"ترم پاییز 1401",majors:["ElecEng","MechEng","CivilEng","LangEng","ChemEng"]},
     {
       code:"1400-02",
       title:"ترم بهار 1400",
