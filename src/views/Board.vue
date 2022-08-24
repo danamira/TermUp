@@ -157,10 +157,7 @@ export default {
     }
 
     let major = this.$route.params.major;
-    if (!config.majors.includes(major)) {
-      this.$router.push("/404");
-      return -1;
-    }
+    
     if (localStorage.getItem("major") != major) {
       localStorage.courses_picked = "[]";
       this.picked = [];

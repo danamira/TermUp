@@ -1,6 +1,6 @@
 export default {
   sems:[
-    {code:"1401-01","title":"ترم پاییز 1401",majors:["ElecEng","MechEng","CivilEng"]},
+    {code:"1401-01","title":"ترم پاییز 1401",majors:["ElecEng","MechEng","CivilEng","LangEng"]},
     {
       code:"1400-02",
       title:"ترم بهار 1400",
@@ -74,7 +74,8 @@ export default {
     "FoodSci",
     "MechBio",
     "CompEngFar",
-    "AppChem"
+    "AppChem",
+    
   ],
 };
 
@@ -111,5 +112,6 @@ export let majorsList = [
   ["FoodSci", "مهندسی صنایع غذایی", "mdi-food"],
   ["MechBio","مکانیک بیوسیستم",'mdi-bio'],
   ["CompEngFar", "کامپیوتر (فارابی)", "mdi-code-array"],
-  ["AppChem","شیمی کاربردی","mdi-flask-round-bottom-outline"]
+  ["AppChem","شیمی کاربردی","mdi-flask-round-bottom-outline"],
+  ["LangEng","ادبیات انگلیسی","mdi-book"]
 ];
