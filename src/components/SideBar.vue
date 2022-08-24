@@ -17,16 +17,8 @@ N<template>
           <i class="mdi mdi-emoticon-neutral-outline"></i>
           <span class="title">درسی پیدا نشد!</span>
           <p>میتونی درس رو از اینجا دستی اضافه کنی.</p>
-          <button
-            id="manual"
-            @click="
-              show_new_course_modal = 1;
-              newCourse.title = query;
-            "
-          >
-            اضافه کردن `{{ query }}`
-          </button>
         </div>
+        
       </div>
       <div v-else>
         <img
@@ -42,8 +34,20 @@ N<template>
           "
         >
           برای شروع نام درس یا استاد را وارد کنید...
+          <br>
+          <br>
+          یا
         </p>
       </div>
+          <button
+            id="manual"
+            @click="
+              show_new_course_modal = 1;
+              newCourse.title = query;
+            "
+          >
+            اضافه کردن {{ query.length==0 ? 'درس جدید':"`"+query+"`" }}
+          </button>
     </div>
     <div id="new_course_modal_back" v-if="show_new_course_modal">
       <div class="modal_box" id="new_course">

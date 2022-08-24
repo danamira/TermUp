@@ -23,7 +23,6 @@
         >
           <i class="mdi mdi-export-variant"></i><span>ذخیره برد</span>
         </li>
-
         <li id="del_all_button" @click="unpickAll()">
           <i class="mdi mdi-close"></i><span>حذف همه</span>
         </li>
