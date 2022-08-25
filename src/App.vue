@@ -425,7 +425,7 @@ body {
   line-height: 20px;
   padding: 9px 12px;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 12px;
   font-size: 14px;
   bottom: 20px;
   z-index: 100001;
