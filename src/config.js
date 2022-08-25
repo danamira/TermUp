@@ -1,6 +1,6 @@
 export default {
   sems:[
-    {code:"1401-01","title":"ترم پاییز 1401",majors:["ElecEng","MechEng","CivilEng","LangEng","ChemEng","Psychology","MineEng","OilEng","CS","Stats","IndEng"]},
+    {code:"1401-01","title":"ترم پاییز 1401",majors:["ElecEng","MechEng","CivilEng","LangEng","ChemEng","Psychology","MineEng","OilEng","CS","Stats","IndEng","ArchEng"]},
     {
       code:"1400-02",
       title:"ترم بهار 1400",
@@ -92,6 +92,7 @@ export let majorsList = [
   ["CS", "علوم کامپیوتر", "mdi-code-braces-box"],
   ["OilEng", "مهندسی نفت", "mdi-barrel"],
   ["Arch", "معماری", "mdi-math-compass"],
+  ["ArchEng", "مهندسی معماری", "mdi-math-compass"],
   ["EngSci", "علوم مهندسی", "mdi-rocket"],
   ["SurvEng", "مهندسی نقشه برداری", "mdi-map"],
   ["MineEng", "مهندسی معدن", "mdi-gantry-crane"],
