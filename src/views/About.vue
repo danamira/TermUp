@@ -21,7 +21,7 @@
       </ul>
       <ul class="option_series">
         <li>
-          <a :href="'mailto:' + devEmail"
+          <a :href="contactAddress" target="_blank"
             ><i class="mdi mdi-comment-quote-outline"></i
             ><span>ثبت بازخورد</span></a
           >
@@ -149,7 +149,7 @@ export default {
   name: "About",
   data: function () {
     return {
-      devEmail: "dana.mr8822@gmail.com",
+      contactAddress: "https://t.me/danamirafzal",
     };
   },
 };
