@@ -1,4 +1,4 @@
-N<template>
+<template>
   <div class="sidebar">
     <div class="search">
       <input v-model="query" placeholder="جستجو درس/استاد" type="text" />

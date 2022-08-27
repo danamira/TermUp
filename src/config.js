@@ -1,6 +1,6 @@
 export default {
   sems:[
-    {code:"1401-01","title":"ترم پاییز 1401",majors:["ElecEng","MechEng","CivilEng","LangEng","ChemEng","Psychology","MineEng","OilEng","CS","Stats","IndEng","ArchEng","PolEng","EngSci","Geography","Physics"]},
+    {code:"1401-01","title":"ترم پاییز 1401",majors:["ElecEng","MechEng","CivilEng","LangEng","ChemEng","Psychology","MineEng","OilEng","CS","Stats","IndEng","ArchEng","PolEng","EngSci","Geography","Physics","CompEng","PhilosophyFar","Metallurgy"]},
     {
       code:"1400-02",
       title:"ترم زمستان 1400",
@@ -113,6 +113,7 @@ export let majorsList = [
   ["FoodSci", "مهندسی صنایع غذایی", "mdi-food"],
   ["MechBio","مکانیک بیوسیستم",'mdi-bio'],
   ["CompEngFar", "کامپیوتر (فارابی)", "mdi-code-array"],
+  ["PhilosophyFar","فلسفه (فارابی)","mdi-head-lightbulb-outline"],
   ["AppChem","شیمی کاربردی","mdi-flask-round-bottom-outline"],
   ["LangEng","ادبیات انگلیسی","mdi-book"]
 ];
