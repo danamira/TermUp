@@ -23,11 +23,13 @@
         <div class="modal_box_header">
           <i class="mdi mdi-close" @click="closeBanner"></i>
         </div>
+        <a href="https://github.com/danamira/TermUp" target="_blank">
         <img
           src="./assets/Banner_01.png"
           alt="ترمآپ در حذف و اضافه بالاست."
           @click="closeBanner"
         />
+        </a>
       </div>
     </div>
     <transition name="slide-fade">
@@ -65,7 +67,7 @@ export default {
     return {
       nightMode: localStorage.getItem("night_mode") || "off",
       seenTheBanner: 1,
-      showModal: 0,
+      showModal: 1,
       flashMessage: { show: 0, msg: null, class: null },
     };
   },
@@ -520,7 +522,9 @@ body {
 }
 #banner_modal {
   width: 670px;
-  padding: 5px;
+  /* padding: 5px; */
+  margin-top:60px !important;
+  overflow: hidden;
   max-width: calc(100%-20px);
 }
 #banner_modal img {
