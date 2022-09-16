@@ -1,0 +1,26 @@
+{
+    "short_name": "TermUP",
+    "name": "TermUP: Academic Planning Tool for UT Students",
+    "icons": [
+        {
+            "src": "/images/icon-128.png",
+            "type": "image/png",
+            "sizes": "128x128"
+        },
+        {
+            "src": "/images/icon-192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "/images/icon-512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "start_url": "/index.html",
+    "background_color": "#fff",
+    "display": "standalone",
+    "scope": "/app/",
+    "theme_color": "#13202B"
+}

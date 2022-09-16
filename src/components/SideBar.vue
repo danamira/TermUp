@@ -20,7 +20,7 @@
         </div>
         
       </div>
-      <div v-else>
+      <div  class="search_description" v-else>
         <img
           src="../assets/Search.png"
           style="width: 130px; display: block; margin: 30px auto"
@@ -464,5 +464,28 @@ export default {
   background: rgb(221 49 64);
   border-color: rgb(221 49 64);
   color: #fff;
+  
+}
+
+@media only screen and (max-width: 700px) {
+ .sidebar {
+  width:100%;
+  float: none;
+  min-height: 0 !important;
+  border:none !important;
+  
+  margin-top: 10px;
+  border-radius: 5px;
+  /* display: none; */
+ } 
+ .sidebar img {
+  /* display: none !important; */
+  float:left
+ }
+ .search_description p{
+  line-height:23px;
+  text-align: right !important;
+  padding-top:18px !important;
+ }
 }
 </style>

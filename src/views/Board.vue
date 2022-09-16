@@ -1,41 +1,53 @@
 <template>
   <div>
     <header id="header">
-      <img class="logo logo_day" alt="Logo for TermUp" src="../assets/logo.png">
-      <img class="logo logo_night" alt="Logo for TermUp" src="../assets/logo_night.png">
-      <ul class="option_series">
-        <li>
-          <router-link to="/majors"
-            ><i class="mdi mdi-school"></i><span>تغییر رشته</span></router-link
-          >
-        </li>
-      </ul>
-      <ul class="option_series">
-        <li>
-          <router-link to="/print" target="_blank">
-            <i class="mdi mdi-printer"></i><span>چاپ انتخاب ها</span>
-          </router-link>
-        </li>
+      <img
+        class="logo logo_day"
+        alt="Logo for TermUp"
+        src="../assets/logo.png"
+      />
+      <img
+        class="logo logo_night"
+        alt="Logo for TermUp"
+        src="../assets/logo_night.png"
+      />
+      <div class="board_options">
+        <i class="mdi mdi-menu expand-button"></i>
+        <ul class="option_series">
+          <li>
+            <router-link to="/majors"
+              ><i class="mdi mdi-school"></i
+              ><span>تغییر رشته</span></router-link
+            >
+          </li>
+        </ul>
+        <ul class="option_series">
+          <li>
+            <router-link to="/print" target="_blank">
+              <i class="mdi mdi-printer"></i><span>چاپ انتخاب ها</span>
+            </router-link>
+          </li>
 
-        <li
-          :class="boardIsCompatible ? 'Active' : 'disActive'"
-          @click="exportAsImage"
-        >
-          <i class="mdi mdi-export-variant"></i><span>ذخیره برد</span>
-        </li>
-        <li id="del_all_button" @click="unpickAll()">
-          <i class="mdi mdi-close"></i><span>حذف همه</span>
-        </li>
-      </ul>
-      <ul class="option_series">
-        <li
-          id="done"
-          :class="boardIsCompatible ? 'Active' : 'disActive'"
-          @click="finalize"
-        >
-          <i class="mdi mdi-check"></i><span>تایید انتخاب ها</span>
-        </li>
-      </ul>
+          <li
+            :class="boardIsCompatible ? 'Active' : 'disActive'"
+            @click="exportAsImage"
+          >
+            <i class="mdi mdi-export-variant"></i><span>ذخیره برد</span>
+          </li>
+          <li id="del_all_button" @click="unpickAll()">
+            <i class="mdi mdi-close"></i><span>حذف همه</span>
+          </li>
+        </ul>
+        <ul class="option_series">
+          <li
+            id="done"
+            :class="boardIsCompatible ? 'Active' : 'disActive'"
+            @click="finalize"
+          >
+            <i class="mdi mdi-check"></i><span>تایید انتخاب ها</span>
+          </li>
+        </ul>
+      </div>
       <div class="plans" @click="$emit('next-sem')">
         <i class="mdi mdi-calendar"></i>
         <span>{{ currentSemester.farsiNum() }}</span>
@@ -46,6 +58,7 @@
       </div>
     </header>
     <div v-if="courses.length >= 1" id="container">
+      <SideBar :courses="courses" @flash="passFlash" v-on:pick="pick"></SideBar>
       <div ref="week" class="week">
         <div class="alerts">
           <div v-if="intercepts.length >= 1" class="intercepts">
@@ -58,6 +71,42 @@
               <span>{{ set[1].code.toString().farsiNum() }}</span>
             </div>
           </div>
+        </div>
+        <div class="picks">
+          <div class="picked_list">
+        <div class="picked_item" v-for="(course, i) in picked" :key="i">
+          <h4>
+            <span>{{ course.total.toString().farsiNum() }}</span>
+              <i class="mdi mdi-close remove-course" @click="unpick(course)"></i>
+              
+          {{ course.title.farsiNum() }}
+            
+          </h4>
+          <h5>{{ course.professor }}</h5>
+          <ul>
+            <li v-if="course.exam">
+              <i class="mdi mdi-file-document-edit-outline"></i
+              >{{ course.exam.farsiNum() }}
+            </li>
+            <li>
+              <i class="mdi mdi-clock-outline"></i>
+              <span v-for="(day, i) in course.classDays" :key="i"
+                >{{ day[0] }} (
+                {{ day[1][0].toString().farsiNum().replace(".", "/") }} تا
+                {{ day[1][1].toString().farsiNum().replace(".", "/") }} )
+              </span>
+            </li>
+            <li class="location">
+              <i class="mdi mdi-map-marker"></i>
+              {{ course.location != "" ? course.location.farsiNum() : "-" }}
+            </li>
+          </ul>
+          <div class="code" @click="copyCode(course.code)">
+            <span>{{ course.code.farsiNum() }}</span>
+            <span><i class="mdi mdi-content-copy"></i></span>
+          </div>
+        </div>
+    </div>
         </div>
         <div class="week_days">
           <div class="week_head">
@@ -96,7 +145,6 @@
           </div>
         </div>
       </div>
-      <SideBar :courses="courses" @flash="passFlash" v-on:pick="pick"></SideBar>
     </div>
     <div v-else id="container">
       <div v-if="errorFetching" class="fetchError">
@@ -129,7 +177,11 @@ export default {
   data: function () {
     return {
       // `openHours` consists of the hours which courses are presented in. This usually is the University's work hours.
-      currentSemester: config.sems.filter(function(x) {return x.code == localStorage.getItem("sem")})[0].title.replace("-", " | "),
+      currentSemester: config.sems
+        .filter(function (x) {
+          return x.code == localStorage.getItem("sem");
+        })[0]
+        .title.replace("-", " | "),
       openHours: [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
       courses: [],
       errorFetching: 0,
@@ -156,7 +208,7 @@ export default {
     }
 
     let major = this.$route.params.major;
-    
+
     if (localStorage.getItem("major") != major) {
       localStorage.courses_picked = "[]";
       this.picked = [];
@@ -255,6 +307,11 @@ export default {
       this.$emit("flash", { msg: "انتخاب ها نهایی شد.", class: "success" });
     },
 
+    copyCode(code) {
+      navigator.clipboard.writeText(code);
+      this.$emit("flash", { msg: "کپی شد!", class: "success" });
+    },
+    
     passFlash(flashMsg) {
       this.$emit("flash", flashMsg);
     },
@@ -270,20 +327,15 @@ export default {
         course.classDays.forEach(function (day) {
           if (day[0].trim() == "شنبه") {
             all[0].push([course, day[1], day[1][1] - day[1][0], day[1][0] - 7]);
-          }
-          else if (day[0].trim() == "یک شنبه") {
+          } else if (day[0].trim() == "یک شنبه") {
             all[1].push([course, day[1], day[1][1] - day[1][0], day[1][0] - 7]);
-          }
-          else if (day[0].trim() == "دو شنبه") {
+          } else if (day[0].trim() == "دو شنبه") {
             all[2].push([course, day[1], day[1][1] - day[1][0], day[1][0] - 7]);
-          }
-          else if (day[0].trim() == "سه شنبه") {
+          } else if (day[0].trim() == "سه شنبه") {
             all[3].push([course, day[1], day[1][1] - day[1][0], day[1][0] - 7]);
-          }
-          else if (day[0].trim() == "چهار شنبه") {
+          } else if (day[0].trim() == "چهار شنبه") {
             all[4].push([course, day[1], day[1][1] - day[1][0], day[1][0] - 7]);
-          }
-          else if (day[0].trim() == "پنج شنبه") {
+          } else if (day[0].trim() == "پنج شنبه") {
             all[5].push([course, day[1], day[1][1] - day[1][0], day[1][0] - 7]);
           }
         });
@@ -588,6 +640,45 @@ export default {
 .list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
   opacity: 0;
   transform: translateY(30px);
+}
+.picks {
+  display: none;
+}
+@media only screen and (max-width: 700px) {
+  #container {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+  }
+  .week {
+    /* opacity: 0; */
+    z-index: 1;
+    width:100%;
+    min-width: 100%;
+  }
+  .week .week_days {
+    display: none;
+  }
+  .picks {
+    display: block;
+    margin-top:5px;
+    padding-bottom:100px;
+    overflow: hidden;
+  }
+  .picks .picked {
+    background: #202733;
+    overflow: hidden;
+    border-radius: 10px;
+    color:#fff;
+    margin:3px;
+    padding:8px;
+    width:100%;
+    float: right;
+  }
+  .picked h3 {
+    font-size: 17px;
+    margin-bottom: 5px;
+  }
 }
 </style>
 

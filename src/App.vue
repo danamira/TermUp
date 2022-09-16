@@ -24,11 +24,11 @@
           <i class="mdi mdi-close" @click="closeBanner"></i>
         </div>
         <a href="https://github.com/danamira/TermUp" target="_blank">
-        <img
-          src="./assets/Banner_01.png"
-          alt="ترمآپ در حذف و اضافه بالاست."
-          @click="closeBanner"
-        />
+          <img
+            src="./assets/Banner_01.png"
+            alt="ترمآپ در حذف و اضافه بالاست."
+            @click="closeBanner"
+          />
         </a>
       </div>
     </div>
@@ -81,7 +81,6 @@ export default {
   },
   methods: {
     updateSem: function () {
-      
       // @todo: Implement this properly!!!
 
       let sem = localStorage.getItem("sem");
@@ -92,7 +91,7 @@ export default {
       }
       localStorage.setItem("userCourses", "[]");
       localStorage.removeItem("major");
-      this.$router.push('/');
+      this.$router.push("/");
       window.location.reload();
     },
 
@@ -523,7 +522,7 @@ body {
 #banner_modal {
   width: 670px;
   /* padding: 5px; */
-  margin-top:60px !important;
+  margin-top: 60px !important;
   overflow: hidden;
   max-width: calc(100%-20px);
 }
@@ -532,9 +531,271 @@ body {
   cursor: pointer;
   width: 100%;
 }
+
+.picked_list {
+  margin: 25px 0;
+}
+.picked_item {
+  width: 33%;
+  float: right;
+  padding: 0 15px;
+  border-left: 1px solid #ededed;
+  height: 225px;
+  overflow: hidden;
+  margin: 15px 0;
+}
+.picked_item h4 {
+  font-size: 16px;
+  color: #1c345c;
+  display: block;
+}
+.picked_item:nth-child(3n) {
+  border-left: none !important;
+}
+.picked_item h4 span {
+  float: left;
+  background: #1c345c;
+  color: #fff;
+  line-height: 20px;
+  padding: 2px 8px;
+  border-radius: 8px;
+}
+.picked_item h4 .remove-course {
+  float: left;
+  background: #c01b1b;
+  color: #fff;
+  line-height: 20px;
+  padding: 2px 0;
+  margin-left: 4px;
+  border-radius: 8px;
+  width:26px;
+  text-align: center !important;
+  cursor: pointer;
+  
+}
+.picked_item h5 {
+  margin: 5px 0;
+  color: #8391aa;
+  font-size: 14px;
+}
+.picked_item ul {
+  margin-top: 15px;
+  display: block;
+  border-top: 1px dashed #ededed;
+  padding-top: 10px;
+  list-style: none;
+}
+.night_mode_on .week {
+  background: #0b1320;
+}
+.picked_item li {
+  padding: 5px 0;
+  height: 36px;
+  overflow: hidden;
+  display: block;
+  font-size: 14px;
+  color: #1c345c;
+  line-height: 26px;
+}
+.picked_item li .mdi {
+  float: right;
+  font-size: 20px;
+  line-height: 24px;
+  color: rgb(84 93 106);
+  margin-left: 5px;
+}
+.picked_item li.location {
+  font-size: 13px;
+}
+.picked_item .code {
+  margin: 10px 0;
+  text-align: center;
+  background: #e8ecee;
+  position: relative;
+  color: #202938;
+  line-height: 28px;
+  padding: 3px 0;
+  border-radius: 12px;
+  font-size: 14px;
+  direction: ltr !important;
+  cursor: pointer;
+}
+.picked_item .code .mdi {
+  font-size:18px;
+}
+.picked_item .code span:nth-child(1) {
+  transition: 0.1s;
+}
+.picked_item .code span:nth-child(2) {
+  opacity: 0;
+  /* display: none; */
+  position: absolute;
+  width: 100%;
+  line-height: 26px;
+  height: 100%;
+  left: 0;
+  display: block;
+  font-size: 13px;
+  top: 3px;
+  text-align: center;
+}
+.picked_item .code:hover span:nth-child(1) {
+  opacity: 0;
+  transition: 0s;
+}
+.picked_item .code:hover span:nth-child(2) {
+  transition: 0.4s;
+  opacity: 1;
+}
+
+.night_mode_on .picked_item .code {
+  background: #1c2534;
+  color: #9babc7;
+}
+.night_mode_on .picked_item h4 {
+  color: #eceef7;
+}
+.night_mode_on .picked_item h4 span {
+  background: #202733 !important;
+}
+.night_mode_on .picked_item,
+.night_mode_on .picked_item ul {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+.night_mode_on .picked_item ul li,
+.night_mode_on .picked_item ul li .mdi {
+  color: rgb(156, 161, 180);
+}
 @media only screen and (max-width: 700px) {
-  #screenError {
-    display: block;
+  #app {
+    width: 100%;
   }
+  .picked_item {
+    width:100% !important;
+    margin:10px 0;
+    border: none !important;
+    /* border-bottom: 1px solid #ededed !important; */
+    background: #e8ecee34;
+    padding:10px;
+    border-radius: 10px;
+    padding-bottom: 10px;
+    overflow: hidden;
+    height: auto !important;
+    border: 1px solid #ededed65 !important;
+    /* box-shadow:0  2px 8px rgba(0, 0, 0, 0.062); */
+  }
+  .night_mode_on .picked_item {
+    background: rgba(255, 255, 255, 0.027);
+    border:none !important
+    /* border-bot */
+  }
+  #major_switch {
+    width: 100% !important;
+    padding: 20px;
+  }
+  #screenError {
+    /* display: block; */
+  }
+  #header {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+  }
+  #major_switch .majors .major {
+    width: 100% !important;
+    float: none !important;
+    margin: 10px 0 !important;
+  }
+  #major_switch .warn {
+  }
+  #major_switch .warn .mdi {
+    display: none;
+  }
+  #major_switch .warn {
+    background: rgb(240, 167, 11) !important;
+    color:#fff !important;
+    width:100% !important;
+  }
+  #major_switch .warn p{
+    font-size: 12.5px !important;
+  }
+  #footer {
+    min-width: 100% !important;
+    width: 100% !important;
+  }
+  .copyright {
+    float: none;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  /* .expanding ul { */
+  /* display: none !important; */
+  /* } */
+  /* .expanding.expanded ul {
+    display: block !important;
+  }
+  .option_series {
+    border:none;
+    float: left;
+
+  }
+  .option_series li {
+    padding:10px 5px;
+    border:none !important;
+  /* } */
+  .option_series span {
+    display: none;
+  }
+  .board_options {
+    position: fixed;
+    bottom: 0;
+    border-top: 1px solid #00000018;
+    height: 55px;
+    background: #fff;
+    z-index: 1000000;
+    box-shadow: 0 24px 60px #0000003d;
+    left: 0;
+    width: 100%;
+  }
+  #footer {
+    display: none;
+  }
+  .option_series {
+    border: none !important;
+    display: contents;
+  }
+  .option_series li{
+    padding-top:8px;
+    max-width:20%;
+  }
+  .board_options .option_series li {
+    width: 20% !important;
+    margin-top: 12px;
+    padding-top: 0 !important;
+    float: right;
+  }
+  #app {
+    min-height:900px !important;
+  }
+  .flash_message {
+    bottom:80px;
+    width: calc(100%-10px);
+    line-height: 30px;
+    right:5px;
+    left:5px;
+  }
+  .flash_message .mdi {
+    line-height: 30px !important;
+  }
+  .night_mode_on .board_options {
+    background: #0b1320 !important;
+    border-color: rgba(255, 255, 255, 0.034);
+    box-shadow: 0 24px 60px rgba(36, 36, 36, 0.11);
+  }
+}
+
+.expand-button {
+  display: none;
 }
 </style>
