@@ -1,6 +1,8 @@
 {
     "short_name": "TermUP",
-    "name": "TermUP: Academic Planning Tool for UT Students",
+    "name": "TermUP: Plan Smarter.",
+    "display" : "standalone",
+    "start_url" : "/",
     "icons": [
         {
             "src": "/images/icon-128.png",
@@ -18,7 +20,7 @@
             "sizes": "512x512"
         }
     ],
-    "start_url": "/index.html",
+    "start_url": "/",
     "background_color": "#fff",
     "display": "standalone",
     "scope": "/app/",

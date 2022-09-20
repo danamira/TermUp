@@ -149,6 +149,7 @@ body {
 }
 #no_course {
   width: 600px;
+  max-width: 100% !important;
   margin:100px auto;
 }
 #no_course h2{

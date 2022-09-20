@@ -757,6 +757,7 @@ body {
     box-shadow: 0 24px 60px #0000003d;
     left: 0;
     width: 100%;
+    z-index: 1000;
   }
   #footer {
     display: none;

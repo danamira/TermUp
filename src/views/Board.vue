@@ -552,6 +552,7 @@ export default {
 
 .fetchError {
   width: 700px;
+  max-width: 100%;
   margin: 100px auto 300px;
 }
 
@@ -585,6 +586,7 @@ export default {
 
 .loading {
   width: 700px;
+  max-width: 100% !important;
   margin: auto;
   margin-top: 100px;
   margin-bottom: 360px;
@@ -645,6 +647,39 @@ export default {
   display: none;
 }
 @media only screen and (max-width: 700px) {
+  #new_course {
+    position:fixed;
+    top:0;
+    left:0;
+    margin-top:0 !important;
+    border-radius: 0 !important;
+    width:100%;
+    height:100%;
+    max-width: 100%;
+    z-index:10000;
+    height:100%;
+    /* overflow: scroll; */
+  }
+  #new_course #add_new_course {
+    position: fixed;
+    bottom:10px;
+    width:calc(100% - 20px);
+    left:10px;
+    /* border-radius: 0; */
+    line-height:23px;
+    z-index: 10001;
+    /* height:30px; */
+  }
+  .add_hour {
+    padding-bottom: 10px;
+    /* border-bottom: 1px solid #ededed; */
+  }
+  .add_hour .mdi {
+    float:none;
+    display: block;
+    margin:10px auto;
+    width:100%;
+  }
   #container {
     width: 100% !important;
     max-width: 100% !important;

@@ -123,6 +123,7 @@
             />
             <i class="mdi mdi-plus" @click="addHourToNewClass"></i>
           </div>
+          <div class="hline"></div>
           <button @click="addNewCourse" id="add_new_course">اضافه کردن</button>
         </div>
       </div>
@@ -428,6 +429,12 @@ export default {
   line-height: 40px;
   display: block;
   font-size: 24px;
+}
+.add_hour .mdi:hover {
+  background: rgb(11, 172, 131);
+  border-color: rgb(11, 172, 131);
+  color:#fff;
+  transition:0.2s;
 }
 .night_mode_on .add_hour .mdi {
   background: rgb(11, 172, 131);
