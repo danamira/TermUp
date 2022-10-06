@@ -72,6 +72,10 @@ export default {
     };
   },
   created() {
+    if(!localStorage.getItem("night_mode")) {
+      localStorage.setItem("night_mode",(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)? "on":"off")
+      this.nightMode=localStorage.getItem('night_mode');
+    }
     if (localStorage.getItem("seenTheBanner") != "YES") {
       this.seenTheBanner = 0;
     }
@@ -170,9 +174,8 @@ body {
 #app {
   overflow: hidden;
   overflow-x: initial;
-  min-height: 100%;
-  /* display: flex; */
-  /* flex-direction: column; */
+  min-height: 100vh !important;
+  padding-bottom:50px;  
   justify-content: space-between;
   position: relative;
 }
@@ -776,9 +779,7 @@ body {
     padding-top: 0 !important;
     float: right;
   }
-  #app {
-    min-height:900px !important;
-  }
+
   .flash_message {
     bottom:80px;
     width: calc(100%-10px);

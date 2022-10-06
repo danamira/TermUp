@@ -33,7 +33,10 @@ export default {
   min-width: 1230px;
   width: 100%;
   margin-top: 30px;
-  flex: none;
+  position:absolute;
+  bottom:0;
+  left:0;
+  /* border-top: 1px solid #ededed; */
 }
 #footer .copyright {
   color: #293240;

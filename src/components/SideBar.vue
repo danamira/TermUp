@@ -247,7 +247,7 @@ export default {
 </script>
 <style>
 .sidebar {
-  min-height: 600px;
+  min-height: 800px;
   width: 380px;
   float: left;
   border-right: 1px solid #ededed;
