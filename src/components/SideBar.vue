@@ -188,7 +188,7 @@ export default {
         });
         return -1;
       }
-      if (start < 8 || start > 20 || end < 8 || end > 20) {
+      if (start < 6 || start > 20 || end < 6 || end > 20) {
         this.$emit("flash", {
           class: "error",
           msg: "زمان وارد شده در بازه قابل قبول نیست!",
