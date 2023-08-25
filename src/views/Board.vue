@@ -74,39 +74,41 @@
         </div>
         <div class="picks">
           <div class="picked_list">
-        <div class="picked_item" v-for="(course, i) in picked" :key="i">
-          <h4>
-            <span>{{ course.total.toString().farsiNum() }}</span>
-              <i class="mdi mdi-close remove-course" @click="unpick(course)"></i>
-              
-          {{ course.title.farsiNum() }}
-            
-          </h4>
-          <h5>{{ course.professor }}</h5>
-          <ul>
-            <li v-if="course.exam">
-              <i class="mdi mdi-file-document-edit-outline"></i
-              >{{ course.exam.farsiNum() }}
-            </li>
-            <li>
-              <i class="mdi mdi-clock-outline"></i>
-              <span v-for="(day, i) in course.classDays" :key="i"
-                >{{ day[0] }} (
-                {{ day[1][0].toString().farsiNum().replace(".", "/") }} تا
-                {{ day[1][1].toString().farsiNum().replace(".", "/") }} )
-              </span>
-            </li>
-            <li class="location">
-              <i class="mdi mdi-map-marker"></i>
-              {{ course.location != "" ? course.location.farsiNum() : "-" }}
-            </li>
-          </ul>
-          <div class="code" @click="copyCode(course.code)">
-            <span>{{ course.code.farsiNum() }}</span>
-            <span><i class="mdi mdi-content-copy"></i></span>
+            <div class="picked_item" v-for="(course, i) in picked" :key="i">
+              <h4>
+                <span>{{ course.total.toString().farsiNum() }}</span>
+                <i
+                  class="mdi mdi-close remove-course"
+                  @click="unpick(course)"
+                ></i>
+
+                {{ course.title.farsiNum() }}
+              </h4>
+              <h5>{{ course.professor }}</h5>
+              <ul>
+                <li v-if="course.exam">
+                  <i class="mdi mdi-file-document-edit-outline"></i
+                  >{{ course.exam.farsiNum() }}
+                </li>
+                <li>
+                  <i class="mdi mdi-clock-outline"></i>
+                  <span v-for="(day, i) in course.classDays" :key="i"
+                    >{{ day[0] }} (
+                    {{ day[1][0].toString().farsiNum().replace(".", "/") }} تا
+                    {{ day[1][1].toString().farsiNum().replace(".", "/") }} )
+                  </span>
+                </li>
+                <li class="location">
+                  <i class="mdi mdi-map-marker"></i>
+                  {{ course.location != "" ? course.location.farsiNum() : "-" }}
+                </li>
+              </ul>
+              <div class="code" @click="copyCode(course.code)">
+                <span>{{ course.code.farsiNum() }}</span>
+                <span><i class="mdi mdi-content-copy"></i></span>
+              </div>
+            </div>
           </div>
-        </div>
-    </div>
         </div>
         <div class="week_days">
           <div class="week_head">
@@ -194,6 +196,7 @@ export default {
         [4, "چهارشنبه"],
         [5, "پنجشنبه"],
       ],
+
       // Default value for the width of blocks on the board. This will be recalculated in `mounted` method according to the width of the board.
       baseBlockWidth: 60,
       /* The following line reads the previously picked courses from the localStorage object or assigns an empty value to it if the storage is undefined.
@@ -311,7 +314,7 @@ export default {
       navigator.clipboard.writeText(code);
       this.$emit("flash", { msg: "کپی شد!", class: "success" });
     },
-    
+
     passFlash(flashMsg) {
       this.$emit("flash", flashMsg);
     },
@@ -648,25 +651,25 @@ export default {
 }
 @media only screen and (max-width: 700px) {
   #new_course {
-    position:fixed;
-    top:0;
-    left:0;
-    margin-top:0 !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin-top: 0 !important;
     border-radius: 0 !important;
-    width:100%;
-    height:100%;
+    width: 100%;
+    height: 100%;
     max-width: 100%;
-    z-index:10000;
-    height:100%;
+    z-index: 10000;
+    height: 100%;
     /* overflow: scroll; */
   }
   #new_course #add_new_course {
     position: fixed;
-    bottom:10px;
-    width:calc(100% - 20px);
-    left:10px;
+    bottom: 10px;
+    width: calc(100% - 20px);
+    left: 10px;
     /* border-radius: 0; */
-    line-height:23px;
+    line-height: 23px;
     z-index: 10001;
     /* height:30px; */
   }
@@ -675,10 +678,10 @@ export default {
     /* border-bottom: 1px solid #ededed; */
   }
   .add_hour .mdi {
-    float:none;
+    float: none;
     display: block;
-    margin:10px auto;
-    width:100%;
+    margin: 10px auto;
+    width: 100%;
   }
   #container {
     width: 100% !important;
@@ -688,7 +691,7 @@ export default {
   .week {
     /* opacity: 0; */
     z-index: 1;
-    width:100%;
+    width: 100%;
     min-width: 100%;
   }
   .week .week_days {
@@ -696,18 +699,18 @@ export default {
   }
   .picks {
     display: block;
-    margin-top:5px;
-    padding-bottom:100px;
+    margin-top: 5px;
+    padding-bottom: 100px;
     overflow: hidden;
   }
   .picks .picked {
     background: #202733;
     overflow: hidden;
     border-radius: 10px;
-    color:#fff;
-    margin:3px;
-    padding:8px;
-    width:100%;
+    color: #fff;
+    margin: 3px;
+    padding: 8px;
+    width: 100%;
     float: right;
   }
   .picked h3 {
@@ -716,4 +719,3 @@ export default {
   }
 }
 </style>
-
