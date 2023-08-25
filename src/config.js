@@ -3,7 +3,19 @@ export default {
     {
       code: "1402-01",
       title: "ترم پاییز 1402",
-      majors: ["CivilEng", "MechEng", "AppChem", "ArchEng", "IndEng"],
+      majors: [
+        "CivilEng",
+        "MechEng",
+        "ElecEng",
+        "CompEng",
+        "ChemEng",
+        "AppChem",
+        "ArchEng",
+        "IndEng",
+        "PolEng",
+        "EngPhys",
+        "GovMngmnt",
+      ],
     },
     {
       code: "1401-02",
@@ -88,7 +100,19 @@ export default {
   ],
 
   currentSemester: "1402-01",
-  majors: ["CivilEng", "MechEng", "AppChem", "ArchEng", "IndEng"],
+  majors: [
+    "CivilEng",
+    "MechEng",
+    "ElecEng",
+    "CompEng",
+    "ChemEng",
+    "AppChem",
+    "ArchEng",
+    "IndEng",
+    "PolEng",
+    "EngPhys",
+    "GovMngmnt",
+  ],
 };
 
 export let majorsList = [

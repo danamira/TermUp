@@ -332,11 +332,11 @@ export default {
             all[0].push([course, day[1], day[1][1] - day[1][0], day[1][0] - 7]);
           } else if (day[0].trim() == "یک شنبه") {
             all[1].push([course, day[1], day[1][1] - day[1][0], day[1][0] - 7]);
-          } else if (day[0].trim() == "دو شنبه") {
+          } else if (day[0].trim() == "دوشنبه") {
             all[2].push([course, day[1], day[1][1] - day[1][0], day[1][0] - 7]);
           } else if (day[0].trim() == "سه شنبه") {
             all[3].push([course, day[1], day[1][1] - day[1][0], day[1][0] - 7]);
-          } else if (day[0].trim() == "چهار شنبه") {
+          } else if (day[0].trim() == "چهارشنبه") {
             all[4].push([course, day[1], day[1][1] - day[1][0], day[1][0] - 7]);
           } else if (day[0].trim() == "پنج شنبه") {
             all[5].push([course, day[1], day[1][1] - day[1][0], day[1][0] - 7]);
