@@ -5,12 +5,12 @@
         class="logo logo_day"
         alt="Logo for TermUp"
         src="../assets/logo.png"
-      >
+      />
       <img
         class="logo logo_night"
         alt="Logo for TermUp"
         src="../assets/logo_night.png"
-      >
+      />
       <ul class="option_series" v-if="$route.name != 'Board'">
         <li>
           <a @click="$router.go(-1)">
@@ -27,7 +27,7 @@
           >
         </li>
       </ul>
-      
+
       <div id="theme_switch" v-on:click="$emit('toggleTheme')">
         <i class="mdi mdi-theme-light-dark"></i>
       </div>
@@ -42,11 +42,12 @@
         پیدا کردن تداخل های زمانی داخل روز های ارائه درس و تایم های امتحان و سبک
         سنگین کردن برنامه هفتگی همیشه از مشکلات دانشجو ها در موقع انتخاب واحد
         بوده. ترمآپ به وجود اومده تا این کار ها رو براتون آسون تر کنه.
-        </p>
+      </p>
 
-                    <p>ترمآپ از 
-<a href="http://term.inator.ir/" target="_blank">ترمیناتور شریف</a>
-الهام گرفته شده.
+      <p>
+        ترمآپ از
+        <a href="http://term.inator.ir/" target="_blank">ترمیناتور شریف</a>
+        الهام گرفته شده.
       </p>
       <h2>ترمآپ چطور ساخته شده؟</h2>
       <p>
@@ -69,10 +70,9 @@
 
       <h2>افراد زیر در توسعه ترمآپ نقش داشتند:</h2>
       <ul class="contributors">
-        <li ><i class="mdi mdi-code-tags"></i> دانا میرافضل</li>
-        <li ><i class="mdi mdi-lightbulb"></i> میلاد ماهار</li>
-        <li ><i class="mdi mdi-code-tags"></i> ادیب رضایی</li>
-        <li><i class="mdi mdi-star"></i> آرمان حاج محمدی</li>
+        <li><i class="mdi mdi-code-tags"></i> دانا میرافضل</li>
+        <li><i class="mdi mdi-code-tags"></i> ادیب رضایی</li>
+        <li><i class="mdi mdi-code-tags"></i> آرمان حاج‌محمدی</li>
       </ul>
     </div>
   </div>
