@@ -3,7 +3,7 @@ export default {
     {
       code: "1402-01",
       title: "ترم پاییز 1402",
-      majors: ["CivilEng"],
+      majors: ["CivilEng", "AppChem"],
     },
     {
       code: "1401-02",
@@ -88,7 +88,7 @@ export default {
   ],
 
   currentSemester: "1402-01",
-  majors: ["CivilEng"],
+  majors: ["CivilEng", "AppChem"],
 };
 
 export let majorsList = [
@@ -127,6 +127,6 @@ export let majorsList = [
   ["MechBio", "مکانیک بیوسیستم", "mdi-bio"],
   ["CompEngFar", "کامپیوتر (فارابی)", "mdi-code-array"],
   ["PhilosophyFar", "فلسفه (فارابی)", "mdi-head-lightbulb-outline"],
-  ["AppChem", "شیمی کاربردی", "mdi-flask-round-bottom-outline"],
+  ["AppChem", "شیمی", "mdi-flask-round-bottom-outline"],
   ["LangEng", "ادبیات انگلیسی", "mdi-book"],
 ];
