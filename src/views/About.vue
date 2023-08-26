@@ -72,8 +72,8 @@
       <ul class="contributors">
         <li><i class="mdi mdi-code-tags"></i> دانا میرافضل</li>
         <li><i class="mdi mdi-code-tags"></i> ادیب رضایی</li>
-        <li><i class="mdi mdi-code-tags"></i> ادیب رضایی</li>
-        <li><i class="mdi mdi-lightbulb"></i> آرمان حاج‌محمدی</li>
+        <li><i class="mdi mdi-code-tags"></i>آرمان حاج محمدی</li>
+        <li><i class="mdi mdi-lightbulb"></i>میلاد ماهار</li>
       </ul>
     </div>
   </div>
