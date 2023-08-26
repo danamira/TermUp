@@ -88,6 +88,9 @@ export default {
       // @todo: Implement this properly!!!
 
       let sem = localStorage.getItem("sem");
+      if (sem == "1402-01") {
+        localStorage.setItem("sem", "1401-02");
+      }
       if (sem == "1401-02") {
         localStorage.setItem("sem", "1401-01");
       }
@@ -95,7 +98,7 @@ export default {
         localStorage.setItem("sem", "1400-02");
       }
       if(sem=="1400-02") {
-        localStorage.setItem("sem", "1401-02");
+        localStorage.setItem("sem", "1402-01");
       }
       localStorage.setItem("userCourses", "[]");
       localStorage.removeItem("major");
