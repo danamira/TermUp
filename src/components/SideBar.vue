@@ -164,7 +164,7 @@ export default {
       let quer = this.query;
       return this.courses.concat(this.userCourses).filter(function (course) {
         return (
-          course.title.startsWith(quer) || course.professor.startsWith(quer)
+          course.title.includes(quer) || course.professor.startsWith(quer)
         );
       });
     },
