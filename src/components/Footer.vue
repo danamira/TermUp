@@ -20,7 +20,7 @@ export default {
   name: "Footer",
   data: function () {
     return {
-      copyright: "کپی رایت 2022",
+      copyright: "کپی رایت 2023",
       repoUrl: "https://github.com/danamira/TermUp",
     };
   },
