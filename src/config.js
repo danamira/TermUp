@@ -23,6 +23,7 @@ export default {
         "Physics",
         "Geography",
         "ChemEngCaspian",
+        "SocioPol",
       ],
     },
     {
@@ -128,6 +129,7 @@ export default {
     "Physics",
     "Geography",
     "ChemEngCaspian",
+    "SocioPol",
   ],
 };
 
@@ -163,6 +165,7 @@ export let majorsList = [
   ["Painting", "نقاشی", "mdi-brush"],
   ["EngPhys", "فیزیک مهندسی", "mdi-bike-fast"],
   ["Commu", "علوم ارتباطات", "mdi-chat"],
+  ["SocioPol", "سیاستگذاری اجتماعی", "mdi-chat"],
   ["GrdnngEng", "مهندسی باغبانی", "mdi-tree"],
   ["FoodSci", "مهندسی صنایع غذایی", "mdi-food"],
   ["MechBio", "مکانیک بیوسیستم", "mdi-bio"],
