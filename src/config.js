@@ -9,6 +9,7 @@ export default {
         "ElecEng",
         "CompEng",
         "ChemEng",
+        "Metallurgy",
         "SurvEng",
         "AppChem",
         "ArchEng",
@@ -21,6 +22,7 @@ export default {
         "OilEng",
         "Physics",
         "Geography",
+        "ChemEngCaspian",
       ],
     },
     {
@@ -112,6 +114,7 @@ export default {
     "ElecEng",
     "CompEng",
     "ChemEng",
+    "Metallurgy",
     "SurvEng",
     "AppChem",
     "ArchEng",
@@ -124,6 +127,7 @@ export default {
     "OilEng",
     "Physics",
     "Geography",
+    "ChemEngCaspian",
   ],
 };
 
@@ -135,6 +139,7 @@ export let majorsList = [
   ["IndEng", "مهندسی صنایع", "mdi-factory"],
   ["CompEng", "مهندسی کامپیوتر", "mdi-code-array"],
   ["ChemEng", "مهندسی شیمی", "mdi-flask"],
+  ["ChemEngCaspian", "مهندسی شیمی کاسپین", "mdi-flask"],
   ["Metallurgy", "مهندسی مواد", "mdi-cup"],
   ["Math", "ریاضیات و کاربرد ها", "mdi-math-integral"],
   ["CS", "علوم کامپیوتر", "mdi-code-braces-box"],
