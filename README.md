@@ -23,6 +23,8 @@
   I'm using IRANYekan as the default typeface for TermUp. However, this font is a premium font being sold at fontiran.com. Feel free to change the font-family according to your personal preference. If you want to see TermUp as published by the original developers purchase IRANYekan and copy IRANYekanWeb files(.ttf/.eot/.woff/.woff2) to <code>public/fonts</code>.
   For icons, I've used <a href="https://materialdesignicons.com/" title="Material Design Icons Website">Material Design Icons</a> for this project. Version 6.9.5 is included in <code>public/css</code> and  <code>public/fonts</code>. Feel free to upgrade this library to the latest version if you desire. You can also use the CDN links currently commented in <code>public/index.html</code>.
   </p>
+
+  
 <h2>✋ Contribution</h2>
 <p>This project is maintained by passionate students. We are open to your contributions in these two ways:</p>
 <ol>
@@ -30,3 +32,6 @@
     <li>Contributing in the application development process by adding features/resolving and bugs and reporting issues you encounter.</li>
 </ol>
 <p>See <a href='#'>data contribution guide</a> to find out how you can extract course data from Golestan system and convert it to a <code>.json</code> file expected by the app.</p>
+
+<h3>🌹 Acknowledgements</h3>
+<p>TermUP is the result of collective effort of enthusiast students of University of Tehran who like to do open-source. I'd like to thank anyone who contributes by writing code or collecting or processing data. <a href="https://github.com/ArmanHajmohammadi/TermUp-HTML2JSON">This</a> repository in particular helps you to convert raw HTML table data from University's online administration service to suitable <code>.json</code> data files accepted by TermUP.</p>
