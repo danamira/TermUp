@@ -35,3 +35,5 @@
 
 <h3>🌹 Acknowledgements</h3>
 <p>TermUP is the result of collective effort of enthusiast students of University of Tehran who like to do open-source. I'd like to thank anyone who contributes by writing code or collecting or processing data. <a href="https://github.com/ArmanHajmohammadi/TermUp-HTML2JSON">This</a> repository in particular helps you to convert raw HTML table data from University's online administration service to suitable <code>.json</code> data files accepted by TermUP.</p>
+
+<p>The <a href="http://termup.nl/">online version of TermUP</a> is hosted by <a href="https://liara.ir/">Liara</a> which is an amazing PaaS provider based in Iran.
