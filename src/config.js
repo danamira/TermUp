@@ -1,6 +1,11 @@
 export default {
   sems: [
     {
+      code: "1402-02",
+      title: "ترم بهار 1403",
+      majors: ["CivilEng", "MechEng"],
+    },
+    {
       code: "1402-01",
       title: "ترم پاییز 1402",
       majors: [
@@ -108,29 +113,8 @@ export default {
     },
   ],
 
-  currentSemester: "1402-01",
-  majors: [
-    "CivilEng",
-    "MechEng",
-    "ElecEng",
-    "CompEng",
-    "ChemEng",
-    "Metallurgy",
-    "SurvEng",
-    "AppChem",
-    "ArchEng",
-    "IndEng",
-    "PolEng",
-    "EngPhys",
-    "GovMngmnt",
-    "LangFre",
-    "EngSci",
-    "OilEng",
-    "Physics",
-    "Geography",
-    "ChemEngCaspian",
-    "SocioPol",
-  ],
+  currentSemester: "1402-02",
+  majors: ["CivilEng", "MechEng"],
 };
 
 export let majorsList = [
