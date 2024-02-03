@@ -3,7 +3,7 @@ export default {
     {
       code: "1402-02",
       title: "ترم بهار 1403",
-      majors: ["CivilEng", "MechEng"],
+      majors: ["CivilEng", "MechEng","CompEng"],
     },
     {
       code: "1402-01",
